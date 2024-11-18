@@ -11,41 +11,39 @@
         android:id="@+id/tb_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#673AB7"
+        android:minHeight="56dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="터치즈"
-        android:minHeight="56dp" />
+        app:title="TOOCHEESE" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/bt_filter_price"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="33dp"
-        android:backgroundTint="#000000"
+        android:layout_marginTop="15dp"
         android:paddingLeft="8dp"
         android:paddingRight="6dp"
         android:text="가격순"
+        app:icon="@drawable/icon_arrow_drop_down_24px"
         app:iconGravity="end"
         app:iconPadding="2dp"
-        app:iconSize="24dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tb_result" />
+        app:layout_constraintTop_toBottomOf="@id/tb_result" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/bt_filter_popular"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="12dp"
-        android:backgroundTint="#000000"
         android:paddingLeft="8dp"
         android:paddingRight="6dp"
         android:text="인기순"
-        app:icon="@drawable/icon_baseline_arrow_drop_down"
+        app:icon="@drawable/icon_arrow_drop_down_24px"
         app:iconGravity="end"
         app:iconPadding="2dp"
-        app:iconSize="24dp"
         app:layout_constraintStart_toEndOf="@+id/bt_filter_price"
         app:layout_constraintTop_toTopOf="@+id/bt_filter_price" />
 
@@ -54,14 +52,12 @@
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="12dp"
-        android:backgroundTint="#000000"
         android:paddingLeft="8dp"
         android:paddingRight="6dp"
         android:text="지역순"
-        app:icon="@drawable/icon_baseline_arrow_drop_down"
+        app:icon="@drawable/icon_arrow_drop_down_24px"
         app:iconGravity="end"
         app:iconPadding="2dp"
-        app:iconSize="24dp"
         app:layout_constraintStart_toEndOf="@+id/bt_filter_popular"
         app:layout_constraintTop_toTopOf="@+id/bt_filter_popular" />
 
@@ -69,23 +65,21 @@
         android:id="@+id/bt_filter_reset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
         android:background="@android:color/transparent"
-        android:src="@drawable/icon_restart_alt"
-        app:layout_constraintStart_toEndOf="@+id/bt_filter_local"
+        android:src="@drawable/icon_restart_alt_24px"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bt_filter_local"
         tools:ignore="MissingConstraints" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/result_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/rv_studio_list"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bt_filter_price" />
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
