@@ -33,22 +33,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tb_result" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/bt_filter_popular"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginStart="12dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="6dp"
-        android:text="인기순"
-        app:icon="@drawable/icon_arrow_drop_down_24px"
-        app:iconGravity="end"
-        app:iconPadding="2dp"
-        app:layout_constraintStart_toEndOf="@+id/bt_filter_price"
-        app:layout_constraintTop_toTopOf="@+id/bt_filter_price" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/bt_filter_local"
+        android:id="@+id/bt_filter_region"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="12dp"
@@ -58,18 +45,34 @@
         app:icon="@drawable/icon_arrow_drop_down_24px"
         app:iconGravity="end"
         app:iconPadding="2dp"
-        app:layout_constraintStart_toEndOf="@+id/bt_filter_popular"
-        app:layout_constraintTop_toTopOf="@+id/bt_filter_popular" />
+        app:layout_constraintStart_toEndOf="@+id/bt_filter_price"
+        app:layout_constraintTop_toTopOf="@+id/bt_filter_price" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bt_filter_popular"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="12dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="6dp"
+        android:text="평점순"
+        app:icon="@drawable/icon_arrow_drop_down_24px"
+        app:iconGravity="end"
+        app:iconPadding="2dp"
+        app:layout_constraintStart_toEndOf="@+id/bt_filter_region"
+        app:layout_constraintTop_toTopOf="@+id/bt_filter_region" />
 
     <ImageButton
         android:id="@+id/bt_filter_reset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
         android:background="@android:color/transparent"
         android:src="@drawable/icon_restart_alt_24px"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/bt_filter_local"
+        app:layout_constraintTop_toTopOf="@+id/bt_filter_popular"
         tools:ignore="MissingConstraints" />
 
     <androidx.recyclerview.widget.RecyclerView

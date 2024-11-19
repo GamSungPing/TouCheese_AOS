@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingHorizontal="10dp"
-    android:background="@color/material_dynamic_primary50"
-    >
+    android:background="#FFFFFF"
+    android:paddingHorizontal="10dp">
 
     <TextView
         android:id="@+id/tv_region1"
@@ -14,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="30dp"
-        android:text="강서"
+        android:text="강남"
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -31,7 +30,7 @@
         android:layout_width="40dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:text="강남"
+        android:text="서초"
         android:textAlignment="center"
         app:layout_constraintStart_toEndOf="@+id/tv_region1"
         app:layout_constraintTop_toTopOf="@+id/tv_region1" />
@@ -49,7 +48,7 @@
         android:layout_width="40dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:text="강북"
+        android:text="송파"
         android:textAlignment="center"
         app:layout_constraintStart_toEndOf="@+id/tv_region2"
         app:layout_constraintTop_toTopOf="@+id/tv_region2" />
@@ -68,7 +67,7 @@
         android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:text="영등포구"
+        android:text="강서"
         android:textAlignment="center"
         app:layout_constraintStart_toEndOf="@+id/tv_region3"
         app:layout_constraintTop_toTopOf="@+id/tv_region3" />
@@ -86,7 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="40dp"
-        android:text="용산"
+        android:text="마포"
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bt_region1" />
@@ -102,8 +101,8 @@
         android:id="@+id/tv_region6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:text="금천"
+        android:layout_marginStart="15dp"
+        android:text="영등포"
         android:textAlignment="center"
         app:layout_constraintStart_toEndOf="@+id/tv_region5"
         app:layout_constraintTop_toTopOf="@+id/tv_region5" />
@@ -119,8 +118,8 @@
         android:id="@+id/tv_region7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:text="구로"
+        android:layout_marginStart="15dp"
+        android:text="강북"
         android:textAlignment="center"
         app:layout_constraintStart_toEndOf="@+id/tv_region6"
         app:layout_constraintTop_toTopOf="@+id/tv_region6" />
@@ -136,8 +135,8 @@
         android:id="@+id/tv_region8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:text="구로"
+        android:layout_marginStart="15dp"
+        android:text="용산"
         android:textAlignment="center"
         app:layout_constraintStart_toEndOf="@+id/tv_region7"
         app:layout_constraintTop_toTopOf="@+id/tv_region7" />
@@ -148,6 +147,23 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@+id/tv_region8"
         app:layout_constraintTop_toBottomOf="@+id/tv_region8" />
+
+    <TextView
+        android:id="@+id/tv_region9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:text="성동"
+        android:textAlignment="center"
+        app:layout_constraintStart_toEndOf="@+id/tv_region8"
+        app:layout_constraintTop_toTopOf="@+id/tv_region8" />
+
+    <RadioButton
+        android:id="@+id/bt_region9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/bt_region8"
+        app:layout_constraintTop_toBottomOf="@+id/tv_region9" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
