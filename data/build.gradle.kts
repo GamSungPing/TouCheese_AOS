@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     id("kotlinx-serialization")
     alias(libs.plugins.android.library)
@@ -6,15 +8,21 @@ plugins {
     alias(libs.plugins.hilt)
 }
 
+val properties = Properties()
+properties.load(project.rootProject.file("local.properties").inputStream())
+val baseUrl = properties.getProperty("base_url") ?: ""
+
 android {
     namespace = "com.example.data"
     compileSdk = 35
 
     defaultConfig {
-        minSdk = 24
+        minSdk = 26
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+
+        buildConfigField("String", "BASE_URL", "\"$baseUrl\"")
     }
 
     buildTypes {
@@ -32,6 +40,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+    buildFeatures {
+        buildConfig = true
     }
 }
 
