@@ -1,4 +1,7 @@
 package com.example.presentation.sample
 
-class Studio {
-}
+data class Studio (
+    val id: Int,
+    val name: String,
+    val images: List<String>
+)
