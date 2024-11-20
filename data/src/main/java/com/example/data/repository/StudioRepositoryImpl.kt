@@ -25,12 +25,11 @@ internal class StudioRepositoryImpl @Inject constructor(
 
     override suspend fun getStudioWithConceptAndRegion(
         concept: Concept,
-        region: List<Region>,
+        region: List<Int>,
         pageNo: Int?
     ): List<StudioInfoWithConcept> {
-        val regionId = region.map { it.id }
         return studioDataSource
-            .getStudioWithConceptAndRegion(concept.id, regionId, pageNo)
+            .getStudioWithConceptAndRegion(concept.id, region, pageNo)
             .toDomainModel()
     }
 
@@ -55,23 +54,22 @@ internal class StudioRepositoryImpl @Inject constructor(
 
     override suspend fun getStudioWithConceptAndRegionOrderByHighRating(
         conceptId: Concept,
-        region: List<Region>,
+        region: List<Int>,
         pageNo: Int?
     ): List<StudioInfoWithConcept> {
-        val regionId = region.map { it.id }
         return studioDataSource
-            .getStudioWithConceptAndRegionOrderByHighRating(conceptId.id, regionId, pageNo)
+            .getStudioWithConceptAndRegionOrderByHighRating(conceptId.id, region, pageNo)
             .toDomainModel()
     }
 
     override suspend fun getStudioWithConceptAndRegionsOrderByPrice(
         conceptId: Concept,
-        region: List<Region>,
-        priceCategory: Pricing
+        region: List<Int>,
+        priceCategory: Pricing,
+        pageNo: Int?
     ): List<StudioInfoWithConcept> {
-        val regionId = region.map { it.id }
         return studioDataSource
-            .getStudioWithConceptAndRegionsOrderByPrice(conceptId.id, regionId, priceCategory.toString())
+            .getStudioWithConceptAndRegionsOrderByPrice(conceptId.id, region, priceCategory.toString())
             .toDomainModel()
     }
 
@@ -91,14 +89,13 @@ internal class StudioRepositoryImpl @Inject constructor(
     override suspend fun getStudioWithConceptAndRegionOrderByHighRatingAndLowerPrice(
         conceptId: Concept,
         priceCategory: Pricing,
-        region: List<Region>,
+        region: List<Int>,
         pageNo: Int?
     ): List<StudioInfoWithConcept> {
-        val regionId = region.map { it.id }
         return studioDataSource.getStudioWithConceptAndRegionOrderByHighRatingAndLowerPrice(
             conceptId.id,
             priceCategory.toString(),
-            regionId,
+            region,
             pageNo
         ).toDomainModel()
     }
