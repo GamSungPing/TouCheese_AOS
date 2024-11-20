@@ -1,16 +1,14 @@
 package com.example.presentation.main.view.fragment
 
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.PopupWindow
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.domain.rule.Region
 import com.example.presentation.R
 import com.example.presentation.databinding.FragmentResultViewBinding
 import com.example.presentation.databinding.PriceFilterPopupBinding
@@ -18,10 +16,10 @@ import com.example.presentation.databinding.RegionFilterPopupBinding
 import com.example.presentation.sample.ResultViewAdapter
 import com.example.presentation.sample.ResultViewModel
 import com.example.presentation.sample.Studio
+import dagger.hilt.android.AndroidEntryPoint
 
-class ResultViewFragment : Fragment() {
-    private var _binding : FragmentResultViewBinding? = null
-    private val binding get() = _binding!!
+@AndroidEntryPoint
+class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
 
     private var _priceFilterBinding: PriceFilterPopupBinding? = null
     private val priceFilterBinding get() = _priceFilterBinding!!
@@ -65,25 +63,15 @@ class ResultViewFragment : Fragment() {
         ))
     )
 
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentResultViewBinding.inflate(inflater, container, false)
-        _priceFilterBinding = PriceFilterPopupBinding.inflate(layoutInflater)
-        _regionFilterBinding = RegionFilterPopupBinding.inflate(layoutInflater)
-
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        _priceFilterBinding = PriceFilterPopupBinding.inflate(layoutInflater)
+        _regionFilterBinding = RegionFilterPopupBinding.inflate(layoutInflater)
+        val binding = FragmentResultViewBinding.bind(view)
 
-        setupRvStudioList()
-        setupPriceFilterPopup()
-        setupRegionFilterPopup()
+        setupRvStudioList(binding)
+        setupPriceFilterPopup(binding)
+        setupRegionFilterPopup(binding)
 
         observePriceViewModel()
         observeRegionViewModel()
@@ -92,21 +80,21 @@ class ResultViewFragment : Fragment() {
     }
 
     override fun onDestroyView() {
-        _binding = null
         _priceFilterBinding = null
         super.onDestroyView()
     }
 
-    private fun setupRvStudioList() {
+    private fun setupRvStudioList(binding: FragmentResultViewBinding) {
         resultViewAdapter = ResultViewAdapter()
         binding.rvStudioList.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
             adapter = resultViewAdapter
         }
+
     }
 
-    private fun setupPriceFilterPopup() {
+    private fun setupPriceFilterPopup(binding: FragmentResultViewBinding) {
         val popupWindow = PopupWindow(
             priceFilterBinding.root,
             ConstraintLayout.LayoutParams.WRAP_CONTENT,
@@ -136,11 +124,10 @@ class ResultViewFragment : Fragment() {
         }
     }
 
-    private fun setupRegionFilterPopup() {
-        val popupBinding = RegionFilterPopupBinding.inflate(layoutInflater)
+    private fun setupRegionFilterPopup(binding: FragmentResultViewBinding) {
 
         val popupWindow = PopupWindow(
-            popupBinding.root,
+            regionFilterBinding.root,
             ConstraintLayout.LayoutParams.WRAP_CONTENT,
             ConstraintLayout.LayoutParams.WRAP_CONTENT,
             true
@@ -151,37 +138,35 @@ class ResultViewFragment : Fragment() {
                 popupWindow.showAsDropDown(this)
 
                 regionFilterBinding.apply {
-                    // 체크박스 상태 업데이트
                     btRegion1.setOnCheckedChangeListener { _, isChecked ->
-                        viewModel.updateCheckboxState(R.id.bt_region1, isChecked)
+                        viewModel.setSelectedRegion(Region.Gangnam)
                     }
                     btRegion2.setOnCheckedChangeListener { _, isChecked ->
-                        viewModel.updateCheckboxState(R.id.bt_region2, isChecked)
+                        //viewModel.setSelectedRegion(btRegion2.id, isChecked )
                     }
                     btRegion3.setOnCheckedChangeListener { _, isChecked ->
-                        viewModel.updateCheckboxState(R.id.bt_region3, isChecked)
+                        //viewModel.setSelectedRegion(btRegion3.id, isChecked )
                     }
                     btRegion4.setOnCheckedChangeListener { _, isChecked ->
-                        viewModel.updateCheckboxState(R.id.bt_region4, isChecked)
+                        //viewModel.setSelectedRegion(btRegion4.id, isChecked )
                     }
                     btRegion5.setOnCheckedChangeListener { _, isChecked ->
-                        viewModel.updateCheckboxState(R.id.bt_region5, isChecked)
+                        //viewModel.setSelectedRegion(btRegion5.id, isChecked )
                     }
                     btRegion6.setOnCheckedChangeListener { _, isChecked ->
-                        viewModel.updateCheckboxState(R.id.bt_region6, isChecked)
+                        //viewModel.setSelectedRegion(btRegion6.id, isChecked )
                     }
                     btRegion7.setOnCheckedChangeListener { _, isChecked ->
-                        viewModel.updateCheckboxState(R.id.bt_region7, isChecked)
+                        //viewModel.setSelectedRegion(btRegion7.id, isChecked )
                     }
                     btRegion8.setOnCheckedChangeListener { _, isChecked ->
-                        viewModel.updateCheckboxState(R.id.bt_region8, isChecked)
+                        //viewModel.setSelectedRegion(btRegion8.id, isChecked )
                     }
                     btRegion9.setOnCheckedChangeListener { _, isChecked ->
-                        viewModel.updateCheckboxState(R.id.bt_region9, isChecked)
+                        //viewModel.setSelectedRegion(btRegion9.id, isChecked )
                     }
                 }
-            }
-        }
+        }   }
     }
 
     private fun observePriceViewModel() {
@@ -197,12 +182,9 @@ class ResultViewFragment : Fragment() {
 
 
     private fun observeRegionViewModel() {
-        viewModel.checkboxStates.observe(viewLifecycleOwner) {
-            val checkedRegions = viewModel.getCheckedRegions()
-            // 예: 체크된 지역들을 Log로 출력
-            Log.d("ddd", checkedRegions.joinToString(", "))
-            Log.d("ddd111", checkedRegions.toString())
-
+        viewModel.selectedRegion.observe(viewLifecycleOwner) { checkedBox ->
+            regionFilterBinding.apply {
+            }
         }
     }
 }

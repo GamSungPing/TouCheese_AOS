@@ -13,7 +13,7 @@ import retrofit2.http.Query
  * */
 internal interface StudioService {
     /**
-     * 스튜디오 던건 정보
+     * 스튜디오 단건 정보
      * @param 스튜디오 고유 ID
      * */
     @GET("{id}")

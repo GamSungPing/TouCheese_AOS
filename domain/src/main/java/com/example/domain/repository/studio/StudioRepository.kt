@@ -15,8 +15,8 @@ interface StudioRepository {
 
     suspend fun getStudioWithConceptAndRegion(
         concept: Concept,
-        region: List<Region>,
-        pageNo: Int?
+        region: List<Int>,
+        pageNo: Int? = null
     ): List<StudioInfoWithConcept>
 
     suspend fun getStudioWithConceptOrderByLowerPrice(

@@ -25,12 +25,11 @@ internal class StudioRepositoryImpl @Inject constructor(
 
     override suspend fun getStudioWithConceptAndRegion(
         concept: Concept,
-        region: List<Region>,
+        region: List<Int>,
         pageNo: Int?
     ): List<StudioInfoWithConcept> {
-        val regionId = region.map { it.id }
         return studioDataSource
-            .getStudioWithConceptAndRegion(concept.id, regionId, pageNo)
+            .getStudioWithConceptAndRegion(concept.id, region, pageNo)
             .toDomainModel()
     }
 
