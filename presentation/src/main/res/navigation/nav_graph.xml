@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/homeConceptFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:startDestination="@id/homeConceptMainFragment">
 
     <fragment
-        android:id="@+id/homeConceptFragment"
-        android:name="com.example.presentation.main.view.fragment.HomeConceptFragment"
-        android:label="fragment_home_concept"
-        tools:layout="@layout/fragment_home_concept" />
+        android:id="@+id/homeConceptMainFragment"
+        android:name="com.example.presentation.main.view.fragment.HomeConceptMainFragment"
+        android:label="fragment_home_concept_main"
+        tools:layout="@layout/fragment_home_concept_main" />
+
+    <fragment
+        android:id="@+id/askFragmentFragment"
+        android:name="com.example.presentation.main.view.fragment.AskFragmentFragment"
+        android:label="fragment_ask_fragment"
+        tools:layout="@layout/fragment_ask_fragment" />
+    <fragment
+        android:id="@+id/scheduleFragment"
+        android:name="com.example.presentation.main.view.fragment.ScheduleFragment"
+        android:label="fragment_schedule"
+        tools:layout="@layout/fragment_schedule" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.presentation.main.view.fragment.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

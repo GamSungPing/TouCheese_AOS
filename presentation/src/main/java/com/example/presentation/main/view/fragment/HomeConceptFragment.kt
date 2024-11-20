@@ -18,4 +18,18 @@ class HomeConceptFragment : Fragment(R.layout.fragment_home_concept) {
         val binding = FragmentHomeConceptBinding.bind(view)
         viewModel
     }
+
+    private fun showFragment(fragment: Fragment) {
+        childFragmentManager.beginTransaction().apply {
+            show(fragment)
+            commit()
+        }
+    }
+
+    private fun hideFragment(fragment: Fragment) {
+        childFragmentManager.beginTransaction().apply {
+            hide(fragment)
+            commit()
+        }
+    }
 }
