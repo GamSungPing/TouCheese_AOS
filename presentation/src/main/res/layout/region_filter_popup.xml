@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <RadioButton
+    <CheckBox
         android:id="@+id/bt_region1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
         app:layout_constraintStart_toEndOf="@+id/tv_region1"
         app:layout_constraintTop_toTopOf="@+id/tv_region1" />
 
-    <RadioButton
+    <CheckBox
         android:id="@+id/bt_region2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
         app:layout_constraintStart_toEndOf="@+id/tv_region2"
         app:layout_constraintTop_toTopOf="@+id/tv_region2" />
 
-    <RadioButton
+    <CheckBox
         android:id="@+id/bt_region3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
         app:layout_constraintStart_toEndOf="@+id/tv_region3"
         app:layout_constraintTop_toTopOf="@+id/tv_region3" />
 
-    <RadioButton
+    <CheckBox
         android:id="@+id/bt_region4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -90,7 +90,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bt_region1" />
 
-    <RadioButton
+    <CheckBox
         android:id="@+id/bt_region5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -107,7 +107,7 @@
         app:layout_constraintStart_toEndOf="@+id/tv_region5"
         app:layout_constraintTop_toTopOf="@+id/tv_region5" />
 
-    <RadioButton
+    <CheckBox
         android:id="@+id/bt_region6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -124,7 +124,7 @@
         app:layout_constraintStart_toEndOf="@+id/tv_region6"
         app:layout_constraintTop_toTopOf="@+id/tv_region6" />
 
-    <RadioButton
+    <CheckBox
         android:id="@+id/bt_region7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -141,7 +141,7 @@
         app:layout_constraintStart_toEndOf="@+id/tv_region7"
         app:layout_constraintTop_toTopOf="@+id/tv_region7" />
 
-    <RadioButton
+    <CheckBox
         android:id="@+id/bt_region8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -158,7 +158,7 @@
         app:layout_constraintStart_toEndOf="@+id/tv_region8"
         app:layout_constraintTop_toTopOf="@+id/tv_region8" />
 
-    <RadioButton
+    <CheckBox
         android:id="@+id/bt_region9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
