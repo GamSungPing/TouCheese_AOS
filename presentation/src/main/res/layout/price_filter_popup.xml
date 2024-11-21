@@ -30,7 +30,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_price_all" />
 
     <TextView
-        android:id="@+id/tv_price1"
+        android:id="@+id/tv_price_low"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -40,52 +40,52 @@
         app:layout_constraintTop_toTopOf="@+id/tv_price_all" />
 
     <RadioButton
-        android:id="@+id/bt_price1"
+        android:id="@+id/bt_price_low"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="@+id/tv_price1"
-        app:layout_constraintTop_toBottomOf="@+id/tv_price1" />
+        app:layout_constraintStart_toStartOf="@+id/tv_price_low"
+        app:layout_constraintTop_toBottomOf="@+id/tv_price_low" />
 
     <TextView
-        android:id="@+id/tv_price2"
+        android:id="@+id/tv_price_mid"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:text="10만원 이상"
         android:textAlignment="center"
-        app:layout_constraintStart_toEndOf="@+id/tv_price1"
-        app:layout_constraintTop_toTopOf="@+id/tv_price1" />
+        app:layout_constraintStart_toEndOf="@+id/tv_price_low"
+        app:layout_constraintTop_toTopOf="@+id/tv_price_low" />
 
     <RadioButton
-        android:id="@+id/bt_price2"
+        android:id="@+id/bt_price_mid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="@+id/tv_price2"
-        app:layout_constraintTop_toBottomOf="@+id/tv_price2" />
+        app:layout_constraintStart_toStartOf="@+id/tv_price_mid"
+        app:layout_constraintTop_toBottomOf="@+id/tv_price_mid" />
 
     <TextView
-        android:id="@+id/tv_price3"
+        android:id="@+id/tv_price_high"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:text="20만원 이상"
         android:textAlignment="center"
-        app:layout_constraintStart_toEndOf="@+id/tv_price2"
-        app:layout_constraintTop_toTopOf="@+id/tv_price2" />
+        app:layout_constraintStart_toEndOf="@+id/tv_price_mid"
+        app:layout_constraintTop_toTopOf="@+id/tv_price_mid" />
 
     <RadioButton
-        android:id="@+id/bt_price3"
+        android:id="@+id/bt_price_high"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="10dp"
-        app:layout_constraintStart_toStartOf="@+id/tv_price3"
-        app:layout_constraintTop_toBottomOf="@+id/tv_price3" />
+        app:layout_constraintStart_toStartOf="@+id/tv_price_high"
+        app:layout_constraintTop_toBottomOf="@+id/tv_price_high" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
