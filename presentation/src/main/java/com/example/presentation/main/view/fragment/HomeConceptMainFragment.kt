@@ -27,7 +27,7 @@ class HomeConceptMainFragment : Fragment(R.layout.fragment_home_concept_main) {
         )
 
         viewModel.uiState.observe(viewLifecycleOwner) { state ->
-            val action = HomeConceptFragmentDirections.actionHomeConceptFragmentToTestFragment(state.id)
+            val action = HomeConceptFragmentDirections.actionToResultViewFragment(state.id)
             navController.navigate(action)
         }
     }

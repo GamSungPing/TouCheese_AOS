@@ -1,12 +1,12 @@
 package com.example.presentation.main.view.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.PopupWindow
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.domain.rule.Pricing
@@ -15,13 +15,13 @@ import com.example.presentation.R
 import com.example.presentation.databinding.FragmentResultViewBinding
 import com.example.presentation.databinding.PriceFilterPopupBinding
 import com.example.presentation.databinding.RegionFilterPopupBinding
-import com.example.presentation.sample.ResultViewAdapter
-import com.example.presentation.sample.ResultViewModel
+import com.example.presentation.main.view.adapter.ResultViewAdapter
+import com.example.presentation.main.vm.ResultViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
-
+    private val args: ResultViewFragmentArgs by navArgs()
     private var _priceFilterBinding: PriceFilterPopupBinding? = null
     private val priceFilterBinding get() = _priceFilterBinding!!
 
@@ -36,6 +36,7 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
         _priceFilterBinding = PriceFilterPopupBinding.inflate(layoutInflater)
         _regionFilterBinding = RegionFilterPopupBinding.inflate(layoutInflater)
         val binding = FragmentResultViewBinding.bind(view)
+        viewModel.getInitializedStudio(args.conceptId)
 
         setupRvStudioList(binding)
         setupPriceFilterPopup(binding)
@@ -106,32 +107,31 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
 
                 regionFilterBinding.apply {
                     btGangnam.setOnCheckedChangeListener { _, _ ->
-                        Log.d("dsdsa", "클릭")
-                        viewModel.setSelectedRegion(Region.Gangnam)
+                        viewModel.onSelectedRegion(Region.Gangnam, args.conceptId)
                     }
                     btSeocho.setOnCheckedChangeListener { _, _ ->
-                        viewModel.setSelectedRegion(Region.Seocho)
+                        viewModel.onSelectedRegion(Region.Seocho, args.conceptId)
                     }
                     btSongpa.setOnCheckedChangeListener { _, _ ->
-                        viewModel.setSelectedRegion(Region.Songpa)
+                        viewModel.onSelectedRegion(Region.Songpa, args.conceptId)
                     }
                     btGangseo.setOnCheckedChangeListener { _, _ ->
-                        viewModel.setSelectedRegion(Region.Gangseo)
+                        viewModel.onSelectedRegion(Region.Gangseo, args.conceptId)
                     }
                     btMapo.setOnCheckedChangeListener { _, _ ->
-                        viewModel.setSelectedRegion(Region.Mapo)
+                        viewModel.onSelectedRegion(Region.Mapo, args.conceptId)
                     }
                     btYeongdeungpo.setOnCheckedChangeListener { _, _ ->
-                        viewModel.setSelectedRegion(Region.Yeongdeungpo)
+                        viewModel.onSelectedRegion(Region.Yeongdeungpo, args.conceptId)
                     }
                     btGangbuk.setOnCheckedChangeListener { _, _ ->
-                        viewModel.setSelectedRegion(Region.Gangbuk)
+                        viewModel.onSelectedRegion(Region.Gangbuk, args.conceptId)
                     }
                     btYongsan.setOnCheckedChangeListener { _, _ ->
-                        viewModel.setSelectedRegion(Region.Yongsan)
+                        viewModel.onSelectedRegion(Region.Yongsan, args.conceptId)
                     }
                     btSeongdong.setOnCheckedChangeListener { _, _ ->
-                        viewModel.setSelectedRegion(Region.Seongdong)
+                        viewModel.onSelectedRegion(Region.Seongdong, args.conceptId)
                     }
                 }
         }   }
