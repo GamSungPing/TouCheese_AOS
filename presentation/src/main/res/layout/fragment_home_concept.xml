@@ -9,53 +9,53 @@
     tools:context=".main.view.fragment.HomeConceptFragment">
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/button"
+        android:id="@+id/btn_concept_liveliness"
         android:layout_width="180dp"
         android:layout_height="170dp"
         android:text="@string/text_concept_vibrancy"
         android:background="@drawable/lacoon"
         android:layout_marginBottom="20dp"
         android:gravity="bottom|center"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintBottom_toTopOf="@+id/btn_concept_actor"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_concept_flash"
         android:layout_width="180dp"
         android:layout_height="170dp"
         android:text="@string/text_concept_flash"
         android:background="@drawable/lacoon"
         android:layout_marginBottom="20dp"
         android:gravity="bottom|center"
-        app:layout_constraintBottom_toTopOf="@+id/button4"
+        app:layout_constraintBottom_toTopOf="@+id/btn_concept_natural"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btn_concept_actor"
         android:layout_width="180dp"
         android:layout_height="170dp"
         android:gravity="bottom|center"
         android:layout_marginBottom="20dp"
         android:text="@string/text_concept_actor"
         android:background="@drawable/lacoon"
-        app:layout_constraintBottom_toTopOf="@+id/button5"
+        app:layout_constraintBottom_toTopOf="@+id/btn_concept_doll"
         app:layout_constraintStart_toStartOf="parent"
         />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/btn_concept_natural"
         android:layout_width="180dp"
         android:layout_height="170dp"
         android:gravity="bottom|center"
         android:layout_marginBottom="20dp"
         android:text="@string/text_concept_natural"
         android:background="@drawable/lacoon"
-        app:layout_constraintBottom_toTopOf="@+id/button6"
+        app:layout_constraintBottom_toTopOf="@+id/btn_concept_watercolor"
         app:layout_constraintEnd_toEndOf="parent"
         />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/btn_concept_doll"
         android:layout_width="180dp"
         android:layout_height="170dp"
         android:gravity="bottom|center"
@@ -66,7 +66,7 @@
         />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/btn_concept_watercolor"
         android:layout_width="180dp"
         android:layout_height="170dp"
         android:gravity="bottom|center"
