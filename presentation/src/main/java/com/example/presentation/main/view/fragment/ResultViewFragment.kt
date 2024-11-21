@@ -1,6 +1,7 @@
 package com.example.presentation.main.view.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.PopupWindow
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.domain.rule.Pricing
 import com.example.domain.rule.Region
 import com.example.presentation.R
 import com.example.presentation.databinding.FragmentResultViewBinding
@@ -15,7 +17,6 @@ import com.example.presentation.databinding.PriceFilterPopupBinding
 import com.example.presentation.databinding.RegionFilterPopupBinding
 import com.example.presentation.sample.ResultViewAdapter
 import com.example.presentation.sample.ResultViewModel
-import com.example.presentation.sample.Studio
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,39 +31,6 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
     private lateinit var resultViewAdapter: ResultViewAdapter
     private val viewModel: ResultViewModel by viewModels()
 
-
-    // 임시 데이터
-    val sampleData = listOf(
-        Studio(id = 1, name = "Studio 1", listOf(
-            "image1",
-            "image2",
-            "image3",
-            "image4",
-            "image5",
-        )),
-        Studio(id = 2, name = "Studio 2", listOf(
-            "image1",
-            "image2",
-            "image3",
-            "image4",
-            "image5",
-        )),
-        Studio(id = 3, name = "Studio 3", listOf(
-            "image1",
-            "image2",
-            "image3",
-            "image4",
-            "image5",
-        )),
-        Studio(id = 4, name = "Studio 4", listOf(
-            "image1",
-            "image2",
-            "image3",
-            "image4",
-            "image5",
-        ))
-    )
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _priceFilterBinding = PriceFilterPopupBinding.inflate(layoutInflater)
@@ -74,13 +42,12 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
         setupRegionFilterPopup(binding)
 
         observePriceViewModel()
-        observeRegionViewModel()
-
-        resultViewAdapter.submitList(sampleData)
+        observeResultViewModel()
     }
 
     override fun onDestroyView() {
         _priceFilterBinding = null
+        _regionFilterBinding = null
         super.onDestroyView()
     }
 
@@ -91,7 +58,6 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
             addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
             adapter = resultViewAdapter
         }
-
     }
 
     private fun setupPriceFilterPopup(binding: FragmentResultViewBinding) {
@@ -108,16 +74,17 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
 
                 priceFilterBinding.apply {
                     btPriceAll.setOnClickListener {
-                        viewModel.setSelectedButton("btPriceAll")
+//                        viewModel.setSelectedButton("btPriceAll")
+//                        viewModel.selectedButton(Pricing.ALL)
                     }
-                    btPrice1.setOnClickListener {
-                        viewModel.setSelectedButton("btPrice1")
+                    btPriceLow.setOnClickListener {
+                        viewModel.setSelectedButton(Pricing.LOW)
                     }
-                    btPrice2.setOnClickListener {
-                        viewModel.setSelectedButton("btPrice2")
+                    btPriceMid.setOnClickListener {
+                        viewModel.setSelectedButton(Pricing.MEDIUM)
                     }
-                    btPrice3.setOnClickListener {
-                        viewModel.setSelectedButton("btPrice3")
+                    btPriceHigh.setOnClickListener {
+                        viewModel.setSelectedButton(Pricing.HIGH)
                     }
                 }
             }
@@ -138,32 +105,33 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
                 popupWindow.showAsDropDown(this)
 
                 regionFilterBinding.apply {
-                    btRegion1.setOnCheckedChangeListener { _, isChecked ->
+                    btGangnam.setOnCheckedChangeListener { _, _ ->
+                        Log.d("dsdsa", "클릭")
                         viewModel.setSelectedRegion(Region.Gangnam)
                     }
-                    btRegion2.setOnCheckedChangeListener { _, isChecked ->
-                        //viewModel.setSelectedRegion(btRegion2.id, isChecked )
+                    btSeocho.setOnCheckedChangeListener { _, _ ->
+                        viewModel.setSelectedRegion(Region.Seocho)
                     }
-                    btRegion3.setOnCheckedChangeListener { _, isChecked ->
-                        //viewModel.setSelectedRegion(btRegion3.id, isChecked )
+                    btSongpa.setOnCheckedChangeListener { _, _ ->
+                        viewModel.setSelectedRegion(Region.Songpa)
                     }
-                    btRegion4.setOnCheckedChangeListener { _, isChecked ->
-                        //viewModel.setSelectedRegion(btRegion4.id, isChecked )
+                    btGangseo.setOnCheckedChangeListener { _, _ ->
+                        viewModel.setSelectedRegion(Region.Gangseo)
                     }
-                    btRegion5.setOnCheckedChangeListener { _, isChecked ->
-                        //viewModel.setSelectedRegion(btRegion5.id, isChecked )
+                    btMapo.setOnCheckedChangeListener { _, _ ->
+                        viewModel.setSelectedRegion(Region.Mapo)
                     }
-                    btRegion6.setOnCheckedChangeListener { _, isChecked ->
-                        //viewModel.setSelectedRegion(btRegion6.id, isChecked )
+                    btYeongdeungpo.setOnCheckedChangeListener { _, _ ->
+                        viewModel.setSelectedRegion(Region.Yeongdeungpo)
                     }
-                    btRegion7.setOnCheckedChangeListener { _, isChecked ->
-                        //viewModel.setSelectedRegion(btRegion7.id, isChecked )
+                    btGangbuk.setOnCheckedChangeListener { _, _ ->
+                        viewModel.setSelectedRegion(Region.Gangbuk)
                     }
-                    btRegion8.setOnCheckedChangeListener { _, isChecked ->
-                        //viewModel.setSelectedRegion(btRegion8.id, isChecked )
+                    btYongsan.setOnCheckedChangeListener { _, _ ->
+                        viewModel.setSelectedRegion(Region.Yongsan)
                     }
-                    btRegion9.setOnCheckedChangeListener { _, isChecked ->
-                        //viewModel.setSelectedRegion(btRegion9.id, isChecked )
+                    btSeongdong.setOnCheckedChangeListener { _, _ ->
+                        viewModel.setSelectedRegion(Region.Seongdong)
                     }
                 }
         }   }
@@ -172,19 +140,23 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
     private fun observePriceViewModel() {
         viewModel.selectedButton.observe(viewLifecycleOwner) { selectedButton ->
             priceFilterBinding.apply {
-                btPriceAll.isChecked = (selectedButton == "btPriceAll")
-                btPrice1.isChecked = (selectedButton == "btPrice1")
-                btPrice2.isChecked = (selectedButton == "btPrice2")
-                btPrice3.isChecked = (selectedButton == "btPrice3")
+//                btPriceAll.isChecked = (selectedButton == Pricing.ALL)
+                btPriceLow.isChecked = (selectedButton == Pricing.LOW)
+                btPriceMid.isChecked = (selectedButton == Pricing.MEDIUM)
+                btPriceHigh.isChecked = (selectedButton == Pricing.HIGH)
             }
         }
     }
 
-
     private fun observeRegionViewModel() {
-        viewModel.selectedRegion.observe(viewLifecycleOwner) { checkedBox ->
-            regionFilterBinding.apply {
-            }
+        viewModel.selectedRegion.observe(viewLifecycleOwner) { filterState ->
+            val selectedRegionIds = filterState.getSelectedRegionIds()
+        }
+    }
+
+    private fun observeResultViewModel() {
+        viewModel.result.observe(viewLifecycleOwner) { studioList ->
+            resultViewAdapter.submitList(studioList)
         }
     }
 }

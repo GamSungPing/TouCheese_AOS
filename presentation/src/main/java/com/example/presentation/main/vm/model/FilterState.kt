@@ -9,6 +9,10 @@ data class FilterState (
         return regions.filterValues { it }.keys.map { it.id }
     }
 
+    fun takeHasSelectedRegion(): Boolean{
+        return regions.any { it.value }
+    }
+
     companion object{
         fun create(): FilterState{
             return FilterState(Region.create())
