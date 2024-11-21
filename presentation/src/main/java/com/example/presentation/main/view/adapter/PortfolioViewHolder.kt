@@ -1,4 +1,4 @@
-package com.example.presentation.sample
+package com.example.presentation.main.view.adapter
 
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide

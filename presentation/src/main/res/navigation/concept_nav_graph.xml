@@ -10,16 +10,16 @@
         android:label="fragment_home_concept"
         tools:layout="@layout/fragment_home_concept" >
         <action
-            android:id="@+id/action_homeConceptFragment_to_testFragment"
-            app:destination="@id/testFragment" />
+            android:id="@+id/action_to_resultViewFragment"
+            app:destination="@id/resultViewFragment" />
     </fragment>
     <fragment
-        android:id="@+id/testFragment"
-        android:name="com.example.presentation.main.view.fragment.TestFragment"
-        android:label="fragment_test"
-        tools:layout="@layout/fragment_test" >
+        android:id="@+id/resultViewFragment"
+        android:name="com.example.presentation.main.view.fragment.ResultViewFragment"
+        android:label="fragment_result_view"
+        tools:layout="@layout/fragment_result_view" >
         <action
-            android:id="@+id/action_testFragment_to_homeConceptFragment"
+            android:id="@+id/action_to_homeConceptFragment"
             app:destination="@id/homeConceptFragment" />
         <argument
             android:name="conceptId"

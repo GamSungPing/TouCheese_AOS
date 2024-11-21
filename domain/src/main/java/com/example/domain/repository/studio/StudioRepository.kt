@@ -10,48 +10,48 @@ interface StudioRepository {
 
     suspend fun getStudioInfo(studioId: Int): StudioInfo
     suspend fun getStudioOnlyConcept(
-        conceptId: Concept,
+        conceptId: Int,
         pageNo: Int? = null
     ): List<StudioInfoWithConcept>
 
     suspend fun getStudioWithConceptAndRegion(
-        concept: Concept,
+        concept: Int,
         region: List<Int>,
         pageNo: Int? = null
     ): List<StudioInfoWithConcept>
 
     suspend fun getStudioWithConceptOrderByLowerPrice(
-        conceptId: Concept,
+        conceptId: Int,
         priceCategory: Pricing,
         pageNo: Int? = null
     ): List<StudioInfoWithConcept>
 
     suspend fun getStudioWithConceptOrderByHighRating(
-        conceptId: Concept,
+        conceptId: Int,
         pageNo: Int? = null
     ): List<StudioInfoWithConcept>
 
     suspend fun getStudioWithConceptAndRegionOrderByHighRating(
-        conceptId: Concept,
+        conceptId: Int,
         region: List<Int>,
         pageNo: Int? = null
     ): List<StudioInfoWithConcept>
 
     suspend fun getStudioWithConceptAndRegionsOrderByPrice(
-        conceptId: Concept,
+        conceptId: Int,
         region: List<Int>,
         priceCategory: Pricing,
         pageNo: Int? = null
     ): List<StudioInfoWithConcept>
 
     suspend fun getStudioWithConceptOrderByHighRatingAndLowerPrice(
-        conceptId: Concept,
+        conceptId: Int,
         priceCategory: Pricing,
         pageNo: Int? = null
     ): List<StudioInfoWithConcept>
 
     suspend fun getStudioWithConceptAndRegionOrderByHighRatingAndLowerPrice(
-        conceptId: Concept,
+        conceptId: Int,
         priceCategory: Pricing,
         region: List<Int>,
         pageNo: Int? = null

@@ -17,83 +17,83 @@ internal class StudioRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getStudioOnlyConcept(
-        conceptId: Concept,
+        conceptId: Int,
         pageNo: Int?
     ): List<StudioInfoWithConcept> {
-        return studioDataSource.getStudioOnlyConcept(conceptId.id, pageNo).toDomainModel()
+        return studioDataSource.getStudioOnlyConcept(conceptId, pageNo).toDomainModel()
     }
 
     override suspend fun getStudioWithConceptAndRegion(
-        concept: Concept,
+        concept: Int,
         region: List<Int>,
         pageNo: Int?
     ): List<StudioInfoWithConcept> {
         return studioDataSource
-            .getStudioWithConceptAndRegion(concept.id, region, pageNo)
+            .getStudioWithConceptAndRegion(concept, region, pageNo)
             .toDomainModel()
     }
 
     override suspend fun getStudioWithConceptOrderByLowerPrice(
-        conceptId: Concept,
+        conceptId: Int,
         priceCategory: Pricing,
         pageNo: Int?
     ): List<StudioInfoWithConcept> {
         return studioDataSource
-            .getStudioWithConceptOrderByLowerPrice(conceptId.id, priceCategory.toString(), pageNo)
+            .getStudioWithConceptOrderByLowerPrice(conceptId, priceCategory.toString(), pageNo)
             .toDomainModel()
     }
 
     override suspend fun getStudioWithConceptOrderByHighRating(
-        conceptId: Concept,
+        conceptId: Int,
         pageNo: Int?
     ): List<StudioInfoWithConcept> {
         return studioDataSource
-            .getStudioWithConceptOrderByHighRating(conceptId.id, pageNo)
+            .getStudioWithConceptOrderByHighRating(conceptId, pageNo)
             .toDomainModel()
     }
 
     override suspend fun getStudioWithConceptAndRegionOrderByHighRating(
-        conceptId: Concept,
+        conceptId: Int,
         region: List<Int>,
         pageNo: Int?
     ): List<StudioInfoWithConcept> {
         return studioDataSource
-            .getStudioWithConceptAndRegionOrderByHighRating(conceptId.id, region, pageNo)
+            .getStudioWithConceptAndRegionOrderByHighRating(conceptId, region, pageNo)
             .toDomainModel()
     }
 
     override suspend fun getStudioWithConceptAndRegionsOrderByPrice(
-        conceptId: Concept,
+        conceptId: Int,
         region: List<Int>,
         priceCategory: Pricing,
         pageNo: Int?
     ): List<StudioInfoWithConcept> {
         return studioDataSource
-            .getStudioWithConceptAndRegionsOrderByPrice(conceptId.id, region, priceCategory.toString())
+            .getStudioWithConceptAndRegionsOrderByPrice(conceptId, region, priceCategory.toString())
             .toDomainModel()
     }
 
     override suspend fun getStudioWithConceptOrderByHighRatingAndLowerPrice(
-        conceptId: Concept,
+        conceptId: Int,
         priceCategory: Pricing,
         pageNo: Int?
     ): List<StudioInfoWithConcept> {
         return studioDataSource
             .getStudioWithConceptOrderByHighRatingAndLowerPrice(
-                conceptId.id,
+                conceptId,
                 priceCategory.toString(),
                 pageNo
             ).toDomainModel()
     }
 
     override suspend fun getStudioWithConceptAndRegionOrderByHighRatingAndLowerPrice(
-        conceptId: Concept,
+        conceptId: Int,
         priceCategory: Pricing,
         region: List<Int>,
         pageNo: Int?
     ): List<StudioInfoWithConcept> {
         return studioDataSource.getStudioWithConceptAndRegionOrderByHighRatingAndLowerPrice(
-            conceptId.id,
+            conceptId,
             priceCategory.toString(),
             region,
             pageNo

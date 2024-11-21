@@ -1,6 +1,5 @@
-package com.example.presentation.sample
+package com.example.presentation.main.vm
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -19,6 +18,7 @@ import javax.inject.Inject
 class ResultViewModel @Inject constructor(
     private val studioRepository: StudioRepository
 ) : ViewModel() {
+
     private val _selectedPrice = MutableLiveData<Pricing?>()
     val selectedButton: LiveData<Pricing?> get() = _selectedPrice
 
@@ -36,25 +36,31 @@ class ResultViewModel @Inject constructor(
         }
     }
 
-    fun setSelectedRegion(region: Region) {
+    fun onSelectedRegion(region: Region, conceptId: Int) {
         val currentRegion = _selectedRegion.value?.regions
         currentRegion?.set(region, currentRegion[region]?.not() ?: false)
         _selectedRegion.value?.let {
-            getStudioWithConcept(it)
+            getStudioWithConcept(it, conceptId)
         }
     }
 
-    private fun getStudioWithConcept(it: FilterState) {
+    private fun getStudioWithConcept(state: FilterState, conceptId: Int) {
         viewModelScope.launch {
-            if (it.takeHasSelectedRegion()) {
-                val result = studioRepository.getStudioWithConceptAndRegion(
-                    Concept.Celebrity, it.getSelectedRegionIds()
+            val result = if (state.takeHasSelectedRegion()) {
+                 studioRepository.getStudioWithConceptAndRegion(
+                    conceptId, state.getSelectedRegionIds()
                 )
-                _result.value = result
             }else{
-                studioRepository.getStudioOnlyConcept(Concept.Celebrity, null)
+                studioRepository.getStudioOnlyConcept(conceptId, null)
             }
+            _result.value = result
         }
     }
 
+    fun getInitializedStudio(conceptId: Int) {
+        viewModelScope.launch {
+            val result = studioRepository.getStudioOnlyConcept(conceptId, null)
+            _result.value = result
+        }
+    }
 }
