@@ -8,11 +8,12 @@
     tools:context=".main.view.fragment.ResultViewFragment">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/tb_result"
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#673AB7"
         android:minHeight="56dp"
+        app:navigationIcon="@drawable/ic_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -31,7 +32,7 @@
         app:iconGravity="end"
         app:iconPadding="2dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tb_result" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
 
     <com.google.android.material.button.MaterialButton
@@ -57,6 +58,7 @@
         android:paddingLeft="8dp"
         android:paddingRight="6dp"
         android:text="평점순"
+        android:visibility="gone"
         app:icon="@drawable/icon_arrow_drop_down_24px"
         app:iconGravity="end"
         app:iconPadding="2dp"
