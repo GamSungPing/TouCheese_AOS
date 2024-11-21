@@ -23,7 +23,7 @@ internal interface StudioService {
      * 스튜디오 컨셉별 목록 조회
      * */
     @GET("concept/{conceptId}")
-    suspend fun getStudioInfoWithConcept(
+    suspend fun getStudioInfoOnlyConcept(
         @Path("conceptId") conceptId: Int,
         @Query("page") page: Int? = null
     ): StudioConceptResponse
@@ -31,10 +31,10 @@ internal interface StudioService {
     /**
      * 스튜디오 컨셉 + 지역 필터링
      * */
-    @GET("concept/{conceptId}")
+    @GET("concept/{conceptId}/regions")
     suspend fun getStudioWithConceptAndRegion(
         @Path("conceptId") conceptId: Int,
-        @Query("regionIds") regionId: List<Int>,
+        @Query("regionIds") regionId: List<Int>?= null,
         @Query("page") page: Int? = null
     ): StudioConceptResponse
 

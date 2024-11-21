@@ -12,8 +12,8 @@ internal class StudioDataSource @Inject constructor(
         return studioService.getStudioInfo(studioId)
     }
 
-    suspend fun getStudioWithConcept(conceptId: Int, pageNo: Int?): StudioConceptResponse {
-        return studioService.getStudioInfoWithConcept(conceptId, pageNo)
+    suspend fun getStudioOnlyConcept(conceptId: Int, pageNo: Int?): StudioConceptResponse {
+        return studioService.getStudioInfoOnlyConcept(conceptId, pageNo)
     }
 
     suspend fun getStudioWithConceptAndRegion(
