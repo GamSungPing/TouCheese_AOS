@@ -7,8 +7,9 @@ import com.example.domain.rule.Pricing
 import com.example.domain.rule.Region
 
 interface StudioRepository {
+
     suspend fun getStudioInfo(studioId: Int): StudioInfo
-    suspend fun getStudioWithConcept(
+    suspend fun getStudioOnlyConcept(
         conceptId: Concept,
         pageNo: Int? = null
     ): List<StudioInfoWithConcept>

@@ -16,11 +16,11 @@ internal class StudioRepositoryImpl @Inject constructor(
         return studioDataSource.getStudioInfo(studioId).toDomainModel()
     }
 
-    override suspend fun getStudioWithConcept(
+    override suspend fun getStudioOnlyConcept(
         conceptId: Concept,
         pageNo: Int?
     ): List<StudioInfoWithConcept> {
-        return studioDataSource.getStudioWithConcept(conceptId.id, pageNo).toDomainModel()
+        return studioDataSource.getStudioOnlyConcept(conceptId.id, pageNo).toDomainModel()
     }
 
     override suspend fun getStudioWithConceptAndRegion(

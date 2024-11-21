@@ -10,4 +10,18 @@ sealed class Region(val id: Int, val name: String) {
     data object Gangbuk : Region(7, "강북구")
     data object Yongsan : Region(8, "용산구")
     data object Seongdong : Region(9, "성동구")
+
+    companion object {
+        fun create(): MutableMap<Region, Boolean> = mutableMapOf(
+            Gangnam to false,
+            Seocho to false,
+            Songpa to false,
+            Gangseo to false,
+            Mapo to false,
+            Yeongdeungpo to false,
+            Gangbuk to false,
+            Yongsan to false,
+            Seongdong to false
+        )
+    }
 }

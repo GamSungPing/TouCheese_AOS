@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment_result_view"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".main.view.fragment.ResultViewFragment">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#673AB7"
+        android:minHeight="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="TOOCHEESE" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bt_filter_price"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="15dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="6dp"
+        android:text="가격순"
+        app:icon="@drawable/icon_arrow_drop_down_24px"
+        app:iconGravity="end"
+        app:iconPadding="2dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tb_result" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bt_filter_region"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="12dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="6dp"
+        android:text="지역순"
+        app:icon="@drawable/icon_arrow_drop_down_24px"
+        app:iconGravity="end"
+        app:iconPadding="2dp"
+        app:layout_constraintStart_toEndOf="@+id/bt_filter_price"
+        app:layout_constraintTop_toTopOf="@+id/bt_filter_price" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bt_filter_popular"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="12dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="6dp"
+        android:text="평점순"
+        app:icon="@drawable/icon_arrow_drop_down_24px"
+        app:iconGravity="end"
+        app:iconPadding="2dp"
+        app:layout_constraintStart_toEndOf="@+id/bt_filter_region"
+        app:layout_constraintTop_toTopOf="@+id/bt_filter_region" />
+
+    <ImageButton
+        android:id="@+id/bt_filter_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/icon_restart_alt_24px"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bt_filter_popular"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_studio_list"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_filter_price" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
