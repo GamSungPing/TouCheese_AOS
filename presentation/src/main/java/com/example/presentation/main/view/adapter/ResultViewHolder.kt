@@ -3,6 +3,7 @@ package com.example.presentation.main.view.adapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.model.StudioInfoWithConcept
+import com.example.presentation.R
 import com.example.presentation.databinding.ItemResultViewBinding
 
 class ResultViewHolder(
@@ -14,13 +15,14 @@ class ResultViewHolder(
         val name = studio.name
         val rating = studio.rating
         val profilePrice = studio.profilePrice
+        val portfolioUrls = studio.portfolioUrls
+        val profileURL = studio.profileURL
 
         binding.tvStudioName.text = name
         binding.tvRating.text = rating
 
-
         val portfolioAdapter = PortfolioAdapter()
-//        portfolioAdapter.submitList(images)
+        portfolioAdapter.submitList(portfolioUrls)
 
         binding.rvPortfolioList.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
         binding.rvPortfolioList.adapter = portfolioAdapter

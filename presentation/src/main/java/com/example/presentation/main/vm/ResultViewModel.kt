@@ -63,4 +63,11 @@ class ResultViewModel @Inject constructor(
             _result.value = result
         }
     }
+
+    private fun getStudioWithConceptOrderByHighRating(conceptId: Int) {
+        viewModelScope.launch {
+            val result = studioRepository.getStudioWithConceptOrderByHighRating(conceptId, null)
+            _result.value = result
+        }
+    }
 }
