@@ -52,8 +52,14 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
     private fun setupRvStudioList(binding: FragmentResultViewBinding) {
         resultViewAdapter = ResultViewAdapter()
         binding.rvStudioList.apply {
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-            addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            addItemDecoration(
+                DividerItemDecoration(
+                    requireContext(),
+                    DividerItemDecoration.VERTICAL
+                )
+            )
             adapter = resultViewAdapter
         }
     }
@@ -72,17 +78,19 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
 
                 priceFilterBinding.apply {
                     btPriceAll.setOnClickListener {
-//                        viewModel.setSelectedButton("btPriceAll")
-//                        viewModel.selectedButton(Pricing.ALL)
+                        viewModel.getInitializedStudio(args.conceptId)
                     }
                     btPriceLow.setOnClickListener {
-                        viewModel.setSelectedButton(Pricing.LOW)
+                        viewModel.setSelectedButtonToggle(Pricing.LOW)
+                        viewModel.getStudioWithConceptOrderByLowerPrice(args.conceptId, Pricing.LOW)
                     }
                     btPriceMid.setOnClickListener {
-                        viewModel.setSelectedButton(Pricing.MEDIUM)
+                        viewModel.setSelectedButtonToggle(Pricing.MEDIUM)
+                        viewModel.getStudioWithConceptOrderByLowerPrice(args.conceptId, Pricing.MEDIUM)
                     }
                     btPriceHigh.setOnClickListener {
-                        viewModel.setSelectedButton(Pricing.HIGH)
+                        viewModel.setSelectedButtonToggle(Pricing.HIGH)
+                        viewModel.getStudioWithConceptOrderByLowerPrice(args.conceptId, Pricing.HIGH)
                     }
                 }
             }
@@ -131,11 +139,12 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
                         viewModel.onSelectedRegion(Region.Seongdong, args.conceptId)
                     }
                 }
-        }   }
+            }
+        }
     }
 
     private fun observePriceViewModel() {
-        viewModel.selectedButton.observe(viewLifecycleOwner) { selectedButton ->
+        viewModel.selectedPrice.observe(viewLifecycleOwner) { selectedButton ->
             priceFilterBinding.apply {
 //                btPriceAll.isChecked = (selectedButton == Pricing.ALL)
                 btPriceLow.isChecked = (selectedButton == Pricing.LOW)

@@ -1,91 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
     android:paddingHorizontal="10dp"
-    android:background="#FFFFFF"
-    >
+    android:background="#FFFFFF">
 
-    <TextView
-        android:id="@+id/tv_price_all"
-        android:layout_width="50dp"
+    <RadioGroup
+        android:id="@+id/radio_group_price"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
-        android:text="전  체"
-        android:textAlignment="center"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <RadioButton
-        android:id="@+id/bt_price_all"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="@+id/tv_price_all"
-        app:layout_constraintTop_toBottomOf="@+id/tv_price_all" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginEnd="10dp">
 
-    <TextView
-        android:id="@+id/tv_price_low"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:text="10만원 미만"
-        android:textAlignment="center"
-        app:layout_constraintStart_toEndOf="@+id/tv_price_all"
-        app:layout_constraintTop_toTopOf="@+id/tv_price_all" />
+            <TextView
+                android:id="@+id/tv_price_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="전  체"
+                android:textAlignment="center" />
 
-    <RadioButton
-        android:id="@+id/bt_price_low"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="@+id/tv_price_low"
-        app:layout_constraintTop_toBottomOf="@+id/tv_price_low" />
+            <RadioButton
+                android:id="@+id/bt_price_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+        </LinearLayout>
 
-    <TextView
-        android:id="@+id/tv_price_mid"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:text="10만원 이상"
-        android:textAlignment="center"
-        app:layout_constraintStart_toEndOf="@+id/tv_price_low"
-        app:layout_constraintTop_toTopOf="@+id/tv_price_low" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginEnd="10dp">
 
-    <RadioButton
-        android:id="@+id/bt_price_mid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="@+id/tv_price_mid"
-        app:layout_constraintTop_toBottomOf="@+id/tv_price_mid" />
+            <TextView
+                android:id="@+id/tv_price_low"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10만원 미만"
+                android:textAlignment="center" />
 
-    <TextView
-        android:id="@+id/tv_price_high"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:text="20만원 이상"
-        android:textAlignment="center"
-        app:layout_constraintStart_toEndOf="@+id/tv_price_mid"
-        app:layout_constraintTop_toTopOf="@+id/tv_price_mid" />
+            <RadioButton
+                android:id="@+id/bt_price_low"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+        </LinearLayout>
 
-    <RadioButton
-        android:id="@+id/bt_price_high"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="10dp"
-        app:layout_constraintStart_toStartOf="@+id/tv_price_high"
-        app:layout_constraintTop_toBottomOf="@+id/tv_price_high" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginEnd="10dp">
 
+            <TextView
+                android:id="@+id/tv_price_mid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10만원 이상"
+                android:textAlignment="center" />
 
+            <RadioButton
+                android:id="@+id/bt_price_mid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_price_high"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20만원 이상"
+                android:textAlignment="center" />
+
+            <RadioButton
+                android:id="@+id/bt_price_high"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+        </LinearLayout>
+
+    </RadioGroup>
 </androidx.constraintlayout.widget.ConstraintLayout>

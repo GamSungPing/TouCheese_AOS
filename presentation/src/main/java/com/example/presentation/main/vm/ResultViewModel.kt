@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.model.StudioInfoWithConcept
 import com.example.domain.repository.studio.StudioRepository
-import com.example.domain.rule.Concept
 import com.example.domain.rule.Pricing
 import com.example.domain.rule.Region
 import com.example.presentation.main.vm.model.FilterState
@@ -20,7 +19,7 @@ class ResultViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _selectedPrice = MutableLiveData<Pricing?>()
-    val selectedButton: LiveData<Pricing?> get() = _selectedPrice
+    val selectedPrice: LiveData<Pricing?> get() = _selectedPrice
 
     private val _selectedRegion = MutableLiveData(FilterState.create())
     val selectedRegion: LiveData<FilterState> get() = _selectedRegion
@@ -28,7 +27,7 @@ class ResultViewModel @Inject constructor(
     private val _result = MutableLiveData<List<StudioInfoWithConcept>>()
     val result: LiveData<List<StudioInfoWithConcept>> get() = _result
 
-    fun setSelectedButton(pricing: Pricing) {
+    fun setSelectedButtonToggle(pricing: Pricing) {
         if (_selectedPrice.value == pricing) {
             _selectedPrice.value = null
         } else {
@@ -42,6 +41,11 @@ class ResultViewModel @Inject constructor(
         _selectedRegion.value?.let {
             getStudioWithConcept(it, conceptId)
         }
+    }
+
+    fun onSelectedPrice() {
+
+
     }
 
     private fun getStudioWithConcept(state: FilterState, conceptId: Int) {
@@ -64,10 +68,18 @@ class ResultViewModel @Inject constructor(
         }
     }
 
-    private fun getStudioWithConceptOrderByHighRating(conceptId: Int) {
+    fun getStudioWithConceptOrderByHighRating(conceptId: Int) {
         viewModelScope.launch {
             val result = studioRepository.getStudioWithConceptOrderByHighRating(conceptId, null)
             _result.value = result
         }
     }
+
+    fun getStudioWithConceptOrderByLowerPrice(conceptId: Int, priceCategory: Pricing) {
+        viewModelScope.launch {
+            val result = studioRepository.getStudioWithConceptOrderByLowerPrice(conceptId, priceCategory, null)
+            _result.value = result
+        }
+    }
+
 }
