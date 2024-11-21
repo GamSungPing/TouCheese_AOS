@@ -15,7 +15,6 @@ class PortfolioAdapter : ListAdapter<String, PortfolioViewHolder>(diffCallback) 
 
     override fun onBindViewHolder(holder: PortfolioViewHolder, position: Int) {
         val imageUrl = getItem(position)
-
         holder.bind(imageUrl)
     }
 

@@ -9,7 +9,7 @@ class PortfolioViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(imageUrl: String) {
-        Glide.with(binding.ivPortfolio.context)
+        Glide.with(binding.root)
             .load(imageUrl)
             .into(binding.ivPortfolio)
     }

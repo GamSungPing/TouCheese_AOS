@@ -5,7 +5,9 @@ import android.view.View
 import android.widget.PopupWindow
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,26 +18,27 @@ import com.example.presentation.databinding.FragmentResultViewBinding
 import com.example.presentation.databinding.PriceFilterPopupBinding
 import com.example.presentation.databinding.RegionFilterPopupBinding
 import com.example.presentation.main.view.adapter.ResultViewAdapter
+import com.example.presentation.main.vm.HomeConceptViewModel
 import com.example.presentation.main.vm.ResultViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
-    private val args: ResultViewFragmentArgs by navArgs()
-    private var _priceFilterBinding: PriceFilterPopupBinding? = null
-    private val priceFilterBinding get() = _priceFilterBinding!!
-
-    private var _regionFilterBinding: RegionFilterPopupBinding? = null
-    private val regionFilterBinding get() = _regionFilterBinding!!
-
-    private lateinit var resultViewAdapter: ResultViewAdapter
     private val viewModel: ResultViewModel by viewModels()
+    private val sharedViewModel: HomeConceptViewModel by activityViewModels()
+    private val args: ResultViewFragmentArgs by navArgs()
+    private lateinit var priceFilterBinding: PriceFilterPopupBinding
+    private lateinit var regionFilterBinding: RegionFilterPopupBinding
+    private lateinit var resultViewAdapter: ResultViewAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _priceFilterBinding = PriceFilterPopupBinding.inflate(layoutInflater)
-        _regionFilterBinding = RegionFilterPopupBinding.inflate(layoutInflater)
+        priceFilterBinding = PriceFilterPopupBinding.inflate(layoutInflater)
+        regionFilterBinding = RegionFilterPopupBinding.inflate(layoutInflater)
         val binding = FragmentResultViewBinding.bind(view)
+        binding.toolbar.setNavigationOnClickListener {
+            sharedViewModel.onRequestBackPress()
+        }
         viewModel.getInitializedStudio(args.conceptId)
 
         setupRvStudioList(binding)
@@ -46,17 +49,17 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
         observeResultViewModel()
     }
 
-    override fun onDestroyView() {
-        _priceFilterBinding = null
-        _regionFilterBinding = null
-        super.onDestroyView()
-    }
-
     private fun setupRvStudioList(binding: FragmentResultViewBinding) {
         resultViewAdapter = ResultViewAdapter()
         binding.rvStudioList.apply {
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-            addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            addItemDecoration(
+                DividerItemDecoration(
+                    requireContext(),
+                    DividerItemDecoration.VERTICAL
+                )
+            )
             adapter = resultViewAdapter
         }
     }
@@ -75,17 +78,16 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
 
                 priceFilterBinding.apply {
                     btPriceAll.setOnClickListener {
-//                        viewModel.setSelectedButton("btPriceAll")
-//                        viewModel.selectedButton(Pricing.ALL)
+                        viewModel.getInitializedStudio(args.conceptId)
                     }
                     btPriceLow.setOnClickListener {
-                        viewModel.setSelectedButton(Pricing.LOW)
+                        viewModel.getStudioWithConceptOrderByLowerPrice(args.conceptId, Pricing.LOW)
                     }
                     btPriceMid.setOnClickListener {
-                        viewModel.setSelectedButton(Pricing.MEDIUM)
+                        viewModel.getStudioWithConceptOrderByLowerPrice(args.conceptId, Pricing.MEDIUM)
                     }
                     btPriceHigh.setOnClickListener {
-                        viewModel.setSelectedButton(Pricing.HIGH)
+                        viewModel.getStudioWithConceptOrderByLowerPrice(args.conceptId, Pricing.HIGH)
                     }
                 }
             }
@@ -93,7 +95,6 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
     }
 
     private fun setupRegionFilterPopup(binding: FragmentResultViewBinding) {
-
         val popupWindow = PopupWindow(
             regionFilterBinding.root,
             ConstraintLayout.LayoutParams.WRAP_CONTENT,
@@ -134,13 +135,13 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
                         viewModel.onSelectedRegion(Region.Seongdong, args.conceptId)
                     }
                 }
-        }   }
+            }
+        }
     }
 
     private fun observePriceViewModel() {
-        viewModel.selectedButton.observe(viewLifecycleOwner) { selectedButton ->
+        viewModel.selectedPrice.observe(viewLifecycleOwner) { selectedButton ->
             priceFilterBinding.apply {
-//                btPriceAll.isChecked = (selectedButton == Pricing.ALL)
                 btPriceLow.isChecked = (selectedButton == Pricing.LOW)
                 btPriceMid.isChecked = (selectedButton == Pricing.MEDIUM)
                 btPriceHigh.isChecked = (selectedButton == Pricing.HIGH)

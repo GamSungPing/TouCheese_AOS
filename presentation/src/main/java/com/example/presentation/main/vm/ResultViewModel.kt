@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.model.StudioInfoWithConcept
 import com.example.domain.repository.studio.StudioRepository
-import com.example.domain.rule.Concept
 import com.example.domain.rule.Pricing
 import com.example.domain.rule.Region
 import com.example.presentation.main.vm.model.FilterState
@@ -20,21 +19,13 @@ class ResultViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _selectedPrice = MutableLiveData<Pricing?>()
-    val selectedButton: LiveData<Pricing?> get() = _selectedPrice
+    val selectedPrice: LiveData<Pricing?> get() = _selectedPrice
 
     private val _selectedRegion = MutableLiveData(FilterState.create())
     val selectedRegion: LiveData<FilterState> get() = _selectedRegion
 
     private val _result = MutableLiveData<List<StudioInfoWithConcept>>()
     val result: LiveData<List<StudioInfoWithConcept>> get() = _result
-
-    fun setSelectedButton(pricing: Pricing) {
-        if (_selectedPrice.value == pricing) {
-            _selectedPrice.value = null
-        } else {
-            _selectedPrice.value = pricing
-        }
-    }
 
     fun onSelectedRegion(region: Region, conceptId: Int) {
         val currentRegion = _selectedRegion.value?.regions
@@ -63,4 +54,19 @@ class ResultViewModel @Inject constructor(
             _result.value = result
         }
     }
+
+    fun getStudioWithConceptOrderByHighRating(conceptId: Int) {
+        viewModelScope.launch {
+            val result = studioRepository.getStudioWithConceptOrderByHighRating(conceptId, null)
+            _result.value = result
+        }
+    }
+
+    fun getStudioWithConceptOrderByLowerPrice(conceptId: Int, priceCategory: Pricing) {
+        viewModelScope.launch {
+            val result = studioRepository.getStudioWithConceptOrderByLowerPrice(conceptId, priceCategory, null)
+            _result.value = result
+        }
+    }
+
 }
