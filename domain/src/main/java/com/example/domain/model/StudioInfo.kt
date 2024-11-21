@@ -6,4 +6,6 @@ data class StudioInfo (
     val profilePrice: String,
     val rating: String,
     val region: String,
+    val portfolioUrls: List<String>,
+    val profileURL: String
 )

@@ -16,7 +16,9 @@ internal data class StudioInfoResponse(
             name = data.name,
             profilePrice = data.profilePrice.toString(),
             rating = data.rating.toString(),
-            region = data.region.name
+            region = data.region.name,
+            portfolioUrls = data.portfolioUrls,
+            profileURL = data.profileURL
         )
     }
 }

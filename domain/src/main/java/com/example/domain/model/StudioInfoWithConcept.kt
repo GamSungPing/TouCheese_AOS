@@ -5,4 +5,6 @@ data class StudioInfoWithConcept (
     val name: String,
     val profilePrice: String,
     val rating: String,
+    val portfolioUrls: List<String>,
+    val profileURL: String
 )

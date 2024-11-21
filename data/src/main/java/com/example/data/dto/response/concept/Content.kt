@@ -8,4 +8,6 @@ internal data class Content (
     val name: String,
     val profilePrice: Int,
     val rating: Int,
+    val portfolioUrls: List<String>,
+    val profileURL: String
 )

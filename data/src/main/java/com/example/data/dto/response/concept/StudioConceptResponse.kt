@@ -16,7 +16,9 @@ internal data class StudioConceptResponse(
                 id = it.id.toString(),
                 name = it.name,
                 profilePrice = it.profilePrice.toString(),
-                rating = it.rating.toString()
+                rating = it.rating.toString(),
+                portfolioUrls = it.portfolioUrls,
+                profileURL = it.profileURL
             )
         }
     }
