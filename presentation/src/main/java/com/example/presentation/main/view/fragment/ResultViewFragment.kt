@@ -5,7 +5,9 @@ import android.view.View
 import android.widget.PopupWindow
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,26 +18,27 @@ import com.example.presentation.databinding.FragmentResultViewBinding
 import com.example.presentation.databinding.PriceFilterPopupBinding
 import com.example.presentation.databinding.RegionFilterPopupBinding
 import com.example.presentation.main.view.adapter.ResultViewAdapter
+import com.example.presentation.main.vm.HomeConceptViewModel
 import com.example.presentation.main.vm.ResultViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
-    private val args: ResultViewFragmentArgs by navArgs()
-    private var _priceFilterBinding: PriceFilterPopupBinding? = null
-    private val priceFilterBinding get() = _priceFilterBinding!!
-
-    private var _regionFilterBinding: RegionFilterPopupBinding? = null
-    private val regionFilterBinding get() = _regionFilterBinding!!
-
-    private lateinit var resultViewAdapter: ResultViewAdapter
     private val viewModel: ResultViewModel by viewModels()
+    private val sharedViewModel: HomeConceptViewModel by activityViewModels()
+    private val args: ResultViewFragmentArgs by navArgs()
+    private lateinit var priceFilterBinding: PriceFilterPopupBinding
+    private lateinit var regionFilterBinding: RegionFilterPopupBinding
+    private lateinit var resultViewAdapter: ResultViewAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _priceFilterBinding = PriceFilterPopupBinding.inflate(layoutInflater)
-        _regionFilterBinding = RegionFilterPopupBinding.inflate(layoutInflater)
+        priceFilterBinding = PriceFilterPopupBinding.inflate(layoutInflater)
+        regionFilterBinding = RegionFilterPopupBinding.inflate(layoutInflater)
         val binding = FragmentResultViewBinding.bind(view)
+        binding.toolbar.setNavigationOnClickListener {
+            sharedViewModel.onRequestBackPress()
+        }
         viewModel.getInitializedStudio(args.conceptId)
 
         setupRvStudioList(binding)
@@ -44,12 +47,6 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
 
         observePriceViewModel()
         observeResultViewModel()
-    }
-
-    override fun onDestroyView() {
-        _priceFilterBinding = null
-        _regionFilterBinding = null
-        super.onDestroyView()
     }
 
     private fun setupRvStudioList(binding: FragmentResultViewBinding) {
