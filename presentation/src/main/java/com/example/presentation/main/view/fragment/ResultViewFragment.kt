@@ -81,15 +81,12 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
                         viewModel.getInitializedStudio(args.conceptId)
                     }
                     btPriceLow.setOnClickListener {
-                        viewModel.setSelectedButtonToggle(Pricing.LOW)
                         viewModel.getStudioWithConceptOrderByLowerPrice(args.conceptId, Pricing.LOW)
                     }
                     btPriceMid.setOnClickListener {
-                        viewModel.setSelectedButtonToggle(Pricing.MEDIUM)
                         viewModel.getStudioWithConceptOrderByLowerPrice(args.conceptId, Pricing.MEDIUM)
                     }
                     btPriceHigh.setOnClickListener {
-                        viewModel.setSelectedButtonToggle(Pricing.HIGH)
                         viewModel.getStudioWithConceptOrderByLowerPrice(args.conceptId, Pricing.HIGH)
                     }
                 }
@@ -98,7 +95,6 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
     }
 
     private fun setupRegionFilterPopup(binding: FragmentResultViewBinding) {
-
         val popupWindow = PopupWindow(
             regionFilterBinding.root,
             ConstraintLayout.LayoutParams.WRAP_CONTENT,
@@ -146,7 +142,6 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
     private fun observePriceViewModel() {
         viewModel.selectedPrice.observe(viewLifecycleOwner) { selectedButton ->
             priceFilterBinding.apply {
-//                btPriceAll.isChecked = (selectedButton == Pricing.ALL)
                 btPriceLow.isChecked = (selectedButton == Pricing.LOW)
                 btPriceMid.isChecked = (selectedButton == Pricing.MEDIUM)
                 btPriceHigh.isChecked = (selectedButton == Pricing.HIGH)

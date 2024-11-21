@@ -27,25 +27,12 @@ class ResultViewModel @Inject constructor(
     private val _result = MutableLiveData<List<StudioInfoWithConcept>>()
     val result: LiveData<List<StudioInfoWithConcept>> get() = _result
 
-    fun setSelectedButtonToggle(pricing: Pricing) {
-        if (_selectedPrice.value == pricing) {
-            _selectedPrice.value = null
-        } else {
-            _selectedPrice.value = pricing
-        }
-    }
-
     fun onSelectedRegion(region: Region, conceptId: Int) {
         val currentRegion = _selectedRegion.value?.regions
         currentRegion?.set(region, currentRegion[region]?.not() ?: false)
         _selectedRegion.value?.let {
             getStudioWithConcept(it, conceptId)
         }
-    }
-
-    fun onSelectedPrice() {
-
-
     }
 
     private fun getStudioWithConcept(state: FilterState, conceptId: Int) {
