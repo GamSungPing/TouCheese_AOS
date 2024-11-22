@@ -33,11 +33,14 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val binding = FragmentResultViewBinding.bind(view)
         priceFilterBinding = PriceFilterPopupBinding.inflate(layoutInflater)
         regionFilterBinding = RegionFilterPopupBinding.inflate(layoutInflater)
-        val binding = FragmentResultViewBinding.bind(view)
-        binding.toolbar.setNavigationOnClickListener {
-            sharedViewModel.onRequestBackPress()
+
+        with(binding){
+            toolbar.setNavigationOnClickListener {
+                sharedViewModel.onRequestBackPress()
+            }
         }
         viewModel.getInitializedStudio(args.conceptId)
 
@@ -54,6 +57,7 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
         binding.rvStudioList.apply {
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            itemAnimator = null
             addItemDecoration(
                 DividerItemDecoration(
                     requireContext(),

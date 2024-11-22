@@ -37,7 +37,8 @@ class ResultViewModel @Inject constructor(
 
     private fun getStudioWithConcept(state: FilterState, conceptId: Int) {
         viewModelScope.launch {
-            val result = if (state.takeHasSelectedRegion()) {
+            clear()
+            val result = if (state.hasSelectedRegion()) {
                  studioRepository.getStudioWithConceptAndRegion(
                     conceptId, state.getSelectedRegionIds()
                 )
@@ -50,6 +51,7 @@ class ResultViewModel @Inject constructor(
 
     fun getInitializedStudio(conceptId: Int) {
         viewModelScope.launch {
+            clear()
             val result = studioRepository.getStudioOnlyConcept(conceptId, null)
             _result.value = result
         }
@@ -57,6 +59,7 @@ class ResultViewModel @Inject constructor(
 
     fun getStudioWithConceptOrderByHighRating(conceptId: Int) {
         viewModelScope.launch {
+            clear()
             val result = studioRepository.getStudioWithConceptOrderByHighRating(conceptId, null)
             _result.value = result
         }
@@ -64,9 +67,13 @@ class ResultViewModel @Inject constructor(
 
     fun getStudioWithConceptOrderByLowerPrice(conceptId: Int, priceCategory: Pricing) {
         viewModelScope.launch {
+            clear()
             val result = studioRepository.getStudioWithConceptOrderByLowerPrice(conceptId, priceCategory, null)
             _result.value = result
         }
     }
 
+    private fun clear(){
+        _result.value = emptyList()
+    }
 }

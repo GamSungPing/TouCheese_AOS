@@ -9,7 +9,7 @@ data class FilterState (
         return regions.filterValues { it }.keys.map { it.id }
     }
 
-    fun takeHasSelectedRegion(): Boolean{
+    fun hasSelectedRegion(): Boolean{
         return regions.any { it.value }
     }
 
