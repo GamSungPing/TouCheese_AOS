@@ -18,20 +18,33 @@ class ResultViewModel @Inject constructor(
     private val studioRepository: StudioRepository
 ) : ViewModel() {
 
-    private val _selectedPrice = MutableLiveData<Pricing?>()
-    val selectedPrice: LiveData<Pricing?> get() = _selectedPrice
-
-    private val _selectedRegion = MutableLiveData(FilterState.create())
-    val selectedRegion: LiveData<FilterState> get() = _selectedRegion
+    private val _filterState = MutableLiveData(FilterState.create())
+    val filterState: LiveData<FilterState> get() = _filterState
 
     private val _result = MutableLiveData<List<StudioInfoWithConcept>>()
     val result: LiveData<List<StudioInfoWithConcept>> get() = _result
 
     fun onSelectedRegion(region: Region, conceptId: Int) {
-        val currentRegion = _selectedRegion.value?.regions
+        val currentRegion = filterState.value?.regions
         currentRegion?.set(region, currentRegion[region]?.not() ?: false)
-        _selectedRegion.value?.let {
+        filterState.value?.let {
             getStudioWithConcept(it, conceptId)
+        }
+    }
+
+    fun onSelectedPrice(price: Pricing, conceptId: Int) {
+        getStudioWithConceptOrderByLowerPrice(conceptId, price)
+    }
+
+    fun onSelectedOrderByRating(conceptId: Int) {
+        var currentState = filterState.value?.orderByRating
+
+        currentState.let {
+            currentState = currentState?.not()
+        }
+
+        if(filterState.value?.orderByRating == true) {
+            getStudioWithConceptOrderByHighRating(conceptId)
         }
     }
 
@@ -42,7 +55,7 @@ class ResultViewModel @Inject constructor(
                  studioRepository.getStudioWithConceptAndRegion(
                     conceptId, state.getSelectedRegionIds()
                 )
-            }else{
+            } else{
                 studioRepository.getStudioOnlyConcept(conceptId, null)
             }
             _result.value = result
@@ -57,7 +70,7 @@ class ResultViewModel @Inject constructor(
         }
     }
 
-    fun getStudioWithConceptOrderByHighRating(conceptId: Int) {
+    private fun getStudioWithConceptOrderByHighRating(conceptId: Int) {
         viewModelScope.launch {
             clear()
             val result = studioRepository.getStudioWithConceptOrderByHighRating(conceptId, null)
@@ -65,7 +78,17 @@ class ResultViewModel @Inject constructor(
         }
     }
 
-    fun getStudioWithConceptOrderByLowerPrice(conceptId: Int, priceCategory: Pricing) {
+    private fun getStudioWithConceptAndRegionsOrderByPrice(state: FilterState, conceptId: Int) {
+        viewModelScope.launch {
+            clear()
+            if(state.price != null) {
+                val result = studioRepository.getStudioWithConceptOrderByLowerPrice(conceptId, state.price, null)
+                _result.value = result
+            }
+        }
+    }
+
+    private fun getStudioWithConceptOrderByLowerPrice(conceptId: Int, priceCategory: Pricing) {
         viewModelScope.launch {
             clear()
             val result = studioRepository.getStudioWithConceptOrderByLowerPrice(conceptId, priceCategory, null)
@@ -76,4 +99,10 @@ class ResultViewModel @Inject constructor(
     private fun clear(){
         _result.value = emptyList()
     }
+
+    fun filterOptionClear() {
+
+
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.example.presentation.main.view.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.PopupWindow
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -48,12 +49,13 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
         setupPriceFilterPopup(binding)
         setupRegionFilterPopup(binding)
 
-        observePriceViewModel()
         observeResultViewModel()
+        observeFilterState()
     }
 
     private fun setupRvStudioList(binding: FragmentResultViewBinding) {
         resultViewAdapter = ResultViewAdapter()
+
         binding.rvStudioList.apply {
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
@@ -65,6 +67,18 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
                 )
             )
             adapter = resultViewAdapter
+        }
+
+        binding.btReset.apply {
+            setOnClickListener {
+                viewModel.getInitializedStudio(args.conceptId)
+            }
+        }
+
+        binding.btFilterRating.apply {
+            setOnClickListener {
+                viewModel.onSelectedOrderByRating(args.conceptId)
+            }
         }
     }
 
@@ -85,13 +99,13 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
                         viewModel.getInitializedStudio(args.conceptId)
                     }
                     btPriceLow.setOnClickListener {
-                        viewModel.getStudioWithConceptOrderByLowerPrice(args.conceptId, Pricing.LOW)
+                        viewModel.onSelectedPrice(Pricing.LOW, args.conceptId)
                     }
                     btPriceMid.setOnClickListener {
-                        viewModel.getStudioWithConceptOrderByLowerPrice(args.conceptId, Pricing.MEDIUM)
+                        viewModel.onSelectedPrice(Pricing.MEDIUM, args.conceptId)
                     }
                     btPriceHigh.setOnClickListener {
-                        viewModel.getStudioWithConceptOrderByLowerPrice(args.conceptId, Pricing.HIGH)
+                        viewModel.onSelectedPrice(Pricing.HIGH, args.conceptId)
                     }
                 }
             }
@@ -143,25 +157,15 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
         }
     }
 
-    private fun observePriceViewModel() {
-        viewModel.selectedPrice.observe(viewLifecycleOwner) { selectedButton ->
-            priceFilterBinding.apply {
-                btPriceLow.isChecked = (selectedButton == Pricing.LOW)
-                btPriceMid.isChecked = (selectedButton == Pricing.MEDIUM)
-                btPriceHigh.isChecked = (selectedButton == Pricing.HIGH)
-            }
-        }
-    }
-
-    private fun observeRegionViewModel() {
-        viewModel.selectedRegion.observe(viewLifecycleOwner) { filterState ->
-            val selectedRegionIds = filterState.getSelectedRegionIds()
-        }
-    }
-
     private fun observeResultViewModel() {
         viewModel.result.observe(viewLifecycleOwner) { studioList ->
             resultViewAdapter.submitList(studioList)
+        }
+    }
+
+    private fun observeFilterState() {
+        viewModel.filterState.observe(viewLifecycleOwner) { filterState ->
+
         }
     }
 }
