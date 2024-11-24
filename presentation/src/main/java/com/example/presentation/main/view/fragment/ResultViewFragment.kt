@@ -22,7 +22,6 @@ import com.example.presentation.main.vm.HomeConceptViewModel
 import com.example.presentation.main.vm.ResultViewModel
 import com.example.presentation.main.vm.model.FilterState
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.checkbox.MaterialCheckBox
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -43,6 +42,7 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
             }
         }
 
+        viewModel.getInitializedStudio(args.conceptId)
         setupRvStudioList(binding)
         observeResultViewModel()
         observeFilterState()
@@ -75,14 +75,15 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
 
         binding.btReset.apply {
             setOnClickListener {
+                viewModel.clearAllFilters()
                 viewModel.getInitializedStudio(args.conceptId)
-                viewModel.updateFilterState(FilterState.create())
             }
         }
 
         binding.btFilterRating.apply {
             setOnClickListener {
-                viewModel.getStudioWithConceptOrderByHighRating(args.conceptId)
+                viewModel.hasRatingFilter = true
+                viewModel.checkFilterOption(args.conceptId)
             }
         }
     }
@@ -91,11 +92,8 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
         viewModel.result.observe(viewLifecycleOwner) { studioList ->
             if (studioList.isNotEmpty()) {
                 resultViewAdapter.submitList(studioList)
-                Log.d("test1234", "Result updated: $studioList")
             } else {
-                Log.d("test1234", "No results available")
                 resultViewAdapter.submitList(null)
-
             }
         }
     }
@@ -128,7 +126,7 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
                         viewModel.updatePrice(Pricing.HIGH)
                     }
                 }
-                viewModel.getStudioWithConceptAndOrderByPrice(args.conceptId)
+                viewModel.checkFilterOption(args.conceptId)
                 bottomSheetDialog.dismiss()
             }
         }
@@ -195,13 +193,21 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
                 viewModel.updateRegions(Region.Seongdong, isChecked )
             }
 
+            btReset.setOnClickListener {
+                clearRegion()
+            }
+
             btDone.setOnClickListener {
                 bottomRegionDialog.dismiss()
             }
 
             bottomRegionDialog.setOnDismissListener {
-                viewModel.getStudioWithConceptAndRegion(args.conceptId)
+                viewModel.checkFilterOption(args.conceptId)
             }
         }
+    }
+
+    private fun clearRegion() {
+        viewModel.filterState.value?.clearRegions()
     }
 }
