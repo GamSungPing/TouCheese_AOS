@@ -1,5 +1,6 @@
 package com.example.presentation.main.vm
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,37 +19,18 @@ class ResultViewModel @Inject constructor(
     private val studioRepository: StudioRepository
 ) : ViewModel() {
 
-    private val _filterState = MutableLiveData(FilterState.create())
+    private var _filterState = MutableLiveData(FilterState.create())
     val filterState: LiveData<FilterState> get() = _filterState
 
     private val _result = MutableLiveData<List<StudioInfoWithConcept>>()
     val result: LiveData<List<StudioInfoWithConcept>> get() = _result
 
-    fun onSelectedRegion(region: Region, conceptId: Int) {
+    fun onSelectedRegion(region: Region) {
         val currentRegion = filterState.value?.regions
         currentRegion?.set(region, currentRegion[region]?.not() ?: false)
-        filterState.value?.let {
-            getStudioWithConcept(it, conceptId)
-        }
     }
 
-    fun onSelectedPrice(price: Pricing, conceptId: Int) {
-        getStudioWithConceptOrderByLowerPrice(conceptId, price)
-    }
-
-    fun onSelectedOrderByRating(conceptId: Int) {
-        var currentState = filterState.value?.orderByRating
-
-        currentState.let {
-            currentState = currentState?.not()
-        }
-
-        if(filterState.value?.orderByRating == true) {
-            getStudioWithConceptOrderByHighRating(conceptId)
-        }
-    }
-
-    private fun getStudioWithConcept(state: FilterState, conceptId: Int) {
+    fun getStudioWithConcept(state: FilterState, conceptId: Int) {
         viewModelScope.launch {
             clear()
             val result = if (state.hasSelectedRegion()) {
@@ -62,6 +44,15 @@ class ResultViewModel @Inject constructor(
         }
     }
 
+    fun getStudioWithConceptAndOrderByPrice(conceptId: Int) {
+        viewModelScope.launch {
+            clear()
+            val state = filterState.value ?: return@launch
+            val result = studioRepository.getStudioWithConceptOrderByLowerPrice(conceptId, state.pricing)
+            _result.value = result
+        }
+    }
+
     fun getInitializedStudio(conceptId: Int) {
         viewModelScope.launch {
             clear()
@@ -70,7 +61,7 @@ class ResultViewModel @Inject constructor(
         }
     }
 
-    private fun getStudioWithConceptOrderByHighRating(conceptId: Int) {
+    fun getStudioWithConceptOrderByHighRating(conceptId: Int) {
         viewModelScope.launch {
             clear()
             val result = studioRepository.getStudioWithConceptOrderByHighRating(conceptId, null)
@@ -78,31 +69,43 @@ class ResultViewModel @Inject constructor(
         }
     }
 
-    private fun getStudioWithConceptAndRegionsOrderByPrice(state: FilterState, conceptId: Int) {
+    fun getStudioWithConceptAndRegion(conceptId: Int) {
         viewModelScope.launch {
             clear()
-            if(state.price != null) {
-                val result = studioRepository.getStudioWithConceptOrderByLowerPrice(conceptId, state.price, null)
-                _result.value = result
-            }
-        }
-    }
-
-    private fun getStudioWithConceptOrderByLowerPrice(conceptId: Int, priceCategory: Pricing) {
-        viewModelScope.launch {
-            clear()
-            val result = studioRepository.getStudioWithConceptOrderByLowerPrice(conceptId, priceCategory, null)
+            val state = filterState.value ?: return@launch
+            val result = studioRepository.getStudioWithConceptAndRegion(conceptId, state.getSelectedRegionIds())
             _result.value = result
         }
     }
 
-    private fun clear(){
+    fun clear(){
         _result.value = emptyList()
     }
 
-    fun filterOptionClear() {
+    fun updatePrice(pricing: Pricing) {
+        _filterState.value = _filterState.value?.copy(
+            pricing = pricing
+        )
+    }
+
+    fun updateFilterState(newState: FilterState) {
+        _filterState.value = newState
+    }
 
 
+    // 지역 필터 상태 변경 메서드
+    fun updateRegions(region: Region, isChecked: Boolean) {
+        val updatedRegions = _filterState.value?.regions?.toMutableMap() ?: mutableMapOf()
+        updatedRegions[region] = isChecked
+
+        _filterState.value = _filterState.value?.copy(
+            regions = updatedRegions
+        )
+    }
+
+    // 초기화
+    fun clearAllFilters() {
+        _filterState.value = FilterState.create()
     }
 
 }

@@ -1,17 +1,20 @@
 package com.example.presentation.main.view.adapter
 
-import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.domain.model.StudioInfoWithConcept
-import com.example.presentation.R
 import com.example.presentation.databinding.ItemResultViewBinding
-import com.example.presentation.databinding.ItemStudioPortfolioBinding
 
 class ResultViewHolder(
     private val binding: ItemResultViewBinding
 ) : RecyclerView.ViewHolder(binding.root) {
+    private val portfolioAdapter = PortfolioAdapter()
+
+    init {
+        binding.rvPortfolioList.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvPortfolioList.adapter = portfolioAdapter
+    }
 
     fun bind(studio: StudioInfoWithConcept) {
         val id = studio.id
@@ -25,11 +28,7 @@ class ResultViewHolder(
         binding.tvRating.text = rating
         imageBind(profileURL)
 
-        val portfolioAdapter = PortfolioAdapter()
         portfolioAdapter.submitList(portfolioUrls)
-
-        binding.rvPortfolioList.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
-        binding.rvPortfolioList.adapter = portfolioAdapter
     }
 
     fun imageBind(imageUrl: String) {

@@ -4,8 +4,7 @@ import com.example.domain.rule.Region
 
 data class FilterState (
     val regions: MutableMap<Region, Boolean>,
-    val price : Pricing?,
-    val orderByRating: Boolean
+    val pricing : Pricing,
 ){
     fun getSelectedRegionIds(): List<Int>{
         return regions.filterValues { it }.keys.map { it.id }
@@ -16,23 +15,19 @@ data class FilterState (
     }
 
     fun hasSelectedPrice(): Boolean{
-        return price != null
+        return pricing != Pricing.LOW
     }
 
-    fun hasSelectedRegionAndPrice(): Boolean{
-        return getSelectedRegionIds().isNotEmpty() && hasSelectedPrice()
-    }
-
-    fun hasSelectedAllFilter() : Boolean {
-        return getSelectedRegionIds().isNotEmpty() && hasSelectedPrice() && orderByRating
+    fun clearRegions() {
+        return regions.replaceAll { _, _ -> false }
     }
 
     companion object{
         fun create(): FilterState{
             return FilterState(
                 Region.create(),
-                null,
-                false)
+                pricing = Pricing.LOW
+            )
         }
     }
 }
