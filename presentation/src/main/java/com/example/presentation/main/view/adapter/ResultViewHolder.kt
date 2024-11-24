@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.domain.model.StudioInfoWithConcept
 import com.example.presentation.databinding.ItemResultViewBinding
+import java.util.Locale
 
 class ResultViewHolder(
     private val binding: ItemResultViewBinding
@@ -25,7 +26,7 @@ class ResultViewHolder(
         val profileURL = studio.profileURL
 
         binding.tvStudioName.text = name
-        binding.tvRating.text = rating
+        binding.tvRating.text = String.format(Locale.US, "%.1f", rating.toDouble())
         imageBind(profileURL)
 
         portfolioAdapter.submitList(portfolioUrls)
