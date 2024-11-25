@@ -4,8 +4,8 @@
     <string name="text_reservation_schedule">예약일정</string>
     <string name="text_ask">문의하기</string>
     <string name="text_profile">내정보</string>
-    <string name="text_concept_flash">플래쉬/아이돌 느낌</string>
-    <string name="text_concept_actor">흑백/블루 배우느낌</string>
+    <string name="text_concept_flash">플래쉬/아이돌</string>
+    <string name="text_concept_actor">흑백/블루 배우</string>
     <string name="text_concept_watercolor">필터/수채화 그림체 느낌</string>
     <string name="text_concept_natural">내추럴 화보 느낌</string>
     <string name="text_concept_clarity_doll">선명하고 인형같은 느낌</string>

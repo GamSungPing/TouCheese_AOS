@@ -149,7 +149,7 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/text_concept_actor"
+        android:text="@string/text_concept_watercolor"
         android:textStyle="bold"
         android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
