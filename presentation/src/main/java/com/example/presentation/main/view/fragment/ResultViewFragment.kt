@@ -193,10 +193,6 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
                 viewModel.updateRegions(Region.Seongdong, isChecked )
             }
 
-            btReset.setOnClickListener {
-                clearRegion()
-            }
-
             btDone.setOnClickListener {
                 bottomRegionDialog.dismiss()
             }

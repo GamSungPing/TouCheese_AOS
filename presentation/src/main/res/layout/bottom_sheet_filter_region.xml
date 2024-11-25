@@ -122,34 +122,14 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
+    <Button
+        android:id="@+id/bt_done"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkbox_container">
-
-        <Button
-            android:id="@+id/bt_reset"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="초기화"
-            app:layout_constraintStart_toStartOf="@+id/checkbox_container"
-            app:layout_constraintTop_toBottomOf="@+id/checkbox_container" />
-
-        <Button
-            android:id="@+id/bt_done"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="완료하기"
-            app:layout_constraintStart_toStartOf="@+id/checkbox_container"
-            app:layout_constraintTop_toBottomOf="@+id/checkbox_container" />
-    </LinearLayout>
+        android:text="완료하기"
+        app:layout_constraintStart_toStartOf="@+id/checkbox_container"
+        app:layout_constraintTop_toBottomOf="@+id/checkbox_container" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
