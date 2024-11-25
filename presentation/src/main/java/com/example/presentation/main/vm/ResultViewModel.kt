@@ -25,8 +25,8 @@ class ResultViewModel @Inject constructor(
     private val _result = MutableLiveData<List<StudioInfoWithConcept>>()
     val result: LiveData<List<StudioInfoWithConcept>> get() = _result
 
-    var hasPriceFilter = false
-    var hasRatingFilter = false
+//    var hasPriceFilter = false
+//    var hasRatingFilter = false
 
     fun onSelectedRegion(region: Region) {
         val currentRegion = filterState.value?.regions
@@ -117,15 +117,11 @@ class ResultViewModel @Inject constructor(
         }
     }
 
-    fun clear(){
-        _result.value = emptyList()
-    }
-
     fun updatePrice(pricing: Pricing) {
         _filterState.value = _filterState.value?.copy(
-            pricing = pricing
+            pricing = pricing,
+            hasPriceFilter = true
         )
-        hasPriceFilter = true
     }
 
     fun updateRegions(region: Region, isChecked: Boolean) {
@@ -137,34 +133,48 @@ class ResultViewModel @Inject constructor(
         )
     }
 
+    fun updateRating() {
+        _filterState.value = _filterState.value?.copy(
+            hasRatingFilter = true
+        )
+    }
+
+    fun clear(){
+        _result.value = emptyList()
+    }
+
+    fun clearRegionFilters() {
+        _filterState.value = _filterState.value?.copy(
+            regions = Region.create()
+        )
+    }
+
     fun clearAllFilters() {
         _filterState.value = FilterState.create()
-        hasPriceFilter = false
-        hasRatingFilter = false
     }
 
     fun checkFilterOption(conceptId: Int) {
         viewModelScope.launch {
             val state = filterState.value ?: return@launch
-            if (hasPriceFilter && hasRatingFilter && state.hasSelectedRegion()) {
+            if (state.hasPriceFilter && state.hasRatingFilter && state.hasSelectedRegion()) {
                 getStudioWithConceptAndAllFilter(conceptId)
             }
-            else if (hasPriceFilter && hasRatingFilter) {
+            else if (state.hasPriceFilter && state.hasRatingFilter) {
                 getStudioWithConceptOrderByHighRatingAndLowerPrice(conceptId)
             }
-            else if (hasPriceFilter && state.hasSelectedRegion()) {
+            else if (state.hasPriceFilter && state.hasSelectedRegion()) {
                 getStudioWithConceptAndRegionsOrderByPrice(conceptId)
             }
-            else if (state.hasSelectedRegion() && hasRatingFilter) {
+            else if (state.hasSelectedRegion() && state.hasRatingFilter) {
                 getStudioWithConceptAndRegionOrderByHighRating(conceptId)
             }
             else if (state.hasSelectedRegion()) {
                 getStudioWithConceptAndRegion(conceptId)
             }
-            else if (hasPriceFilter) {
+            else if (state.hasPriceFilter) {
                 getStudioWithConceptAndOrderByPrice(conceptId)
             }
-            else if (hasRatingFilter) {
+            else if (state.hasRatingFilter) {
                 getStudioWithConceptOrderByHighRating(conceptId)
             }
             else {

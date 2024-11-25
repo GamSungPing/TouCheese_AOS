@@ -82,7 +82,7 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
 
         binding.btFilterRating.apply {
             setOnClickListener {
-                viewModel.hasRatingFilter = true
+                viewModel.updateRating()
                 viewModel.checkFilterOption(args.conceptId)
             }
         }
@@ -112,6 +112,10 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
 
         with(priceBottomBinding) {
             btDone.setOnClickListener {
+                bottomSheetDialog.dismiss()
+            }
+
+            bottomSheetDialog.setOnDismissListener {
                 when (btRadioGroup.checkedRadioButtonId) {
                     btPriceAll.id -> {
                         viewModel.clear()
@@ -126,8 +130,8 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
                         viewModel.updatePrice(Pricing.HIGH)
                     }
                 }
+
                 viewModel.checkFilterOption(args.conceptId)
-                bottomSheetDialog.dismiss()
             }
         }
     }
@@ -199,11 +203,8 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
 
             bottomRegionDialog.setOnDismissListener {
                 viewModel.checkFilterOption(args.conceptId)
+                viewModel.clearRegionFilters()
             }
         }
-    }
-
-    private fun clearRegion() {
-        viewModel.filterState.value?.clearRegions()
     }
 }
