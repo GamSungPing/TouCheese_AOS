@@ -1,6 +1,8 @@
 [versions]
+activityCompose = "1.9.3"
 agp = "8.7.2"
 kotlin = "1.9.24"
+lifecycleViewmodelCompose = "2.8.7"
 org-jetbrains-kotlin-android = "1.8.10"
 glide-compiler = "4.13.2"
 coreKtx = "1.15.0"
@@ -26,9 +28,20 @@ navigationSafeArgs = "2.7.7"
 coroutines-core = "1.7.3"
 javaxInject="1"
 jetbrainsKotlinJvm = "1.9.24"
+hilt-navigation-compose = "1.0.0"
+compose-bom = "2024.11.00"
 
 [libraries]
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }
+androidx-material-icons-core = { module = "androidx.compose.material:material-icons-core" }
+androidx-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
+androidx-material3 = { module = "androidx.compose.material3:material3" }
+androidx-runtime-livedata = { module = "androidx.compose.runtime:runtime-livedata" }
+androidx-ui = { module = "androidx.compose.ui:ui" }
+androidx-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
+androidx-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -39,6 +52,8 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "loggingInterceptor"}
+material3 = { group = "androidx.compose.material3", name = "material3" }
+compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 converter-moshi = { group="com.squareup.retrofit2", name="converter-moshi", version.ref="retrofit"}
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp"}
@@ -58,6 +73,7 @@ kotlin-serialization-plugin = { module = "org.jetbrains.kotlin:kotlin-serializat
 javax-inject = { group = "javax.inject", name = "javax.inject", version.ref="javaxInject" }
 coroutines-core-jvm = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core-jvm", version.ref="coroutines-core"}
 coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref="coroutines-core"}
+hilt-navigation-compose = { group = "androidx.hilt" , name = "hilt-navigation-compose", version.ref = "hilt-navigation-compose"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -68,3 +84,4 @@ navigation-safe-args = { id = "androidx.navigation.safeargs.kotlin", version.ref
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize",  version.ref = "org-jetbrains-kotlin-android"  }
 jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
 android-library = { id = "com.android.library", version.ref = "agp" }
+

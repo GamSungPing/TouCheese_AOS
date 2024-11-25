@@ -31,17 +31,24 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.14"
+    }
     kotlinOptions {
         jvmTarget = "1.8"
     }
     viewBinding{
         enable = true
     }
+    buildFeatures {
+        compose = true
+    }
 }
 
 dependencies {
     implementation(project(":domain"))
 
+    implementation(platform(libs.compose.bom))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -62,4 +69,20 @@ dependencies {
 
     implementation(libs.coroutines.core)
     implementation(libs.coroutines.core.jvm)
+
+    implementation (libs.androidx.ui)
+
+    implementation (libs.androidx.ui.tooling.preview)
+    debugImplementation (libs.androidx.ui.tooling)
+
+    implementation (libs.androidx.material.icons.core)
+    implementation (libs.androidx.material.icons.extended)
+
+    implementation (libs.androidx.activity.compose)
+    implementation (libs.androidx.lifecycle.viewmodel.compose)
+    implementation (libs.androidx.runtime.livedata)
+    implementation (libs.androidx.material3)
+    implementation (libs.material3)
+
+    implementation(libs.hilt.navigation.compose)
 }
