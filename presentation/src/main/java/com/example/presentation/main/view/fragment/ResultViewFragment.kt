@@ -1,7 +1,6 @@
 package com.example.presentation.main.view.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.CheckBox
 import androidx.fragment.app.Fragment
@@ -20,7 +19,6 @@ import com.example.presentation.databinding.FragmentResultViewBinding
 import com.example.presentation.main.view.adapter.ResultViewAdapter
 import com.example.presentation.main.vm.HomeConceptViewModel
 import com.example.presentation.main.vm.ResultViewModel
-import com.example.presentation.main.vm.model.FilterState
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -100,7 +98,6 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
 
     private fun observeFilterState() {
         viewModel.filterState.observe(viewLifecycleOwner, Observer { filterState ->
-
         })
     }
 
@@ -111,6 +108,16 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
         bottomSheetDialog.show()
 
         with(priceBottomBinding) {
+            val state = viewModel.filterState.value
+
+            if(state?.hasPriceFilter == true) {
+                when(state.pricing) {
+                 Pricing.LOW -> { btRadioGroup.check(btPriceLow.id) }
+                 Pricing.MEDIUM -> { btRadioGroup.check(btPriceMid.id) }
+                 Pricing.HIGH -> { btRadioGroup.check(btPriceHigh.id) }
+                }
+            }
+
             btDone.setOnClickListener {
                 bottomSheetDialog.dismiss()
             }
@@ -156,7 +163,6 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
             regionBinding.checkboxSeongdong
         )
 
-
         with(regionBinding) {
             checkboxParent.setOnCheckedChangeListener { _, isChecked ->
                 checkBoxes.forEach { it.isChecked = isChecked }
@@ -165,7 +171,6 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
             checkBoxes.forEach { checkBox ->
                 checkBox.setOnCheckedChangeListener { _, _ ->
                     checkboxParent.isChecked = checkBoxes.all { it.isChecked }
-
                 }
             }
 

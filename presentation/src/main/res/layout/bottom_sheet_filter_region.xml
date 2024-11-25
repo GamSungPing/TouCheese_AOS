@@ -45,6 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:text="강남구"
+            android:tag="강남구"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,6 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:text="서초구"
+            android:tag="서초구"
             app:layout_constraintStart_toEndOf="@id/checkbox_gangnam"
             app:layout_constraintTop_toTopOf="@+id/checkbox_gangnam" />
 
@@ -63,6 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:text="송파구"
+            android:tag="송파구"
             app:layout_constraintStart_toEndOf="@id/checkbox_seocho"
             app:layout_constraintTop_toTopOf="@+id/checkbox_seocho" />
 
@@ -72,6 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="강서구"
+            android:tag="강서구"
             app:layout_constraintStart_toStartOf="@+id/checkbox_gangnam"
             app:layout_constraintTop_toBottomOf="@+id/checkbox_gangnam" />
 
@@ -81,6 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:text="마포구"
+            android:tag="마포구"
             app:layout_constraintStart_toEndOf="@id/checkbox_gangseo"
             app:layout_constraintTop_toTopOf="@+id/checkbox_gangseo" />
 
@@ -90,6 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:text="영등포구"
+            android:tag="영등포구"
             app:layout_constraintStart_toEndOf="@id/checkbox_mapo"
             app:layout_constraintTop_toTopOf="@+id/checkbox_mapo" />
 
@@ -98,6 +104,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="강북구"
+            android:tag="강북구"
             app:layout_constraintStart_toStartOf="@+id/checkbox_gangseo"
             app:layout_constraintTop_toBottomOf="@+id/checkbox_gangseo" />
 
@@ -107,6 +114,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:text="용산구"
+            android:tag="용산구"
             app:layout_constraintStart_toEndOf="@id/checkbox_gangbuk"
             app:layout_constraintTop_toTopOf="@+id/checkbox_gangbuk" />
 
@@ -116,6 +124,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:text="성동구"
+            android:tag="성동구"
             app:layout_constraintStart_toEndOf="@id/checkbox_yongsan"
             app:layout_constraintTop_toTopOf="@+id/checkbox_yongsan" />
 

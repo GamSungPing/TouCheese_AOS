@@ -25,28 +25,6 @@ class ResultViewModel @Inject constructor(
     private val _result = MutableLiveData<List<StudioInfoWithConcept>>()
     val result: LiveData<List<StudioInfoWithConcept>> get() = _result
 
-//    var hasPriceFilter = false
-//    var hasRatingFilter = false
-
-    fun onSelectedRegion(region: Region) {
-        val currentRegion = filterState.value?.regions
-        currentRegion?.set(region, currentRegion[region]?.not() ?: false)
-    }
-
-    fun getStudioWithConcept(state: FilterState, conceptId: Int) {
-        viewModelScope.launch {
-            clear()
-            val result = if (state.hasSelectedRegion()) {
-                 studioRepository.getStudioWithConceptAndRegion(
-                    conceptId, state.getSelectedRegionIds()
-                )
-            } else{
-                studioRepository.getStudioOnlyConcept(conceptId, null)
-            }
-            _result.value = result
-        }
-    }
-
     fun getInitializedStudio(conceptId: Int) {
         viewModelScope.launch {
             clear()
