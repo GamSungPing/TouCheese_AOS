@@ -12,7 +12,7 @@
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="가격순 검색"
+        android:text="@string/text_filter_price"
         android:textAlignment="center"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,28 +31,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="전 체"
+            android:text="@string/text_filter_all"
             android:textAlignment="center" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="10만원 미만"
+            android:text="@string/text_filter_price_low"
             android:textAlignment="center" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="10만원 이상"
+            android:text="@string/text_filter_price_middle"
             android:textAlignment="center" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="20만원 이상"
+            android:text="@string/text_filter_price_high"
             android:textAlignment="center" />
     </LinearLayout>
 
@@ -108,7 +108,7 @@
         style="@style/Widget.Material3.Button.OutlinedButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="완료하기"
+        android:text="@string/text_done"
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
