@@ -1,5 +1,6 @@
 package com.example.presentation.main.vm
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,36 +19,11 @@ class ResultViewModel @Inject constructor(
     private val studioRepository: StudioRepository
 ) : ViewModel() {
 
-    private val _selectedPrice = MutableLiveData<Pricing?>()
-    val selectedPrice: LiveData<Pricing?> get() = _selectedPrice
-
-    private val _selectedRegion = MutableLiveData(FilterState.create())
-    val selectedRegion: LiveData<FilterState> get() = _selectedRegion
+    private var _filterState = MutableLiveData(FilterState.create())
+    val filterState: LiveData<FilterState> get() = _filterState
 
     private val _result = MutableLiveData<List<StudioInfoWithConcept>>()
     val result: LiveData<List<StudioInfoWithConcept>> get() = _result
-
-    fun onSelectedRegion(region: Region, conceptId: Int) {
-        val currentRegion = _selectedRegion.value?.regions
-        currentRegion?.set(region, currentRegion[region]?.not() ?: false)
-        _selectedRegion.value?.let {
-            getStudioWithConcept(it, conceptId)
-        }
-    }
-
-    private fun getStudioWithConcept(state: FilterState, conceptId: Int) {
-        viewModelScope.launch {
-            clear()
-            val result = if (state.hasSelectedRegion()) {
-                 studioRepository.getStudioWithConceptAndRegion(
-                    conceptId, state.getSelectedRegionIds()
-                )
-            }else{
-                studioRepository.getStudioOnlyConcept(conceptId, null)
-            }
-            _result.value = result
-        }
-    }
 
     fun getInitializedStudio(conceptId: Int) {
         viewModelScope.launch {
@@ -57,7 +33,16 @@ class ResultViewModel @Inject constructor(
         }
     }
 
-    fun getStudioWithConceptOrderByHighRating(conceptId: Int) {
+    private fun getStudioWithConceptAndOrderByPrice(conceptId: Int) {
+        viewModelScope.launch {
+            clear()
+            val state = filterState.value ?: return@launch
+            val result = studioRepository.getStudioWithConceptOrderByLowerPrice(conceptId, state.pricing)
+            _result.value = result
+        }
+    }
+
+    private fun getStudioWithConceptOrderByHighRating(conceptId: Int) {
         viewModelScope.launch {
             clear()
             val result = studioRepository.getStudioWithConceptOrderByHighRating(conceptId, null)
@@ -65,15 +50,114 @@ class ResultViewModel @Inject constructor(
         }
     }
 
-    fun getStudioWithConceptOrderByLowerPrice(conceptId: Int, priceCategory: Pricing) {
+    private fun getStudioWithConceptAndRegion(conceptId: Int) {
         viewModelScope.launch {
             clear()
-            val result = studioRepository.getStudioWithConceptOrderByLowerPrice(conceptId, priceCategory, null)
+            val state = filterState.value ?: return@launch
+            val result = studioRepository.getStudioWithConceptAndRegion(conceptId, state.getSelectedRegionIds())
             _result.value = result
         }
     }
 
-    private fun clear(){
+    private fun getStudioWithConceptAndRegionOrderByHighRating(conceptId: Int) {
+        viewModelScope.launch {
+            clear()
+            val state = filterState.value ?: return@launch
+            val result = studioRepository.getStudioWithConceptAndRegionOrderByHighRating(conceptId, state.getSelectedRegionIds())
+            _result.value = result
+        }
+    }
+
+    private fun getStudioWithConceptAndRegionsOrderByPrice(conceptId: Int) {
+        viewModelScope.launch {
+            clear()
+            val state = filterState.value ?: return@launch
+            val result = studioRepository.getStudioWithConceptAndRegionsOrderByPrice(conceptId, state.getSelectedRegionIds(), state.pricing)
+            _result.value = result
+        }
+    }
+
+    private fun getStudioWithConceptOrderByHighRatingAndLowerPrice(conceptId: Int) {
+        viewModelScope.launch {
+            clear()
+            val state = filterState.value ?: return@launch
+            val result = studioRepository.getStudioWithConceptOrderByHighRatingAndLowerPrice(conceptId, state.pricing)
+            _result.value = result
+        }
+    }
+
+    private fun getStudioWithConceptAndAllFilter(conceptId: Int) {
+        viewModelScope.launch {
+            clear()
+            val state = filterState.value ?: return@launch
+            val result = studioRepository.getStudioWithConceptAndRegionOrderByHighRatingAndLowerPrice(conceptId, state.pricing, state.getSelectedRegionIds())
+            _result.value = result
+        }
+    }
+
+    fun updatePrice(pricing: Pricing) {
+        _filterState.value = _filterState.value?.copy(
+            pricing = pricing,
+            hasPriceFilter = true
+        )
+    }
+
+    fun updateRegions(region: Region, isChecked: Boolean) {
+        val updatedRegions = _filterState.value?.regions?.toMutableMap() ?: mutableMapOf()
+        updatedRegions[region] = isChecked
+
+        _filterState.value = _filterState.value?.copy(
+            regions = updatedRegions
+        )
+    }
+
+    fun updateRating() {
+        _filterState.value = _filterState.value?.copy(
+            hasRatingFilter = true
+        )
+    }
+
+    fun clear(){
         _result.value = emptyList()
+    }
+
+    fun clearRegionFilters() {
+        _filterState.value = _filterState.value?.copy(
+            regions = Region.create()
+        )
+    }
+
+    fun clearAllFilters() {
+        _filterState.value = FilterState.create()
+    }
+
+    fun checkFilterOption(conceptId: Int) {
+        viewModelScope.launch {
+            val state = filterState.value ?: return@launch
+            if (state.hasPriceFilter && state.hasRatingFilter && state.hasSelectedRegion()) {
+                getStudioWithConceptAndAllFilter(conceptId)
+            }
+            else if (state.hasPriceFilter && state.hasRatingFilter) {
+                getStudioWithConceptOrderByHighRatingAndLowerPrice(conceptId)
+            }
+            else if (state.hasPriceFilter && state.hasSelectedRegion()) {
+                getStudioWithConceptAndRegionsOrderByPrice(conceptId)
+            }
+            else if (state.hasSelectedRegion() && state.hasRatingFilter) {
+                getStudioWithConceptAndRegionOrderByHighRating(conceptId)
+            }
+            else if (state.hasSelectedRegion()) {
+                getStudioWithConceptAndRegion(conceptId)
+            }
+            else if (state.hasPriceFilter) {
+                getStudioWithConceptAndOrderByPrice(conceptId)
+            }
+            else if (state.hasRatingFilter) {
+                getStudioWithConceptOrderByHighRating(conceptId)
+            }
+            else {
+                getInitializedStudio(conceptId)
+            }
+        }
     }
 }

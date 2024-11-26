@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:tag="bs_filter_region"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="16dp"
+    app:layout_behavior="@string/bottom_sheet_behavior">
+
+    <TextView
+        android:id="@+id/tv_bottom_sheet_region"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="지역별 검색"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/checkbox_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="15dp"
+        android:text="전체 선택"
+        app:checkedState="indeterminate"
+        app:layout_constraintStart_toStartOf="@+id/tv_bottom_sheet_region"
+        app:layout_constraintTop_toBottomOf="@+id/tv_bottom_sheet_region"
+        />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/checkbox_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="@+id/checkbox_parent"
+        app:layout_constraintTop_toBottomOf="@id/checkbox_parent">
+
+        <CheckBox
+            android:id="@+id/checkbox_gangnam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:text="강남구"
+            android:tag="강남구"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <CheckBox
+            android:id="@+id/checkbox_seocho"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:text="서초구"
+            android:tag="서초구"
+            app:layout_constraintStart_toEndOf="@id/checkbox_gangnam"
+            app:layout_constraintTop_toTopOf="@+id/checkbox_gangnam" />
+
+        <CheckBox
+            android:id="@+id/checkbox_songpa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:text="송파구"
+            android:tag="송파구"
+            app:layout_constraintStart_toEndOf="@id/checkbox_seocho"
+            app:layout_constraintTop_toTopOf="@+id/checkbox_seocho" />
+
+
+        <CheckBox
+            android:id="@+id/checkbox_gangseo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="강서구"
+            android:tag="강서구"
+            app:layout_constraintStart_toStartOf="@+id/checkbox_gangnam"
+            app:layout_constraintTop_toBottomOf="@+id/checkbox_gangnam" />
+
+        <CheckBox
+            android:id="@+id/checkbox_mapo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:text="마포구"
+            android:tag="마포구"
+            app:layout_constraintStart_toEndOf="@id/checkbox_gangseo"
+            app:layout_constraintTop_toTopOf="@+id/checkbox_gangseo" />
+
+        <CheckBox
+            android:id="@+id/checkbox_yeongdeunpo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:text="영등포구"
+            android:tag="영등포구"
+            app:layout_constraintStart_toEndOf="@id/checkbox_mapo"
+            app:layout_constraintTop_toTopOf="@+id/checkbox_mapo" />
+
+        <CheckBox
+            android:id="@+id/checkbox_gangbuk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="강북구"
+            android:tag="강북구"
+            app:layout_constraintStart_toStartOf="@+id/checkbox_gangseo"
+            app:layout_constraintTop_toBottomOf="@+id/checkbox_gangseo" />
+
+        <CheckBox
+            android:id="@+id/checkbox_yongsan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:text="용산구"
+            android:tag="용산구"
+            app:layout_constraintStart_toEndOf="@id/checkbox_gangbuk"
+            app:layout_constraintTop_toTopOf="@+id/checkbox_gangbuk" />
+
+        <CheckBox
+            android:id="@+id/checkbox_seongdong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:text="성동구"
+            android:tag="성동구"
+            app:layout_constraintStart_toEndOf="@id/checkbox_yongsan"
+            app:layout_constraintTop_toTopOf="@+id/checkbox_yongsan" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/bt_done"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="완료하기"
+        app:layout_constraintStart_toStartOf="@+id/checkbox_container"
+        app:layout_constraintTop_toBottomOf="@+id/checkbox_container" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
