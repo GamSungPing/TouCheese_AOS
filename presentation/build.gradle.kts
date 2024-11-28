@@ -83,6 +83,7 @@ dependencies {
     implementation (libs.androidx.runtime.livedata)
     implementation (libs.androidx.material3)
     implementation (libs.material3)
+    implementation (libs.coil.compose)
 
     implementation(libs.hilt.navigation.compose)
 }
