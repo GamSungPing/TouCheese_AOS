@@ -34,4 +34,5 @@
     <string name="text_product_reservation">촬영날짜</string>
     <string name="text_product_reservation_button">예약하실 날짜를 선택해주세요</string>
     <string name="text_product_order">선택 상품 주문</string>
+    <string name="text_product_able_time">예약 가능한 시간</string>
 </resources>

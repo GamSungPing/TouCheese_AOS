@@ -1,60 +1,87 @@
 package com.example.presentation.main.view.fragment
 
+import android.content.Context
+import android.icu.util.Calendar
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.presentation.R
+import android.widget.GridLayout
+import androidx.core.view.isVisible
+import com.example.presentation.databinding.FragmentCalendarBinding
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.button.MaterialButton
+import java.time.LocalDate
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class CalendarFragment : BottomSheetDialogFragment() {
+    private var _binding: FragmentCalendarBinding? = null
+    private val binding get() = _binding!!
+    private var selectedDay: Calendar? = null
 
-/**
- * A simple [Fragment] subclass.
- * Use the [CalendarFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class CalendarFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentCalendarBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        makeReservationTimeButton(requireContext())
+        setupCalendarMinDate()
+        setupDoneButton()
+        setupCalendar()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun makeReservationTimeButton(context: Context) {
+        val buttonCount = 9
+
+        val gridLayout = binding.layoutButtonContainer
+        for (i in 1..buttonCount) {
+            val button =  MaterialButton(context).apply {
+                id = View.generateViewId()
+                text = "0$i:00"
+                layoutParams = GridLayout.LayoutParams().apply {
+                    height = GridLayout.LayoutParams.WRAP_CONTENT
+                    columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
+                    rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
+                    setMargins(8, 8, 8, 8)  // 버튼 간 간격
+                }
+            }
+            gridLayout.addView(button)
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_calendar, container, false)
+    private fun setupCalendarMinDate() {
+        val today = Calendar.getInstance().timeInMillis
+        binding.reservationCalendar.minDate = today
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CalendarFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CalendarFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    private fun setupCalendar() {
+        binding.reservationCalendar.setOnDateChangeListener { view, year, month, day ->
+            selectedDay = Calendar.getInstance().apply {
+                set(year, month + 1, day)
             }
+            hasSelectedDay()
+        }
+    }
+
+    private fun hasSelectedDay() {
+        binding.layoutButtonContainer.visibility = View.VISIBLE
+        binding.btDone.isEnabled = true
+    }
+
+    private fun setupDoneButton() {
+        binding.btDone.setOnClickListener {
+            dismiss()
+        }
     }
 }
