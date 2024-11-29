@@ -1,23 +1,24 @@
 package com.example.presentation.main.view.fragment
 
 import android.content.Context
+import android.content.DialogInterface
 import android.icu.util.Calendar
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.GridLayout
-import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
 import com.example.presentation.databinding.FragmentCalendarBinding
+import com.example.presentation.main.vm.ProductDetailViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.button.MaterialButton
-import java.time.LocalDate
 
 class CalendarFragment : BottomSheetDialogFragment() {
     private var _binding: FragmentCalendarBinding? = null
     private val binding get() = _binding!!
     private var selectedDay: Calendar? = null
+    private val viewModel: ProductDetailViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,6 +42,12 @@ class CalendarFragment : BottomSheetDialogFragment() {
         _binding = null
     }
 
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        val parentFragment = parentFragment as? ProductDetailViewFragment
+        parentFragment?.onDateSelected(true)
+    }
+
     private fun makeReservationTimeButton(context: Context) {
         val buttonCount = 9
 
@@ -53,8 +60,12 @@ class CalendarFragment : BottomSheetDialogFragment() {
                     height = GridLayout.LayoutParams.WRAP_CONTENT
                     columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
                     rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
-                    setMargins(8, 8, 8, 8)  // 버튼 간 간격
+                    setMargins(8, 8, 8, 8)
                 }
+            }
+            button.setOnClickListener {
+                viewModel.selectedTime.value = button.id.toString()
+                viewModel.setSelectedTime(true)
             }
             gridLayout.addView(button)
         }
@@ -70,6 +81,9 @@ class CalendarFragment : BottomSheetDialogFragment() {
             selectedDay = Calendar.getInstance().apply {
                 set(year, month + 1, day)
             }
+            if(selectedDay != null) {
+                viewModel.selectedDay.value = selectedDay
+            }
             hasSelectedDay()
         }
     }
@@ -81,6 +95,7 @@ class CalendarFragment : BottomSheetDialogFragment() {
 
     private fun setupDoneButton() {
         binding.btDone.setOnClickListener {
+            viewModel.setSelectedDay(true)
             dismiss()
         }
     }

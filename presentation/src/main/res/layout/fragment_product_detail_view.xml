@@ -4,7 +4,6 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="10dp"
         tools:context=".main.view.fragment.ProductDetailViewFragment">
 
     <androidx.appcompat.widget.Toolbar
@@ -22,7 +21,6 @@
         android:scrollbars="none"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_product_detail"
@@ -106,17 +104,14 @@
                     app:layout_constraintTop_toTopOf="@+id/tv_price" />
 
 
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/price_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_price_sum" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-            <com.google.android.material.divider.MaterialDivider
-                android:id="@+id/price_divider"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
-                app:layout_constraintTop_toBottomOf="@+id/layout_price" />
-
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_guest"
@@ -124,8 +119,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="10dp"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="@+id/layout_price"
-                app:layout_constraintTop_toBottomOf="@+id/price_divider">
+                app:layout_constraintTop_toBottomOf="@+id/layout_price">
 
                 <TextView
                     android:id="@+id/tv_guest"
@@ -146,16 +142,15 @@
                     app:layout_constraintTop_toTopOf="@+id/tv_guest" />
 
 
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/guest_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_guest_sum" />
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-            <com.google.android.material.divider.MaterialDivider
-                android:id="@+id/guest_divider"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
-                app:layout_constraintTop_toBottomOf="@+id/layout_guest" />
 
 
 
@@ -163,11 +158,12 @@
                 android:id="@+id/layout_add_guest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/layout_guest"
-                app:layout_constraintTop_toBottomOf="@+id/guest_divider">
+                app:layout_constraintTop_toBottomOf="@+id/layout_guest">
 
 
                 <TextView
@@ -218,16 +214,13 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_guest_number" />
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-            <com.google.android.material.divider.MaterialDivider
-                android:id="@+id/divider2"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginHorizontal="10dp"
-                app:layout_constraintTop_toBottomOf="@+id/layout_add_guest" />
 
             <TextView
                 android:id="@+id/tv_add_option"
@@ -236,8 +229,8 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/text_product_add_option"
-                app:layout_constraintStart_toStartOf="@+id/divider2"
-                app:layout_constraintTop_toBottomOf="@+id/divider2" />
+                app:layout_constraintStart_toStartOf="@+id/layout_add_guest"
+                app:layout_constraintTop_toBottomOf="@+id/layout_add_guest" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_add_option_checkbox"
@@ -271,10 +264,18 @@
                     android:text="추가옵션"
                     app:layout_constraintStart_toStartOf="@+id/checkbox2"
                     app:layout_constraintTop_toBottomOf="@+id/checkbox2" />
+
+                <CheckBox
+                    android:id="@+id/checkbox4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="선택안함"
+                    app:layout_constraintStart_toStartOf="@+id/checkbox3"
+                    app:layout_constraintTop_toBottomOf="@+id/checkbox3" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.google.android.material.divider.MaterialDivider
-                android:id="@+id/divider3"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginHorizontal="10dp"
@@ -287,8 +288,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="100dp"
-                app:layout_constraintStart_toStartOf="@+id/divider3"
-                app:layout_constraintTop_toBottomOf="@+id/divider3">
+                app:layout_constraintStart_toStartOf="@+id/layout_add_option_checkbox"
+                app:layout_constraintTop_toBottomOf="@+id/layout_add_option_checkbox">
 
                 <TextView
                     android:id="@+id/tv_product_reservation"
@@ -316,33 +317,45 @@
     </ScrollView>
 
 
-    <com.google.android.material.divider.MaterialDivider
-        android:id="@+id/divider4"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_order_button"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        app:layout_constraintBottom_toTopOf="@id/bt_cart"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/bt_cart"
-        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:icon="@drawable/icon_shopping_cart_24px"
-        app:iconGravity="textStart"
+        android:background="@color/tc_light_yellow"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/bt_order"
-        app:layout_constraintHorizontal_weight="0.3" />
+        app:layout_constraintBottom_toBottomOf="parent">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/bt_order"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/text_product_order"
-        app:layout_constraintStart_toEndOf="@id/bt_cart"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_weight="0.7" />
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bt_cart"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:icon="@drawable/icon_shopping_cart_24px"
+            app:iconPadding="0dp"
+            app:iconGravity="textStart"
+            android:layout_marginStart="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/bt_order"
+            app:layout_constraintHorizontal_weight="0.2"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bt_order"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:text="@string/text_product_order"
+            android:enabled="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="0.8"
+            app:layout_constraintStart_toEndOf="@id/bt_cart" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
