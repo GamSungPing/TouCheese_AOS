@@ -28,7 +28,8 @@
     <string name="text_region_seongdong">성동구</string>
     <string name="text_done">완료하기</string>
     <string name="text_product_price">가 격</string>
-    <string name="text_product_guests">인 원</string>
+    <string name="text_product_guests">기준인원</string>
+    <string name="text_product_add_guests">추가인원</string>
     <string name="text_product_add_option">추가 구매</string>
     <string name="text_product_reservation">촬영날짜</string>
     <string name="text_product_reservation_button">예약하실 날짜를 선택해주세요</string>
