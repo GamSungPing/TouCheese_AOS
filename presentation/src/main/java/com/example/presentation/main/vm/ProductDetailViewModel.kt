@@ -4,35 +4,51 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.presentation.main.vm.model.ReservationState
 import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.LocalTime
 
 class ProductDetailViewModel : ViewModel() {
-    val selectedDay = MutableLiveData<android.icu.util.Calendar>()
-    val selectedTime = MutableLiveData<String>()
 
-    private val _hasSelectedDay = MutableLiveData(false)
-    val hasSelectedDay: LiveData<Boolean> get() = _hasSelectedDay
-
-    private val _hasSelectedTime = MutableLiveData(false)
-    val hasSelectedTime: LiveData<Boolean> get() = _hasSelectedTime
+    private val _reservationState = MutableLiveData(ReservationState())
+    val reservationState: LiveData<ReservationState> get() = _reservationState
 
     private val _isEnabled = MutableLiveData<Boolean>()
     val isEnabled: LiveData<Boolean> get() = _isEnabled
 
     fun setButtonEnabled(enabled: Boolean) {
-        _isEnabled.value = enabled
-    }
-
-    fun setSelectedDay(selected: Boolean) {
         viewModelScope.launch {
-            _hasSelectedDay.value = selected
+            _isEnabled.value = enabled
         }
     }
 
-    fun setSelectedTime(selected: Boolean) {
+    fun setSelectedDay(date: LocalDate) {
         viewModelScope.launch {
-            _hasSelectedTime.value = selected
+            _reservationState.value = _reservationState.value?.copy(date = date)
+        }
+    }
 
+    fun setSelectedTime(time : LocalTime) {
+        viewModelScope.launch {
+            _reservationState.value = _reservationState.value?.copy(time = time)
+        }
+    }
+
+    fun setHasSelectDateTime(boolean: Boolean) {
+        viewModelScope.launch {
+            _reservationState.value = _reservationState.value?.copy(hasSelectedDate = boolean)
+        }
+    }
+
+    fun setSelectedDateTime() {
+        val date = _reservationState.value?.date
+        val time = _reservationState.value?.time
+
+        if (date != null && time != null) {
+            val localDateTime = LocalDateTime.of(date, time)
+            _reservationState.value = _reservationState.value?.copy(dateTime = localDateTime)
         }
     }
 }
