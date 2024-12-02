@@ -1,18 +1,14 @@
 package com.example.presentation.main.view.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import com.example.presentation.databinding.FragmentProductDetailViewBinding
 import com.example.presentation.main.vm.ProductDetailViewModel
-import com.example.presentation.main.vm.model.ReservationState
-import java.time.LocalDate
 
 class ProductDetailViewFragment : Fragment() {
 
@@ -26,9 +22,6 @@ class ProductDetailViewFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentProductDetailViewBinding.inflate(inflater, container, false)
-        showCalendarBottomSheet()
-        showChangeCalendarBottomSheet()
-        isGroup()
         return binding.root
     }
 
@@ -36,6 +29,9 @@ class ProductDetailViewFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         observeReservationState()
         observeOrderButtonEnable()
+        showCalendarBottomSheet()
+        showChangeCalendarBottomSheet()
+        isGroup()
     }
 
     override fun onDestroyView() {
@@ -70,7 +66,7 @@ class ProductDetailViewFragment : Fragment() {
     }
 
     private fun observeOrderButtonEnable() {
-        viewModel.isEnabled.observe(viewLifecycleOwner) {
+        viewModel.isOrderEnabled.observe(viewLifecycleOwner) {
             binding.btOrder.isEnabled = it
         }
     }

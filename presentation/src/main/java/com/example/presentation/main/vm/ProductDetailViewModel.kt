@@ -15,12 +15,12 @@ class ProductDetailViewModel : ViewModel() {
     private val _reservationState = MutableLiveData(ReservationState())
     val reservationState: LiveData<ReservationState> get() = _reservationState
 
-    private val _isEnabled = MutableLiveData<Boolean>()
-    val isEnabled: LiveData<Boolean> get() = _isEnabled
+    private val _isOrderEnabled = MutableLiveData<Boolean>()
+    val isOrderEnabled: LiveData<Boolean> get() = _isOrderEnabled
 
     fun setButtonEnabled(enabled: Boolean) {
         viewModelScope.launch {
-            _isEnabled.value = enabled
+            _isOrderEnabled.value = enabled
         }
     }
 
