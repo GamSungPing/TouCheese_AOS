@@ -6,6 +6,6 @@ data class Product (
     val description: String,
     val imageString: String,
     val price: Int,
-    val reviewCount: Int,
+    val reviewCnt: Int,
     val isGroup: Boolean
 )

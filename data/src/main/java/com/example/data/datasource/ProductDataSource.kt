@@ -1,19 +1,19 @@
 package com.example.data.datasource
 
-import com.example.data.dto.response.product.ProductResponse
-import com.example.data.dto.response.productdetail.ProductDetailResponse
 import com.example.data.service.ProductService
+import com.example.domain.model.Product
+import com.example.domain.model.ProductDetail
 import javax.inject.Inject
 
 
 internal class ProductDataSource @Inject constructor(
     private val productService: ProductService
 ){
-    suspend fun getProductId(productId: Int): ProductResponse {
-        return productService.getProductID(productId)
+    suspend fun getProductDetailByProductId(productId: Int): ProductDetail {
+        return productService.getProductDetailByProductId(productId).toDomainModel()
     }
 
-    suspend fun getProductDetailWithStudioId(studioId : Int) : ProductDetailResponse {
-        return productService.getProductDetailWithStudioId(studioId)
+    suspend fun getAllProductWithStudioId(studioId : Int) : List<Product> {
+        return productService.getAllProductWithStudioId(studioId).toDomainModel()
     }
 }

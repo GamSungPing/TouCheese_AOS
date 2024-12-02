@@ -5,19 +5,21 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 internal data class ProductResponse(
-    val data: Data,
+    val data: List<Data>,
     val msg: String,
     val statusCode: Int
 ) {
-    fun toDomainModel(): Product {
-        return Product(
-            id = data.id,
-            name = data.name,
-            description = data.description,
-            imageString = data.imageString,
-            price = data.price,
-            reviewCount = data.reviewCount,
-            isGroup = data.isGroup
-        )
+    fun toDomainModel(): List<Product> {
+        return data.map {
+            Product(
+                id = it.id.toString(),
+                name = it.name,
+                description = it.description,
+                imageString = it.imageString,
+                price = it.price,
+                reviewCnt = it.reviewCnt,
+                isGroup = it.isGroup
+            )
+        }
     }
 }
