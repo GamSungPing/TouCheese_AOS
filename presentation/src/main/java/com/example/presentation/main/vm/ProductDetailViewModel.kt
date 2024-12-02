@@ -4,13 +4,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.domain.repository.product.ProductRepository
 import com.example.presentation.main.vm.model.ReservationState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
+import javax.inject.Inject
 
-class ProductDetailViewModel : ViewModel() {
+@HiltViewModel
+class ProductDetailViewModel @Inject constructor(
+    private val productRepository: ProductRepository
+) : ViewModel() {
 
     private val _reservationState = MutableLiveData(ReservationState())
     val reservationState: LiveData<ReservationState> get() = _reservationState
