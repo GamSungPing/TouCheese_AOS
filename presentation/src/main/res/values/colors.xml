@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="tc_yellow">#FFC000</color>
+    <color name="tc_light_yellow">#FFF2CC</color>
+    <color name="tc_light_gray">#EEEEEE</color>
+    <color name="tc_background">#FFFCF5</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+</resources>
