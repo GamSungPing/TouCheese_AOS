@@ -4,5 +4,5 @@ data class ProductDetail (
     val isGroup: Boolean,
     val baseGuestCount: Int?,
     val addPeoplePrice: Int?,
-    val productOptions: List<String>
+    val productOptions: List<String>?
 )

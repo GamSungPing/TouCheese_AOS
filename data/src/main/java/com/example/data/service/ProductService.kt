@@ -8,8 +8,8 @@ import retrofit2.http.Path
 internal interface ProductService {
 
     @GET("product/{id}")
-    suspend fun getProductID(@Path("id") productId : Int) : ProductResponse
+    suspend fun getProductDetailByProductId(@Path("id") productId : Int) : ProductDetailResponse
 
     @GET("product/studio/{studioId}")
-    suspend fun getProductDetailWithStudioId(@Path("studioId") studioId : Int) : ProductDetailResponse
+    suspend fun getAllProductWithStudioId(@Path("studioId") studioId : Int) : ProductResponse
 }
