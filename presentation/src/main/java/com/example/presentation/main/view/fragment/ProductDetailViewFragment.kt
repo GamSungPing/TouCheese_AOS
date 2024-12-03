@@ -9,7 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.presentation.databinding.FragmentProductDetailViewBinding
 import com.example.presentation.main.vm.ProductDetailViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ProductDetailViewFragment : Fragment() {
 
     private var _binding: FragmentProductDetailViewBinding? = null
