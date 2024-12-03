@@ -32,6 +32,7 @@
     <string name="text_product_guests">기준인원</string>
     <string name="text_product_add_guests">추가인원</string>
     <string name="text_product_add_option">추가 구매</string>
+    <string name="text_product_add_option_not">선택 안함</string>
     <string name="text_product_reservation">촬영날짜</string>
     <string name="text_product_reservation_button">예약하실 날짜를 선택해주세요</string>
     <string name="text_product_order">선택 상품 주문</string>
