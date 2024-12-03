@@ -84,6 +84,8 @@ dependencies {
     implementation (libs.androidx.material3)
     implementation (libs.material3)
     implementation (libs.coil.compose)
+    implementation (libs.accompanist.pager)
+    implementation (libs.accompanist.pager.indicators)
 
     implementation(libs.hilt.navigation.compose)
 }
