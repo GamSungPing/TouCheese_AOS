@@ -7,7 +7,7 @@ internal data class Data(
     val id: Int,
     val name: String,
     val profilePrice: Int,
-    val rating: Int,
+    val rating: Float,
     val region: Region,
     val portfolioUrls: List<String>,
     val profileURL: String
