@@ -16,6 +16,7 @@ class ReviewAdapter : ListAdapter<Int, ReviewViewHolder>(diffCallback) {
 
     override fun onBindViewHolder(holder: ReviewViewHolder, position: Int) {
         holder.bindImage(getItem(position))
+        holder.setupPhotoViewDialog()
     }
 
     companion object {
