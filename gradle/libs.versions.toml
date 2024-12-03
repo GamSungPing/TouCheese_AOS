@@ -78,6 +78,8 @@ coroutines-core-jvm = { group = "org.jetbrains.kotlinx", name = "kotlinx-corouti
 coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref="coroutines-core"}
 hilt-navigation-compose = { group = "androidx.hilt" , name = "hilt-navigation-compose", version.ref = "hilt-navigation-compose"}
 photoview = {module = "io.getstream:photoview", name = "io.getstream:photoview", version.ref = "photoview"  }
+photoview-dialog = {module = "io.getstream:photoview-dialog", name = "io.getstream:photoview-dialog", version.ref = "photoview"  }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

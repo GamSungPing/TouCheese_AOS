@@ -88,4 +88,5 @@ dependencies {
     implementation(libs.hilt.navigation.compose)
 
     implementation(libs.photoview)
+    implementation(libs.photoview.dialog)
 }
