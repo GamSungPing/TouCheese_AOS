@@ -8,7 +8,8 @@ import com.example.presentation.databinding.ItemResultViewBinding
 import java.util.Locale
 
 class ResultViewHolder(
-    private val binding: ItemResultViewBinding
+    private val binding: ItemResultViewBinding,
+    private val onClickStudio: (String, String) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
     private val portfolioAdapter = PortfolioAdapter()
 
@@ -30,9 +31,13 @@ class ResultViewHolder(
         imageBind(profileURL)
 
         portfolioAdapter.submitList(portfolioUrls)
+
+        binding.root.setOnClickListener {
+            onClickStudio(id, profileURL)
+        }
     }
 
-    fun imageBind(imageUrl: String) {
+    private fun imageBind(imageUrl: String) {
         Glide.with(binding.root)
             .load(imageUrl)
             .into(binding.ivStudioMainImage)

@@ -1,5 +1,6 @@
 package com.example.presentation.main.view.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.CheckBox
@@ -19,6 +20,7 @@ import com.example.presentation.databinding.FragmentResultViewBinding
 import com.example.presentation.main.view.adapter.ResultViewAdapter
 import com.example.presentation.main.vm.HomeConceptViewModel
 import com.example.presentation.main.vm.ResultViewModel
+import com.example.presentation.studio.StudioActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -47,7 +49,13 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
     }
 
     private fun setupRvStudioList(binding: FragmentResultViewBinding) {
-        resultViewAdapter = ResultViewAdapter()
+        resultViewAdapter = ResultViewAdapter{ studioId, profileURL ->
+            val intent = Intent(requireContext(), StudioActivity::class.java).apply {
+                putExtra("studioId", studioId)
+                putExtra("profileURL", profileURL)
+            }
+            startActivity(intent)
+        }
 
         binding.rvStudioList.apply {
             layoutManager =
