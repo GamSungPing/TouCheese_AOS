@@ -3,6 +3,7 @@ package com.example.data.repository
 import com.example.data.datasource.StudioDataSource
 import com.example.domain.model.StudioInfo
 import com.example.domain.model.StudioInfoWithConcept
+import com.example.domain.model.detail.StudioDetail
 import com.example.domain.repository.studio.StudioRepository
 import com.example.domain.rule.Concept
 import com.example.domain.rule.Pricing
@@ -98,5 +99,9 @@ internal class StudioRepositoryImpl @Inject constructor(
             region,
             pageNo
         ).toDomainModel()
+    }
+
+    override suspend fun getStudioDetail(id: Int): StudioDetail {
+        return studioDataSource.getStudioDetail(id).toDomainModel()
     }
 }

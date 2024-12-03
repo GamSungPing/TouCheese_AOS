@@ -1,6 +1,5 @@
 package com.example.data.dto.response.concept
 
-import com.example.data.dto.response.concept.Data
 import com.example.domain.model.StudioInfoWithConcept
 import com.squareup.moshi.JsonClass
 

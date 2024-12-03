@@ -2,6 +2,7 @@ package com.example.domain.repository.studio
 
 import com.example.domain.model.StudioInfo
 import com.example.domain.model.StudioInfoWithConcept
+import com.example.domain.model.detail.StudioDetail
 import com.example.domain.rule.Concept
 import com.example.domain.rule.Pricing
 import com.example.domain.rule.Region
@@ -56,4 +57,6 @@ interface StudioRepository {
         region: List<Int>,
         pageNo: Int? = null
     ): List<StudioInfoWithConcept>
+
+    suspend fun getStudioDetail(id: Int): StudioDetail
 }

@@ -27,8 +27,10 @@ class HomeConceptMainFragment : Fragment(R.layout.fragment_home_concept_main) {
         )
 
         viewModel.uiState.observe(viewLifecycleOwner) { state ->
-            val action = HomeConceptFragmentDirections.actionToResultViewFragment(state.id)
-            navController.navigate(action)
+            if (navController.currentDestination?.id == R.id.homeConceptFragment) {
+                val action = HomeConceptFragmentDirections.actionToResultViewFragment(state.id)
+                navController.navigate(action)
+            }
         }
 
         viewModel.backStackRequest.observe(viewLifecycleOwner) {
@@ -36,3 +38,4 @@ class HomeConceptMainFragment : Fragment(R.layout.fragment_home_concept_main) {
         }
     }
 }
+
