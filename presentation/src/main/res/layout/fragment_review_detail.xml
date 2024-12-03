@@ -6,26 +6,137 @@
     android:layout_height="match_parent"
     tools:context=".main.view.fragment.ReviewDetailFragment">
 
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_review"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="56dp"
-        app:navigationIcon="@drawable/ic_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_back"
+        app:titleMarginStart="64dp"
+        app:titleMarginTop="16dp" />
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_user_profile_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="10dp"
+        app:cardCornerRadius="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
 
-    <io.getstream.photoview.PhotoView
-        android:id="@+id/photo_view"
+        <ImageView
+            android:id="@+id/iv_user_profile_image"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/image_test"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_review"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/image_test"
-        android:layout_marginTop="20dp"
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_review" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_review">
 
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/tv_review_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="20dp"
+        android:text="리뷰 내용 \n리뷰 내용"
+        app:layout_constraintStart_toStartOf="@+id/rv_review"
+        app:layout_constraintTop_toBottomOf="@+id/rv_review" />
+
+    <TextView
+        android:id="@+id/tv_reply_rating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawablePadding="4dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="10dp"
+        android:text="4.5"
+        app:drawableLeftCompat="@drawable/icon_favorite_24px"
+        app:layout_constraintStart_toStartOf="@+id/tv_review_text"
+        app:layout_constraintTop_toBottomOf="@+id/tv_review_text" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_reply_rating"
+        app:layout_constraintStart_toStartOf="@+id/tv_reply_rating"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_reply"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_studio_profile_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="100dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_studio_profile_image"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/image_test"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:id="@+id/tv_studio_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/text_product_able_time"
+            app:layout_constraintStart_toEndOf="@+id/cv_studio_profile_image"
+            app:layout_constraintTop_toTopOf="@+id/cv_studio_profile_image" />
+
+        <TextView
+            android:id="@+id/tv_review_write_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text="1일전"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            app:layout_constraintStart_toEndOf="@+id/tv_studio_name"
+            app:layout_constraintTop_toTopOf="@+id/tv_studio_name" />
+
+        <TextView
+            android:id="@+id/tv_studio_reply_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_product_change_reservation"
+            app:layout_constraintStart_toStartOf="@+id/tv_studio_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_studio_name" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
