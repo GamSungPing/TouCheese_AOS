@@ -2,6 +2,7 @@ package com.example.data.datasource
 
 import com.example.data.dto.response.concept.StudioConceptResponse
 import com.example.data.dto.response.studio.StudioInfoResponse
+import com.example.data.dto.response.studio.detail.StudioDetailResponse
 import com.example.data.service.StudioService
 import javax.inject.Inject
 
@@ -78,5 +79,9 @@ internal class StudioDataSource @Inject constructor(
             .getStudioWithConceptAndRegionOrderByHighRatingAndLowerPrice(
                 conceptId, regionId, priceCategory, pageNo
             )
+    }
+
+    suspend fun getStudioDetail(id: Int): StudioDetailResponse {
+        return studioService.getStudioDetail(id)
     }
 }
