@@ -11,12 +11,13 @@ internal data class ReviewDetailResponse(
     val statusCode: Int
 ) {
     fun toDomainModel(): ReviewDetail {
+
         return ReviewDetail(
-            userProfileImageString = data.userProfileImageString,
+            userProfileImageString = data.userProfileImageString ?: "",
             userName = data.userName,
-            dataString = data.dataString,
+            dateString = data.dateString ?: "",
             imageStrings = data.imageStrings,
-            content = data.content,
+            content = data.content ?: "",
             rating = data.rating,
             reply = data.reply
         )

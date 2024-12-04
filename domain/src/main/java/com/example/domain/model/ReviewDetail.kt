@@ -1,12 +1,13 @@
 package com.example.domain.model
 
-data class ReviewDetail (
-    val userProfileImageString: String,
+import com.example.domain.model.detail.Reply
+
+data class ReviewDetail(
+    val userProfileImageString: String?,
     val userName: String,
-    val dataString: String,
+    val dateString: String,
     val imageStrings: List<String>,
-    val content: String,
+    val content: String?,
     val rating: Int,
-    val reply: List<String>
-) {
-}
+    val reply: Reply
+)
