@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.example.presentation.databinding.ItemReviewCarouselBinding
 
-class ReviewAdapter : ListAdapter<Int, ReviewViewHolder>(diffCallback) {
+class ReviewAdapter: ListAdapter<String, ReviewViewHolder>(diffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReviewViewHolder {
         return ReviewViewHolder(
@@ -15,19 +15,22 @@ class ReviewAdapter : ListAdapter<Int, ReviewViewHolder>(diffCallback) {
     }
 
     override fun onBindViewHolder(holder: ReviewViewHolder, position: Int) {
-        holder.bindImage(getItem(position))
-        holder.setupPhotoViewDialog()
+        val imageUrls = getItem(position)
+        holder.reviewImageBindAndOnClickListener(imageUrls)
+        holder.buildPhotoViewDialog(imageUrls)
     }
 
     companion object {
-        private val diffCallback = object : DiffUtil.ItemCallback<Int>() {
-            override fun areItemsTheSame(oldItem: Int, newItem: Int): Boolean {
+        private val diffCallback = object : DiffUtil.ItemCallback<String>() {
+            override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
                 return oldItem == newItem
             }
 
-            override fun areContentsTheSame(oldItem: Int, newItem: Int): Boolean {
+            override fun areContentsTheSame(oldItem: String, newItem: String): Boolean {
                 return oldItem == newItem
             }
         }
     }
+
+
 }

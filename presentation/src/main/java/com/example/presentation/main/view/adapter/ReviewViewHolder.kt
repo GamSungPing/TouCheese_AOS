@@ -14,13 +14,8 @@ class ReviewViewHolder(
     private val binding: ItemReviewCarouselBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    private var photoDialog: PhotoViewDialog<Int>? = null
+    private var photoDialog: PhotoViewDialog<String>? = null
     private val closeDialogButton = ImageButton(binding.root.context)
-
-    val imageRes = arrayOf(
-        R.drawable.image_test2, R.drawable.image_test,
-        R.drawable.filter_image1
-    )
 
     private fun setupCloseDialogButton() {
         isInitCloseButton()
@@ -46,25 +41,19 @@ class ReviewViewHolder(
         }
     }
 
-    private fun buildPhotoViewDialog() {
+    fun buildPhotoViewDialog(imageUrl: String) {
+        setupCloseDialogButton()
+
         photoDialog = PhotoViewDialog.Builder(
             binding.root.context,
-            imageRes.toList()
-        ) { imageView, imageResId ->
+            listOf(imageUrl)
+        ) { imageView, url ->
             Glide.with(binding.root.context)
-                .load(imageResId)
+                .load(url)
                 .into(imageView)
         }.apply {
-            setupCloseDialogButton()
             withOverlayView(closeDialogButton)
         }.build()
-    }
-
-    private fun showDialog() {
-        if (photoDialog == null) {
-            buildPhotoViewDialog()
-        }
-        photoDialog?.show()
     }
 
     private fun closeDialog() {
@@ -72,15 +61,20 @@ class ReviewViewHolder(
         photoDialog = null
     }
 
-    fun setupPhotoViewDialog() {
-        binding.ivCarouselReviewImage.setOnClickListener {
-            showDialog()
+    private fun showDialog(imageUrl: String) {
+        if (photoDialog == null) {
+            buildPhotoViewDialog(imageUrl)
         }
+        photoDialog?.show()
     }
 
-    fun bindImage(imageResId: Int) {
+    fun reviewImageBindAndOnClickListener(imageUrl: String) {
         Glide.with(binding.root)
-            .load(imageResId)
+            .load(imageUrl)
             .into(binding.ivCarouselReviewImage)
+
+        binding.ivCarouselReviewImage.setOnClickListener {
+            showDialog(imageUrl)
+        }
     }
 }

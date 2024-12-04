@@ -13,6 +13,7 @@ import javax.inject.Singleton
 import com.example.data.BuildConfig
 import com.example.data.dto.request.util.LocalDateAdapter
 import com.example.data.service.ProductService
+import com.example.data.service.ReviewDetailService
 import com.squareup.moshi.adapters.Rfc3339DateJsonAdapter
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.logging.HttpLoggingInterceptor
@@ -22,6 +23,12 @@ import java.util.concurrent.TimeUnit
 @Module
 @InstallIn(SingletonComponent::class)
 internal object NetworkModule {
+
+    @Singleton
+    @Provides
+    fun provideReviewDetailService(retrofit: Retrofit): ReviewDetailService {
+        return retrofit.create(ReviewDetailService::class.java)
+    }
 
     @Singleton
     @Provides
