@@ -32,6 +32,7 @@ javaxInject="1"
 jetbrainsKotlinJvm = "1.9.24"
 hilt-navigation-compose = "1.0.0"
 compose-bom = "2024.11.00"
+photoview = "1.0.2"
 
 [libraries]
 accompanist-pager = { module = "com.google.accompanist:accompanist-pager", version.ref = "accompanistPager" }
@@ -79,6 +80,9 @@ javax-inject = { group = "javax.inject", name = "javax.inject", version.ref="jav
 coroutines-core-jvm = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core-jvm", version.ref="coroutines-core"}
 coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref="coroutines-core"}
 hilt-navigation-compose = { group = "androidx.hilt" , name = "hilt-navigation-compose", version.ref = "hilt-navigation-compose"}
+photoview = {module = "io.getstream:photoview", name = "io.getstream:photoview", version.ref = "photoview"  }
+photoview-dialog = {module = "io.getstream:photoview-dialog", name = "io.getstream:photoview-dialog", version.ref = "photoview"  }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

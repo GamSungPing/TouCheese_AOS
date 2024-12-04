@@ -88,4 +88,7 @@ dependencies {
     implementation (libs.accompanist.pager.indicators)
 
     implementation(libs.hilt.navigation.compose)
+
+    implementation(libs.photoview)
+    implementation(libs.photoview.dialog)
 }

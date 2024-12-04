@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.GridLayout
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.example.presentation.databinding.FragmentCalendarBinding
 import com.example.presentation.main.vm.ProductDetailViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -21,7 +22,7 @@ import java.time.format.DateTimeFormatter
 class CalendarFragment : BottomSheetDialogFragment() {
     private var _binding: FragmentCalendarBinding? = null
     private val binding get() = _binding!!
-    private val sharedViewModel: ProductDetailViewModel by activityViewModels()
+    private val sharedViewModel: ProductDetailViewModel by viewModels({requireParentFragment()})
     private val buttonCount: Int = 9
 
     override fun onCreateView(
