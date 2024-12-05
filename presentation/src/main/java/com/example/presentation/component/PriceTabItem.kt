@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.domain.model.detail.ProductItem
-import com.example.presentation.util.toKoreanUnit
+import com.example.presentation.util.ext.toKoreanUnit
 
 @Composable
 fun PriceTabItem(
