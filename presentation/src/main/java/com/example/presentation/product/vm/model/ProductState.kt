@@ -1,7 +1,7 @@
 package com.example.presentation.product.vm.model
 
 import com.example.domain.model.ProductDetail
-import com.example.presentation.util.toKoreanUnit
+import com.example.presentation.util.ext.toKoreanUnit
 
 data class ProductState (
     val product: ProductDetail,

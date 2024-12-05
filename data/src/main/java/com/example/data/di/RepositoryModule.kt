@@ -2,9 +2,11 @@ package com.example.data.di
 
 import com.example.data.repository.ProductRepositoryImpl
 import com.example.data.repository.ReviewDetailRepositoryImpl
+import com.example.data.repository.StudioConceptRepositoryImpl
 import com.example.data.repository.StudioRepositoryImpl
 import com.example.domain.repository.product.ProductRepository
 import com.example.domain.repository.review.ReviewDetailRepository
+import com.example.domain.repository.studio.StudioConceptRepository
 import com.example.domain.repository.studio.StudioRepository
 import dagger.Binds
 import dagger.Module
@@ -22,4 +24,7 @@ internal interface RepositoryModule {
 
     @Binds
     fun bindReviewRepository(reviewDetailRepositoryImpl: ReviewDetailRepositoryImpl) : ReviewDetailRepository
+
+    @Binds
+    fun bindStudioConceptRepository(studioConceptRepositoryImpl: StudioConceptRepositoryImpl) : StudioConceptRepository
 }
