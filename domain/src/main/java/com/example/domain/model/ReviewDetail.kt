@@ -9,5 +9,5 @@ data class ReviewDetail(
     val imageStrings: List<String>,
     val content: String?,
     val rating: Int,
-    val reply: Reply
+    val reply: Reply?
 )

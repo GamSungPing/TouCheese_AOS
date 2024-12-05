@@ -11,7 +11,6 @@ internal data class ReviewDetailResponse(
     val statusCode: Int
 ) {
     fun toDomainModel(): ReviewDetail {
-
         return ReviewDetail(
             userProfileImageString = data.userProfileImageString ?: "",
             userName = data.userName,
@@ -19,7 +18,7 @@ internal data class ReviewDetailResponse(
             imageStrings = data.imageStrings,
             content = data.content ?: "",
             rating = data.rating,
-            reply = data.reply
+            reply = data.reply ?: null
         )
     }
 }

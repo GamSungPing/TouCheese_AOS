@@ -9,6 +9,5 @@ internal data class Data(
     val imageStrings: List<String>,
     val content: String?,
     val rating: Int,
-    val reply: Reply
-) {
-}
+    val reply: Reply?
+)

@@ -26,7 +26,7 @@ class StudioViewModel @Inject constructor(
 
     fun load(studioId: String, studioLogo: String) {
         viewModelScope.launch {
-            val detail = studioRepository.getStudioDetail(1)
+            val detail = studioRepository.getStudioDetail(studioId.toInt())
             _state.value = _state.value.copy(
                 product = detail,
                 studioLogo = studioLogo

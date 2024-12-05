@@ -55,7 +55,7 @@ class ReviewDetailActivity : AppCompatActivity() {
             updateUserName(reviewDetail.userName)
             updateReviewImagesRecyclerView(reviewDetail.imageStrings)
             updateReviewRating(reviewDetail.rating)
-            updateStudioReply(reviewDetail.reply)
+            reviewDetail.reply?.let { updateStudioReply(it) }
 
             reviewDetail.content?.let {
                 updateReviewContent(it)

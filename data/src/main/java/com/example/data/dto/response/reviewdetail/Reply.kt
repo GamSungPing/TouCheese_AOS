@@ -8,5 +8,4 @@ internal data class Reply(
     val studioName: String,
     val dateString: String,
     val content: String
-) {
-}
+)

@@ -85,8 +85,8 @@ class ProductDetailActivity : AppCompatActivity() {
 
             binding.tvBaseGuestCount.text = product.basePeopleCnt.toString()
             if (product.isGroup) setupGroupOptionVisible(binding)
-            product.productOptions?.run {
-                makeAddOptionCheckBox(this, binding)
+            product.productOptions?.let {
+                if (it.isEmpty()) makeAddOptionCheckBox(it, binding)
             } ?: invisibleAddOptionCheckBox(binding)
         }
     }
