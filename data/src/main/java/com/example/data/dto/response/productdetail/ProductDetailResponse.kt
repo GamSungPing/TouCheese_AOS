@@ -1,6 +1,5 @@
 package com.example.data.dto.response.productdetail
 
-import android.util.Log
 import com.example.domain.model.ProductDetail
 import com.squareup.moshi.JsonClass
 
@@ -13,7 +12,9 @@ internal data class ProductDetailResponse(
     fun toDomainModel(): ProductDetail {
         return ProductDetail(
             isGroup = data.isGroup,
-            baseGuestCount = data.baseGuestCount,
+            productName = data.name,
+            productPrice = data.price,
+            basePeopleCnt = data.baseGuestCount,
             addPeoplePrice = data.addPeoplePrice,
             productOptions = data.productOptions
         )

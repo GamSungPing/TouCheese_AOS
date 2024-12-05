@@ -22,7 +22,6 @@ class ReviewDetailViewModel @Inject constructor(
     fun getReviewDetailByReviewId(studioId: Int, reviewId: Int) {
         viewModelScope.launch {
             _reviewDetail.value = reviewDetailRepository.getReviewDetailByReviewId(studioId, reviewId)
-            Log.d("test1234", "data : ${reviewDetail.value}")
         }
     }
 }

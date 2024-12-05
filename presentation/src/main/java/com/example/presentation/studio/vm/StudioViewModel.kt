@@ -26,7 +26,7 @@ class StudioViewModel @Inject constructor(
 
     fun load(studioId: String, studioLogo: String) {
         viewModelScope.launch {
-            val detail = studioRepository.getStudioDetail(studioId.toInt())
+            val detail = studioRepository.getStudioDetail(1)
             _state.value = _state.value.copy(
                 product = detail,
                 studioLogo = studioLogo
@@ -34,9 +34,25 @@ class StudioViewModel @Inject constructor(
         }
     }
 
-    fun onClickBackButton(){
+    fun onClickBackButton() {
         viewModelScope.launch {
             _event.emit(StudioSideEffect.CloseScreen)
+        }
+    }
+
+    fun onClickProduct(productId: Int, description: String, imgPath: String) {
+        viewModelScope.launch {
+            _event.emit(
+                StudioSideEffect.NavigateToProductDetail(
+                    imgPath, description, productId
+                )
+            )
+        }
+    }
+
+    fun onClickReview(reviewId: Int){
+        viewModelScope.launch {
+            _event.emit(StudioSideEffect.NavigateToReviewDetail(reviewId))
         }
     }
 }

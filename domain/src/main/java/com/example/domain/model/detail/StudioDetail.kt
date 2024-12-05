@@ -9,7 +9,7 @@ data class StudioDetail(
     val operatingHours: String,
     val holidays: List<String>,
     val address: String,
-    val notice: String,
+    val notice: String?,
     val productItems: List<ProductItem>,
     val reviewItems: List<ReviewItem>
 ){

@@ -5,6 +5,12 @@
     <string name="text_ask">문의하기</string>
     <string name="text_profile">내정보</string>
     <string name="text_logo">로고</string>
+    <string name="text_back">뒤로가기</string>
+    <string name="text_share">공유하기</string>
+    <string name="text_bookmark">북마크</string>
+    <string name="text_rating">평점</string>
+    <string name="text_work_time">운영시간</string>
+    <string name="text_addr">주소</string>
     <string name="text_concept_flash">플래쉬/아이돌</string>
     <string name="text_concept_actor">흑백/블루 배우</string>
     <string name="text_concept_watercolor">필터/수채화 그림체 느낌</string>
@@ -29,7 +35,7 @@
     <string name="text_region_seongdong">성동구</string>
     <string name="text_done">완료하기</string>
     <string name="text_product_price">가 격</string>
-    <string name="text_product_guests">기준인원</string>
+    <string name="text_product_guests">인원</string>
     <string name="text_product_add_guests">추가인원</string>
     <string name="text_product_add_option">추가 구매</string>
     <string name="text_product_add_option_not">선택 안함</string>

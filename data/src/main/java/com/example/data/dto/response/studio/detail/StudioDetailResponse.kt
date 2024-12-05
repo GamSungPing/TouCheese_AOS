@@ -27,7 +27,7 @@ data class StudioDetailResponse(
                 ),
                 holidays = holidays.map { WeekOfDay.of(it).value },
                 address = address,
-                notice = notice,
+                notice = notice.ifBlank { null },
                 productItems = products.map { product ->
                     ProductItem(
                         id = product.id,

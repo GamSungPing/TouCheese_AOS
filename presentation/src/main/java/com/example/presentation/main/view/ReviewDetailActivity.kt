@@ -1,6 +1,7 @@
 package com.example.presentation.main.view
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -26,10 +27,16 @@ class ReviewDetailActivity : AppCompatActivity() {
         binding = ActivityReviewDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        reviewAdapter = ReviewAdapter()
+        binding.toolbarReview.setNavigationOnClickListener{
+            finish()
+        }
 
+        val studioId = intent.getIntExtra("studioId", 0)
+        val reviewId = intent.getIntExtra("reviewId", 0)
+
+        reviewAdapter = ReviewAdapter()
         setupCarouselRecyclerView()
-        viewModel.getReviewDetailByReviewId(1, 1)
+        viewModel.getReviewDetailByReviewId(studioId, reviewId)
         observeReviewDetail()
     }
 

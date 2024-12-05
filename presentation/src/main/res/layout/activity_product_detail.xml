@@ -3,76 +3,75 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".main.view.fragment.ProductDetailViewFragment">
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="56dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="@drawable/ic_back" />
+    android:layout_height="match_parent"
+    tools:context=".product.ProductDetailActivity">
 
     <ScrollView
         android:id="@+id/layout_scroll_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:scrollbars="none"
-        app:layout_constraintStart_toStartOf="@+id/toolbar"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_product_detail"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@+id/toolbar_product_detail_view"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar_product_detail_view">
+            android:orientation="vertical">
 
-
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cv_product_background"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="20dp"
                 android:background="@color/tc_light_yellow"
-                android:orientation="vertical"
-                android:paddingBottom="10dp"
-                app:layout_constraintStart_toStartOf="@+id/layout_product_detail"
-                app:layout_constraintTop_toTopOf="@+id/layout_product_detail">
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/btn_back"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="start"
+                    android:backgroundTint="@color/black"
+                    android:src="@drawable/ic_back"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/iv_product_image"
-                    android:layout_width="150dp"
-                    android:layout_height="200dp"
-                    android:layout_marginStart="128dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_width="170dp"
+                    android:layout_height="220dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/image_test"
-                    app:layout_constraintStart_toStartOf="@+id/cv_product_background"
-                    app:layout_constraintTop_toTopOf="@+id/cv_product_background" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    android:id="@+id/tv_product_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    app:layout_constraintStart_toStartOf="@+id/iv_product_image"
-                    app:layout_constraintTop_toBottomOf="@+id/iv_product_image" />
+            <TextView
+                android:id="@+id/tv_product_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:background="@color/tc_light_yellow"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:layout_constraintStart_toStartOf="@+id/iv_product_image"
+                app:layout_constraintTop_toBottomOf="@+id/iv_product_image" />
 
-                <TextView
-                    android:id="@+id/tv_product_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:gravity="center"
-                    android:paddingBottom="10dp"
-                    app:layout_constraintStart_toStartOf="@+id/tv_product_name"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_product_name" />
-            </LinearLayout>
-
+            <TextView
+                android:id="@+id/tv_product_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:background="@color/tc_light_yellow"
+                android:padding="10dp"
+                app:layout_constraintStart_toStartOf="@+id/tv_product_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_product_name" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_price"
@@ -260,9 +259,9 @@
                 android:id="@+id/layout_product_reservation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="100dp"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="10dp"
+                android:paddingBottom="100dp"
                 app:layout_constraintStart_toStartOf="@+id/layout_add_option"
                 app:layout_constraintTop_toBottomOf="@+id/layout_add_option">
 
@@ -272,7 +271,6 @@
                     android:layout_height="1dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
 
                 <TextView
                     android:id="@+id/tv_product_reservation"
@@ -286,41 +284,20 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/bt_select_reservation_day"
+                    android:id="@+id/btn_reservation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="30dp"
                     android:layout_marginTop="20dp"
+                    android:backgroundTint="@color/primary_color"
                     android:text="@string/text_product_reservation_button"
-                    app:layout_constraintStart_toStartOf="@+id/tv_product_reservation"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_product_reservation" />
-
-                <TextView
-                    android:id="@+id/tv_selected_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginTop="30dp"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:visibility="gone"
-                    app:layout_constraintStart_toStartOf="@+id/tv_product_reservation"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_product_reservation" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/bt_change_reservation_day"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/text_product_change_reservation"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_selected_date"
+                    android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="@+id/tv_product_reservation"
-                    app:layout_constraintHorizontal_bias="0.914"
-                    app:layout_constraintStart_toEndOf="@+id/tv_selected_date"
-                    app:layout_constraintTop_toTopOf="@+id/tv_selected_date" />
+                    app:layout_constraintStart_toStartOf="@+id/tv_product_reservation"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_product_reservation" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
     </ScrollView>
 
 
@@ -328,25 +305,20 @@
         android:id="@+id/layout_order_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/tc_light_yellow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent">
-
-        <com.google.android.material.divider.MaterialDivider
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/bt_cart"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:backgroundTint="@color/secondary_color"
+            android:textColor="@color/black"
             app:icon="@drawable/icon_shopping_cart_24px"
             app:iconGravity="textStart"
             app:iconPadding="0dp"
+            app:iconTint="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/bt_order"
             app:layout_constraintHorizontal_weight="0.2"
@@ -357,8 +329,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:enabled="false"
+            android:backgroundTint="@color/primary_color"
             android:text="@string/text_product_order"
+            android:textColor="@color/black"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_weight="0.8"
