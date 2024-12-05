@@ -8,23 +8,20 @@
     android:layout_gravity="center"
     tools:context=".main.view.fragment.HomeConceptFragment">
 
-    <ImageButton
+    <ImageView
         android:id="@+id/btn_concept_liveliness"
         android:layout_width="180dp"
         android:layout_height="200dp"
-        android:background="@drawable/filter_image1"
         android:elevation="15dp"
         android:gravity="bottom|center"
         android:scaleType="centerCrop"
-        android:text="@string/text_concept_vibrancy"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@+id/tv_concept_liveliness"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tv_concept_liveliness"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/text_concept_vibrancy"
         android:textStyle="bold"
         android:textSize="15sp"
         android:layout_marginBottom="10dp"
@@ -33,11 +30,10 @@
         app:layout_constraintStart_toStartOf="@+id/btn_concept_liveliness" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tv_concept_actor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="@string/text_concept_actor"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btn_concept_doll"
@@ -47,10 +43,9 @@
 
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/tv_concept_natural"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/text_concept_natural"
         android:textSize="15sp"
         android:textStyle="bold"
         android:layout_marginBottom="10dp"
@@ -59,10 +54,9 @@
         app:layout_constraintStart_toStartOf="@+id/btn_concept_natural" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tv_concept_flash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/text_concept_flash"
         android:textSize="15sp"
         android:textStyle="bold"
         android:layout_marginBottom="10dp"
@@ -71,60 +65,51 @@
         app:layout_constraintHorizontal_bias="0.367"
         app:layout_constraintStart_toStartOf="@+id/btn_concept_flash" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/btn_concept_flash"
         android:layout_width="180dp"
         android:layout_height="200dp"
-        android:background="@drawable/filter_image2"
         android:elevation="15dp"
         android:gravity="bottom|center"
         android:scaleType="centerCrop"
-        android:text="@string/text_concept_flash"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintBottom_toTopOf="@+id/tv_concept_flash"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/btn_concept_actor"
         android:layout_width="180dp"
         android:layout_height="200dp"
-        android:background="@drawable/filter_image3"
         android:elevation="15dp"
         android:gravity="bottom|center"
         android:scaleType="centerCrop"
-        android:text="@string/text_concept_actor"
-        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintBottom_toTopOf="@+id/tv_concept_actor"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/btn_concept_natural"
         android:layout_width="180dp"
         android:layout_height="200dp"
-        android:background="@drawable/filter_image4"
         android:elevation="15dp"
         android:gravity="bottom|center"
         android:scaleType="centerCrop"
-        android:text="@string/text_concept_natural"
-        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintBottom_toTopOf="@+id/tv_concept_natural"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/btn_concept_doll"
         android:layout_width="180dp"
         android:layout_height="200dp"
         android:gravity="bottom|center"
-        android:background="@drawable/filter_image5"
-        android:text="@string/text_concept_clarity_doll"
         android:scaleType="centerCrop"
         android:elevation="15dp"
-        app:layout_constraintBottom_toTopOf="@id/textView5"
+        app:layout_constraintBottom_toTopOf="@id/tv_concept_doll"
         app:layout_constraintStart_toStartOf="parent"
         />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/tv_concept_doll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/text_concept_clarity_doll"
         android:textSize="15sp"
         android:textStyle="bold"
         android:layout_marginBottom="20dp"
@@ -132,24 +117,21 @@
         app:layout_constraintStart_toStartOf="@+id/btn_concept_doll"
         app:layout_constraintBottom_toBottomOf="parent" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/btn_concept_watercolor"
         android:layout_width="180dp"
         android:layout_height="200dp"
         android:gravity="bottom|center"
-        android:background="@drawable/filter_image6"
-        android:text="@string/text_concept_watercolor"
         android:scaleType="centerCrop"
         android:elevation="15dp"
-        app:layout_constraintBottom_toTopOf="@id/textView6"
+        app:layout_constraintBottom_toTopOf="@id/tv_concept_watercolor"
         app:layout_constraintEnd_toEndOf="parent"
         />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/tv_concept_watercolor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/text_concept_watercolor"
         android:textStyle="bold"
         android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
