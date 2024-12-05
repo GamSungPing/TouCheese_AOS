@@ -12,6 +12,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 import com.example.data.BuildConfig
 import com.example.data.dto.request.util.LocalDateAdapter
+import com.example.data.service.ConceptService
 import com.example.data.service.ProductService
 import com.example.data.service.ReviewDetailService
 import com.squareup.moshi.adapters.Rfc3339DateJsonAdapter
@@ -28,6 +29,12 @@ internal object NetworkModule {
     @Provides
     fun provideReviewDetailService(retrofit: Retrofit): ReviewDetailService {
         return retrofit.create(ReviewDetailService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideConceptService(retrofit: Retrofit): ConceptService {
+        return retrofit.create(ConceptService::class.java)
     }
 
     @Singleton
