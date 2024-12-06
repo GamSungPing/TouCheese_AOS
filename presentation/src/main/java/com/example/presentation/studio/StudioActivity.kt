@@ -2,14 +2,13 @@ package com.example.presentation.studio
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.example.presentation.main.view.ReviewDetailActivity
+import com.example.presentation.review.ReviewDetailActivity
 import com.example.presentation.product.ProductDetailActivity
 import com.example.presentation.studio.sideeffect.StudioSideEffect
 import com.example.presentation.studio.vm.StudioViewModel

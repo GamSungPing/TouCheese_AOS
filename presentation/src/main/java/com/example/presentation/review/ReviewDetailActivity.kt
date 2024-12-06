@@ -1,7 +1,6 @@
-package com.example.presentation.main.view
+package com.example.presentation.review
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.ImageView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +8,6 @@ import com.bumptech.glide.Glide
 import com.example.domain.model.detail.Reply
 import com.example.presentation.databinding.ActivityReviewDetailBinding
 import com.example.presentation.main.view.adapter.ReviewAdapter
-import com.example.presentation.main.vm.ReviewDetailViewModel
 import com.google.android.material.carousel.CarouselLayoutManager
 import com.google.android.material.carousel.CarouselSnapHelper
 import com.google.android.material.carousel.FullScreenCarouselStrategy
