@@ -1,9 +1,11 @@
 package com.example.data.di
 
+import com.example.data.repository.DefaultReserveInfoRepositoryImpl
 import com.example.data.repository.ProductRepositoryImpl
 import com.example.data.repository.ReviewDetailRepositoryImpl
 import com.example.data.repository.StudioConceptRepositoryImpl
 import com.example.data.repository.StudioRepositoryImpl
+import com.example.domain.repository.DefaultReserveInfoRepository
 import com.example.domain.repository.product.ProductRepository
 import com.example.domain.repository.review.ReviewDetailRepository
 import com.example.domain.repository.studio.StudioConceptRepository
@@ -27,4 +29,7 @@ internal interface RepositoryModule {
 
     @Binds
     fun bindStudioConceptRepository(studioConceptRepositoryImpl: StudioConceptRepositoryImpl) : StudioConceptRepository
+
+    @Binds
+    fun bindDefaultReserveInfoRepository(dataStoreRepositoryImpl: DefaultReserveInfoRepositoryImpl) : DefaultReserveInfoRepository
 }
