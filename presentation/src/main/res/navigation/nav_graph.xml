@@ -15,14 +15,34 @@
         android:name="com.example.presentation.main.view.fragment.AskFragmentFragment"
         android:label="fragment_ask_fragment"
         tools:layout="@layout/fragment_ask_fragment" />
-    <fragment
-        android:id="@+id/scheduleFragment"
-        android:name="com.example.presentation.main.view.fragment.ScheduleFragment"
-        android:label="fragment_schedule"
-        tools:layout="@layout/fragment_schedule" />
+
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.presentation.main.view.fragment.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/reservationFragment"
+        android:name="com.example.presentation.main.view.fragment.ReservationListFragment"
+        android:label="fragment_reservation_list"
+        tools:layout="@layout/fragment_reservation_list">
+
+        <action
+            android:id="@+id/action_reservationFragment_to_reservationDetailFragment"
+            app:destination="@id/reservationDetailFragment"
+            app:popUpTo="@id/reservationFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/reservationDetailFragment"
+        android:name="com.example.presentation.main.view.fragment.ReservationDetailFragment"
+        android:label="fragment_reservation_detail"
+        tools:layout="@layout/fragment_reservation_detail" >
+
+        <argument
+            android:name="reservationId"
+            app:argType="integer" />
+    </fragment>
+
 </navigation>
