@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_reservation_detail"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".main.view.fragment.ReservationDetailFragment">
+
+    <TextView
+        android:id="@+id/tv_studio_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="스튜디오 이름"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_studio_addr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="주소"
+        app:layout_constraintStart_toStartOf="@+id/tv_studio_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_studio_name" />
+
+    <TextView
+        android:id="@+id/tv_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="상품명"
+        app:layout_constraintStart_toStartOf="@+id/tv_studio_addr"
+        app:layout_constraintTop_toBottomOf="@+id/tv_studio_addr" />
+
+    <TextView
+        android:id="@+id/tv_product_add_option"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="추가 옵션"
+        app:layout_constraintStart_toStartOf="@+id/tv_product"
+        app:layout_constraintTop_toBottomOf="@+id/tv_product" />
+
+    <TextView
+        android:id="@+id/tv_user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="예약자명"
+        app:layout_constraintStart_toStartOf="@+id/tv_product_add_option"
+        app:layout_constraintTop_toBottomOf="@+id/tv_product_add_option" />
+
+    <TextView
+        android:id="@+id/tv_user_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="예약자 연락처"
+        app:layout_constraintStart_toStartOf="@+id/tv_user_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_user_name" />
+
+    <TextView
+        android:id="@+id/tv_reservation_date_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="예약일"
+        app:layout_constraintStart_toStartOf="@+id/tv_user_phone"
+        app:layout_constraintTop_toBottomOf="@+id/tv_user_phone" />
+
+    <TextView
+        android:id="@+id/tv_user_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="이메일"
+        app:layout_constraintStart_toStartOf="@+id/tv_reservation_date_time"
+        app:layout_constraintTop_toBottomOf="@+id/tv_reservation_date_time" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

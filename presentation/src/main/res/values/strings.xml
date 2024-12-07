@@ -44,4 +44,5 @@
     <string name="text_product_order">선택 상품 주문</string>
     <string name="text_product_able_time">예약 가능한 시간</string>
     <string name="text_product_change_reservation">날짜 변경</string>
+    <string name="text_empty">결과가 없습니다</string>
 </resources>
