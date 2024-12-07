@@ -101,5 +101,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/reservation_detail_content" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bt_cancel_reservation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:icon="@drawable/icon_close_24px"
+        app:iconGravity="top"
+        android:text="예약취소"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toEndOf="@+id/bt_go_studio_home"
+        app:layout_constraintTop_toTopOf="@id/bt_go_studio_home"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
