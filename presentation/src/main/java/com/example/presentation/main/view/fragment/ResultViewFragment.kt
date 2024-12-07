@@ -2,8 +2,10 @@ package com.example.presentation.main.view.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.CheckBox
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -11,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.transition.Visibility
 import com.example.domain.rule.Pricing
 import com.example.domain.rule.Region
 import com.example.presentation.R
@@ -21,6 +24,7 @@ import com.example.presentation.main.view.adapter.ResultViewAdapter
 import com.example.presentation.main.vm.HomeConceptViewModel
 import com.example.presentation.main.vm.ResultViewModel
 import com.example.presentation.studio.StudioActivity
+import com.example.presentation.theme.primaryColor
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -45,7 +49,7 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
         viewModel.getInitializedStudio(args.conceptId)
         setupRvStudioList(binding)
         observeResultViewModel()
-        observeFilterState()
+        observeFilterState(binding)
     }
 
     private fun setupRvStudioList(binding: FragmentResultViewBinding) {
@@ -88,8 +92,11 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
 
         binding.btFilterRating.apply {
             setOnClickListener {
-                viewModel.updateRating()
-                viewModel.checkFilterOption(args.conceptId)
+                val currentState = viewModel.filterState.value?.hasRatingFilter
+                if (currentState != null) {
+                    viewModel.updateRating(!currentState)
+                    viewModel.checkFilterOption(args.conceptId)
+                }
             }
         }
     }
@@ -104,8 +111,14 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
         }
     }
 
-    private fun observeFilterState() {
+    private fun observeFilterState(binding: FragmentResultViewBinding) {
         viewModel.filterState.observe(viewLifecycleOwner, Observer { filterState ->
+
+            if (filterState.hasRatingFilter) {
+             binding.btFilterRating.setIconResource(R.drawable.icon_arrow_drop_down_24px)
+            } else {
+                binding.btFilterRating.icon = null
+            }
         })
     }
 
@@ -217,6 +230,15 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
             bottomRegionDialog.setOnDismissListener {
                 viewModel.checkFilterOption(args.conceptId)
                 viewModel.clearRegionFilters()
+            }
+        }
+    }
+
+    private fun changeRatingFilterButtonIcon(binding : FragmentResultViewBinding) {
+        with(binding) {
+            binding.btFilterRating.setOnClickListener {
+                btFilterRating.setIcon(null)
+                btFilterRating.isToggleCheckedStateOnClick
             }
         }
     }

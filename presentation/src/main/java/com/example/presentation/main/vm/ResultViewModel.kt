@@ -111,9 +111,9 @@ class ResultViewModel @Inject constructor(
         )
     }
 
-    fun updateRating() {
+    fun updateRating(isChecked: Boolean) {
         _filterState.value = _filterState.value?.copy(
-            hasRatingFilter = true
+            hasRatingFilter = isChecked
         )
     }
 
