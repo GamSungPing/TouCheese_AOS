@@ -31,7 +31,7 @@
         <action
             android:id="@+id/action_reservationFragment_to_reservationDetailFragment"
             app:destination="@id/reservationDetailFragment"
-            app:popUpTo="@id/reservationFragment" />
+            app:popUpTo="@id/homeConceptMainFragment" />
     </fragment>
 
     <fragment
@@ -39,6 +39,10 @@
         android:name="com.example.presentation.main.view.fragment.ReservationDetailFragment"
         android:label="fragment_reservation_detail"
         tools:layout="@layout/fragment_reservation_detail" >
+
+        <action
+            android:id="@+id/action_reservationDetailFragment_to_reservationFragment"
+            app:destination="@id/reservationFragment" />
 
         <argument
             android:name="reservationId"
