@@ -1,10 +1,14 @@
 package com.example.presentation.main.view.adapter
 
+import android.content.Context
+import android.util.Log
+import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.domain.model.StudioInfoWithConcept
 import com.example.presentation.databinding.ItemResultViewBinding
+import com.example.presentation.util.ext.setImage
 import java.util.Locale
 
 class ResultViewHolder(
@@ -28,18 +32,14 @@ class ResultViewHolder(
 
         binding.tvStudioName.text = name
         binding.tvRating.text = String.format(Locale.US, "%.1f", rating.toDouble())
-        imageBind(profileURL)
+
+        val imageView: ImageView = binding.ivStudioMainImage
+        imageView.setImage(imageView, profileURL)
 
         portfolioAdapter.submitList(portfolioUrls)
 
         binding.root.setOnClickListener {
             onClickStudio(id, profileURL)
         }
-    }
-
-    private fun imageBind(imageUrl: String) {
-        Glide.with(binding.root)
-            .load(imageUrl)
-            .into(binding.ivStudioMainImage)
     }
 }

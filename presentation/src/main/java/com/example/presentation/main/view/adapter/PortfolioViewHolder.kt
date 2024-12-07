@@ -1,16 +1,16 @@
 package com.example.presentation.main.view.adapter
 
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.presentation.databinding.ItemStudioPortfolioBinding
+import com.example.presentation.util.ext.setImage
 
 class PortfolioViewHolder(
     private val binding: ItemStudioPortfolioBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(imageUrl: String) {
-        Glide.with(binding.root)
-            .load(imageUrl)
-            .into(binding.ivPortfolio)
+        val portfolioImage: ImageView = binding.ivPortfolio
+        portfolioImage.setImage(portfolioImage, imageUrl)
     }
 }
