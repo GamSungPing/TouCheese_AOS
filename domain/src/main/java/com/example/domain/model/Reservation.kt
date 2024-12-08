@@ -1,9 +1,6 @@
-package com.example.data.dto.response.reservation
+package com.example.domain.model
 
-import com.squareup.moshi.JsonClass
-
-@JsonClass(generateAdapter = true)
-internal data class Data(
+data class Reservation(
     val id: Int,
     val reservationDate: String,
     val reservationStatus: String,
