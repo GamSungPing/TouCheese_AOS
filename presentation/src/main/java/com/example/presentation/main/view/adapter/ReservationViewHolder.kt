@@ -5,7 +5,7 @@ import com.example.presentation.databinding.ItemReservationBinding
 
 class ReservationViewHolder (
     private val binding: ItemReservationBinding,
-    private val listener: ReservationViewAdapter.OnReservationClickListener
+    private val onClickReservation: (Int) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
 
     init {
@@ -17,11 +17,8 @@ class ReservationViewHolder (
     }
 
     private fun setReservationOnClickListener() {
-        binding.layoutReservationItem.setOnClickListener {
-            val position = adapterPosition
-            if (position != RecyclerView.NO_POSITION) {
-                listener.onItemClick(position)
-            }
+        binding.root.setOnClickListener {
+            onClickReservation(adapterPosition)
         }
     }
 }

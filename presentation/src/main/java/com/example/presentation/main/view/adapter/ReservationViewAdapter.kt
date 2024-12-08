@@ -1,20 +1,18 @@
 package com.example.presentation.main.view.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.example.presentation.databinding.ItemReservationBinding
 
 class ReservationViewAdapter(
-    private val listener: OnReservationClickListener
+    private val onClickReservation: (Int) -> Unit
 ) : ListAdapter<String, ReservationViewHolder>(ReservationDiffCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReservationViewHolder {
         return ReservationViewHolder(
             ItemReservationBinding.inflate(LayoutInflater.from(parent.context), parent, false),
-            listener
+            onClickReservation
         )
     }
 
@@ -39,11 +37,6 @@ class ReservationViewAdapter(
             ): Boolean {
                 return oldItem == newItem
             }
-        }
-    }
-
-    interface OnReservationClickListener {
-        fun onItemClick(position: Int) {
         }
     }
 }

@@ -1,20 +1,16 @@
 package com.example.presentation.main.view.fragment
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.presentation.R
 import com.example.presentation.databinding.FragmentReservationListBinding
 import com.example.presentation.main.view.adapter.ReservationViewAdapter
 import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 
-class ReservationListFragment : Fragment(R.layout.fragment_reservation_list), ReservationViewAdapter.OnReservationClickListener {
+class ReservationListFragment : Fragment(R.layout.fragment_reservation_list) {
    private lateinit var reservationAdapter: ReservationViewAdapter
    val list1 = mutableListOf("스튜디오1", "스튜디오2", "스튜디오3")
    val list2 = mutableListOf("스튜디오4", "스튜디오5", "스튜디오6")
@@ -28,18 +24,14 @@ class ReservationListFragment : Fragment(R.layout.fragment_reservation_list), Re
    }
 
    private fun setRvReservationList(binding: FragmentReservationListBinding) {
-      reservationAdapter = ReservationViewAdapter(this)
+      reservationAdapter = ReservationViewAdapter{ position ->
+         setGoToDetailFragment(position)
+      }
 
       binding.rvReservationList.apply {
          adapter = reservationAdapter
          layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
       }
-   }
-
-
-   override fun onItemClick(position: Int) {
-      super.onItemClick(position)
-      setGoToDetailFragment(position)
    }
 
    private fun setGoToDetailFragment(reservationId: Int) {
