@@ -16,4 +16,8 @@ internal data class ReservationDataSource @Inject constructor(
         return reservationService.getReservationDetailByReservationId(reservationId).toDomainModel()
     }
 
+    suspend fun getCompletedReservationByMemberId(memberId: Int) : List<Reservation> {
+        return reservationService.getCompletedReservationByMemberId(memberId).toDomainModel()
+    }
+
 }

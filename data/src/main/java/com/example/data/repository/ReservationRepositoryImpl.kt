@@ -16,4 +16,9 @@ internal class ReservationRepositoryImpl @Inject constructor(
     override suspend fun getReservationDetailByReservationId(reservationId: Int): ReservationDetail {
         return reservationDataSource.getReservationDetailByReservationId(reservationId)
     }
+
+    override suspend fun getCompletedReservationByMemberId(memberId: Int): List<Reservation> {
+        return reservationDataSource.getCompletedReservationByMemberId(memberId)
+    }
+
 }

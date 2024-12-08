@@ -3,24 +3,31 @@ package com.example.presentation.main.view.fragment
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.presentation.R
 import com.example.presentation.databinding.FragmentReservationListBinding
 import com.example.presentation.main.view.adapter.ReservationViewAdapter
+import com.example.presentation.main.vm.ReservationDetailViewModel
 import com.google.android.material.tabs.TabLayout
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ReservationListFragment : Fragment(R.layout.fragment_reservation_list) {
    private lateinit var reservationAdapter: ReservationViewAdapter
-   val list1 = mutableListOf("스튜디오1", "스튜디오2", "스튜디오3")
-   val list2 = mutableListOf("스튜디오4", "스튜디오5", "스튜디오6")
+   private val viewModel: ReservationDetailViewModel by viewModels()
+   private val memberId = 1
 
    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
       super.onViewCreated(view, savedInstanceState)
       val binding = FragmentReservationListBinding.bind(view)
       setRvReservationList(binding)
+      initTabView(binding, memberId)
+      getOngoingReservations(memberId)
       setTabListener(binding)
-      initTabView(binding)
+
+      observerReservations()
    }
 
    private fun setRvReservationList(binding: FragmentReservationListBinding) {
@@ -45,8 +52,8 @@ class ReservationListFragment : Fragment(R.layout.fragment_reservation_list) {
       tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
          override fun onTabSelected(tab: TabLayout.Tab?) {
             when (tab?.position) {
-               0 -> updateRecyclerViewData(list1)
-               1 -> updateRecyclerViewData(list2)
+               0 -> getOngoingReservations(memberId)
+               1 -> getCompleteReservations(memberId)
             }
          }
 
@@ -58,15 +65,23 @@ class ReservationListFragment : Fragment(R.layout.fragment_reservation_list) {
       })
    }
 
-   private fun initTabView(binding: FragmentReservationListBinding) {
+   private fun initTabView(binding: FragmentReservationListBinding, memberId: Int) {
       val tabLayout = binding.layoutReservationTab
       tabLayout.addTab(tabLayout.newTab().setText("예약내역"))
       tabLayout.addTab(tabLayout.newTab().setText("지난내역"))
-      updateRecyclerViewData(list1)
    }
 
-   private fun updateRecyclerViewData(data: List<String>) {
-      reservationAdapter.submitList(data)
+   private fun getOngoingReservations(memberId: Int) {
+      viewModel.getReservationsByMemberId(memberId)
    }
 
+   private fun getCompleteReservations(memberId: Int) {
+      viewModel.getCompletedReservationByMemberId(memberId)
+   }
+
+   private fun observerReservations() {
+      viewModel.reservations.observe(viewLifecycleOwner) {
+         reservationAdapter.submitList(it)
+      }
+   }
 }
