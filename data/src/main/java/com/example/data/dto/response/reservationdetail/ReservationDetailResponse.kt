@@ -5,22 +5,26 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 internal data class ReservationDetailResponse(
-    val data: Data,
+    val data: ReservationDetailData,
     val msg: String,
     val statusCode: Int
 ) {
     fun toDomainModel(): ReservationDetail {
         return ReservationDetail(
             id = data.id,
-            memberEmail = data.memberEmail,
-            memberName = data.memberName,
+            studioImg = data.studioImg,
+            studioId = data.studioId,
+            studioName = data.studioName,
             phoneNumber = data.phoneNumber,
-            productOption = data.productOption,
+            memberName = data.memberName,
+            memberEmail = data.memberEmail,
             reservationDate = data.reservationDate,
             reservationTime = data.reservationTime,
+            productName = data.productName,
+            productOption = data.productOption,
+            totalPrice = data.totalPrice,
             studioAddress = data.studioAddress,
-            studioName = data.studioName,
-            totalPrice = data.totalPrice
+            reservationStatus = data.reservationStatus
         )
     }
 }

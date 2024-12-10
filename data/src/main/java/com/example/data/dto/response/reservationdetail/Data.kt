@@ -3,15 +3,19 @@ package com.example.data.dto.response.reservationdetail
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-internal data class Data(
+data class ReservationDetailData(
     val id: Int,
-    val memberEmail: String,
-    val memberName: String,
+    val studioImg: String,
+    val studioId: Int,
+    val studioName: String,
     val phoneNumber: String,
-    val productOption: String,
+    val memberName: String,
+    val memberEmail: String,
     val reservationDate: String,
     val reservationTime: String,
+    val productName: String,
+    val productOption: String,
+    val totalPrice: Int,
     val studioAddress: String,
-    val studioName: String,
-    val totalPrice: Int
+    val reservationStatus: String
 )
