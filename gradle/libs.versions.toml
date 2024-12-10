@@ -33,6 +33,11 @@ jetbrainsKotlinJvm = "1.9.24"
 hilt-navigation-compose = "1.0.0"
 compose-bom = "2024.11.00"
 photoview = "1.0.2"
+google-service = "4.4.2"
+firebase-bom = "33.6.0"
+firebaseMessagingKtx = "24.1.0"
+gamesActivity = "3.0.5"
+playServicesBase = "18.5.0"
 
 [libraries]
 accompanist-pager = { module = "com.google.accompanist:accompanist-pager", version.ref = "accompanistPager" }
@@ -82,6 +87,11 @@ coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-
 hilt-navigation-compose = { group = "androidx.hilt" , name = "hilt-navigation-compose", version.ref = "hilt-navigation-compose"}
 photoview = {module = "io.getstream:photoview", name = "io.getstream:photoview", version.ref = "photoview"  }
 photoview-dialog = {module = "io.getstream:photoview-dialog", name = "io.getstream:photoview-dialog", version.ref = "photoview"  }
+firebase-bom = { module = "com.google.firebase:firebase-bom", name = "firebase-bom" ,version.ref = "firebase-bom" }
+firebase-messaging-ktx = { module = "com.google.firebase:firebase-messaging-ktx", name = "firebase-messaging-ktx" }
+firebase-analytics-ktx = { module = "com.google.firebase:firebase-analytics", name = "firebase-analytics" }
+google-firebase-messaging-ktx = { group = "com.google.firebase", name = "firebase-messaging-ktx", version.ref = "firebaseMessagingKtx" }
+play-services-base = { group = "com.google.android.gms", name = "play-services-base", version.ref = "playServicesBase" }
 
 
 [plugins]
@@ -93,4 +103,3 @@ navigation-safe-args = { id = "androidx.navigation.safeargs.kotlin", version.ref
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize",  version.ref = "org-jetbrains-kotlin-android"  }
 jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
 android-library = { id = "com.android.library", version.ref = "agp" }
-
