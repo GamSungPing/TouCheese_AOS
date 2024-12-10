@@ -18,7 +18,7 @@ class ReservationViewHolder (
     fun bind(reservation: Reservation) {
         binding.tvReservationStudio.text = reservation.studioName
         binding.tvReservationState.text = reservation.reservationStatus
-        binding.tvReservationDateTime.text = reservation.reservationTime
+        binding.tvReservationDateTimeTitle.text = reservation.reservationTime
 
         val studioImage = binding.ivCard
         studioImage.setImage(studioImage, reservation.studioImage)

@@ -20,73 +20,171 @@
         android:id="@+id/reservation_detail_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        app:layout_constraintStart_toStartOf="@id/reservation_detail_toolbar"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/reservation_detail_toolbar">
 
         <TextView
-            android:id="@+id/tv_studio_name"
-            android:layout_width="match_parent"
+            android:id="@+id/tv_studio_name_title"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="스튜디오 이름"
+            android:text="@string/text_reservation_studio_name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_studio_addr"
-            android:layout_width="match_parent"
+            android:id="@+id/tv_studio_name_content"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="주소"
-            app:layout_constraintStart_toStartOf="@+id/tv_studio_name"
-            app:layout_constraintTop_toBottomOf="@+id/tv_studio_name" />
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="2dp"
+            android:text="스튜디오"
+            app:layout_constraintStart_toEndOf="@id/tv_studio_name_title"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_product"
-            android:layout_width="match_parent"
+            android:id="@+id/tv_studio_addr_title"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="상품명"
-            app:layout_constraintStart_toStartOf="@+id/tv_studio_addr"
-            app:layout_constraintTop_toBottomOf="@+id/tv_studio_addr" />
+            android:text="@string/text_addr"
+            android:layout_marginTop="10dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+            app:layout_constraintStart_toStartOf="@+id/tv_studio_name_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_studio_name_title" />
 
         <TextView
-            android:id="@+id/tv_product_add_option"
-            android:layout_width="match_parent"
+            android:id="@+id/tv_studio_addr_content"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="추가 옵션"
-            app:layout_constraintStart_toStartOf="@+id/tv_product"
-            app:layout_constraintTop_toBottomOf="@+id/tv_product" />
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="2dp"
+            app:layout_constraintStart_toEndOf="@id/tv_studio_addr_title"
+            app:layout_constraintTop_toTopOf="@id/tv_studio_addr_title" />
 
         <TextView
-            android:id="@+id/tv_user_name"
-            android:layout_width="match_parent"
+            android:id="@+id/tv_product_title"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="예약자명"
-            app:layout_constraintStart_toStartOf="@+id/tv_product_add_option"
-            app:layout_constraintTop_toBottomOf="@+id/tv_product_add_option" />
+            android:text="@string/text_reservation_product_name"
+            android:layout_marginTop="10dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+            app:layout_constraintStart_toStartOf="@+id/tv_studio_addr_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_studio_addr_title" />
 
         <TextView
-            android:id="@+id/tv_user_phone"
+            android:id="@+id/tv_product_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="2dp"
+            app:layout_constraintStart_toEndOf="@+id/tv_product_title"
+            app:layout_constraintTop_toTopOf="@+id/tv_product_title" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_add_product_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="예약자 연락처"
-            app:layout_constraintStart_toStartOf="@+id/tv_user_name"
-            app:layout_constraintTop_toBottomOf="@+id/tv_user_name" />
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="@+id/tv_product_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_product_title">
+
+            <TextView
+                android:id="@+id/tv_product_add_option_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_product_add_option"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_product_add_option_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="2dp"
+                app:layout_constraintStart_toEndOf="@+id/tv_product_add_option_title"
+                app:layout_constraintTop_toTopOf="@+id/tv_product_add_option_title" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
-            android:id="@+id/tv_reservation_date_time"
-            android:layout_width="match_parent"
+            android:id="@+id/tv_user_name_title"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="예약일"
-            app:layout_constraintStart_toStartOf="@+id/tv_user_phone"
-            app:layout_constraintTop_toBottomOf="@+id/tv_user_phone" />
+            android:text="@string/text_reservation_user_name"
+            android:layout_marginTop="10dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+            app:layout_constraintStart_toStartOf="@+id/layout_add_product_list"
+            app:layout_constraintTop_toBottomOf="@+id/layout_add_product_list" />
 
         <TextView
-            android:id="@+id/tv_user_email"
-            android:layout_width="match_parent"
+            android:id="@+id/tv_user_name_content"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="이메일"
-            app:layout_constraintStart_toStartOf="@+id/tv_reservation_date_time"
-            app:layout_constraintTop_toBottomOf="@+id/tv_reservation_date_time" />
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="2dp"
+            app:layout_constraintStart_toEndOf="@+id/tv_user_name_title"
+            app:layout_constraintTop_toTopOf="@+id/tv_user_name_title" />
+
+        <TextView
+            android:id="@+id/tv_user_phone_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/text_reservation_user_phone"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+            app:layout_constraintStart_toStartOf="@+id/tv_user_name_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_user_name_title" />
+
+        <TextView
+            android:id="@+id/tv_user_phone_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="2dp"
+            app:layout_constraintStart_toEndOf="@+id/tv_user_phone_title"
+            app:layout_constraintTop_toTopOf="@+id/tv_user_phone_title" />
+
+        <TextView
+            android:id="@+id/tv_reservation_date_time_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_reservation_schedule"
+            android:layout_marginTop="10dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+            app:layout_constraintStart_toStartOf="@+id/tv_user_phone_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_user_phone_title" />
+
+        <TextView
+            android:id="@+id/tv_reservation_date_time_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="2dp"
+            app:layout_constraintStart_toEndOf="@+id/tv_reservation_date_time_title"
+            app:layout_constraintTop_toTopOf="@+id/tv_reservation_date_time_title" />
+
+        <TextView
+            android:id="@+id/tv_user_email_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_reservation_email"
+            android:layout_marginTop="10dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+            app:layout_constraintStart_toStartOf="@+id/tv_reservation_date_time_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_reservation_date_time_title" />
+
+        <TextView
+            android:id="@+id/tv_user_email_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="2dp"
+            app:layout_constraintStart_toEndOf="@+id/tv_user_email_title"
+            app:layout_constraintTop_toTopOf="@+id/tv_user_email_title" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -94,22 +192,24 @@
         android:id="@+id/bt_go_studio_home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="200dp"
+        android:text="@string/text_reservation_navigate_studio_home"
         app:icon="@drawable/ic_home"
         app:iconGravity="top"
-        android:text="스튜디오 홈으로 이동"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/reservation_detail_content"
         app:layout_constraintTop_toBottomOf="@+id/reservation_detail_content" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/bt_cancel_reservation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/text_reservation_cancel"
         app:icon="@drawable/icon_close_24px"
         app:iconGravity="top"
-        android:text="예약취소"
-        android:layout_marginStart="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.209"
         app:layout_constraintStart_toEndOf="@+id/bt_go_studio_home"
-        app:layout_constraintTop_toTopOf="@id/bt_go_studio_home"/>
+        app:layout_constraintTop_toTopOf="@id/bt_go_studio_home" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

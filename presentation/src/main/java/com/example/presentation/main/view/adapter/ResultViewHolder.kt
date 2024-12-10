@@ -1,11 +1,8 @@
 package com.example.presentation.main.view.adapter
 
-import android.content.Context
-import android.util.Log
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.domain.model.StudioInfoWithConcept
 import com.example.presentation.databinding.ItemResultViewBinding
 import com.example.presentation.util.ext.setImage

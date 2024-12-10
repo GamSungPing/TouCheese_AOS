@@ -17,7 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class ReservationListFragment : Fragment(R.layout.fragment_reservation_list) {
    private lateinit var reservationAdapter: ReservationViewAdapter
    private val viewModel: ReservationDetailViewModel by viewModels()
-   private val memberId = 1
+   private val memberId = 2
 
    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
       super.onViewCreated(view, savedInstanceState)
@@ -32,16 +32,24 @@ class ReservationListFragment : Fragment(R.layout.fragment_reservation_list) {
 
    private fun setRvReservationList(binding: FragmentReservationListBinding) {
       reservationAdapter = ReservationViewAdapter{ position ->
-         setGoToDetailFragment(position)
+         getSelectedReservationId(position)
       }
 
       binding.rvReservationList.apply {
          adapter = reservationAdapter
          layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
       }
+
    }
 
-   private fun setGoToDetailFragment(reservationId: Int) {
+   private fun getSelectedReservationId(id: Int) {
+         viewModel.reservations.value?.let {
+            val reservationId = it[id].id
+            navigateReservationDetailView(reservationId)
+      }
+   }
+
+   private fun navigateReservationDetailView(reservationId: Int) {
       val navController = NavHostFragment.findNavController(this)
       val action = ReservationListFragmentDirections.actionReservationFragmentToReservationDetailFragment(reservationId)
       navController.navigate(action)
@@ -53,7 +61,7 @@ class ReservationListFragment : Fragment(R.layout.fragment_reservation_list) {
          override fun onTabSelected(tab: TabLayout.Tab?) {
             when (tab?.position) {
                0 -> getOngoingReservations(memberId)
-               1 -> getCompleteReservations(memberId)
+               1 -> getOngoingReservations(memberId)
             }
          }
 

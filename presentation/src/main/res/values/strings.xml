@@ -45,4 +45,12 @@
     <string name="text_product_able_time">예약 가능한 시간</string>
     <string name="text_product_change_reservation">날짜 변경</string>
     <string name="text_empty">결과가 없습니다</string>
+    <string name="text_reservation_studio_name">스튜디오명</string>
+    <string name="text_reservation_product_name">상품명</string>
+    <string name="text_reservation_add_option">추가옵션</string>
+    <string name="text_reservation_user_name">예약자명</string>
+    <string name="text_reservation_user_phone">예약자 연락처</string>
+    <string name="text_reservation_email">예약자 이메일</string>
+    <string name="text_reservation_navigate_studio_home">스튜디오 홈으로 이동</string>
+    <string name="text_reservation_cancel">예약취소</string>
 </resources>
