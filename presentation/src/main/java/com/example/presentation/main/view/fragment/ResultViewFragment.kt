@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.CheckBox
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -44,8 +45,9 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
 
         viewModel.getInitializedStudio(args.conceptId)
         setupRvStudioList(binding)
-        observeResultViewModel()
-        observeFilterState()
+        observeResultViewModel(binding)
+        observeFilterState(binding)
+        observeEmpty(binding)
     }
 
     private fun setupRvStudioList(binding: FragmentResultViewBinding) {
@@ -88,25 +90,41 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
 
         binding.btFilterRating.apply {
             setOnClickListener {
-                viewModel.updateRating()
-                viewModel.checkFilterOption(args.conceptId)
+                val currentState = viewModel.filterState.value?.hasRatingFilter
+                if (currentState != null) {
+                    viewModel.updateRating(!currentState)
+                    viewModel.checkFilterOption(args.conceptId)
+                }
             }
         }
     }
 
-    private fun observeResultViewModel() {
+    private fun observeResultViewModel(binding: FragmentResultViewBinding) {
         viewModel.result.observe(viewLifecycleOwner) { studioList ->
             if (studioList.isNotEmpty()) {
                 resultViewAdapter.submitList(studioList)
             } else {
                 resultViewAdapter.submitList(null)
+                viewModel.updateEmpty(true)
             }
         }
     }
 
-    private fun observeFilterState() {
-        viewModel.filterState.observe(viewLifecycleOwner, Observer { filterState ->
-        })
+    private fun observeFilterState(binding: FragmentResultViewBinding) {
+        viewModel.filterState.observe(viewLifecycleOwner) { filterState ->
+
+            if (filterState.hasRatingFilter) {
+             binding.btFilterRating.setIconResource(R.drawable.icon_arrow_drop_down_24px)
+            } else {
+                binding.btFilterRating.icon = null
+            }
+        }
+    }
+
+    private fun observeEmpty(binding: FragmentResultViewBinding) {
+        viewModel.empty.observe(viewLifecycleOwner) {
+            showEmptyView(binding, it)
+        }
     }
 
     private fun showPriceFilterBottomSheet() {
@@ -219,5 +237,10 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
                 viewModel.clearRegionFilters()
             }
         }
+    }
+
+    private fun showEmptyView(binding: FragmentResultViewBinding, isBoolean: Boolean) {
+        binding.rvStudioList.isVisible = isBoolean
+        binding.layoutEmptyResult.isVisible = !isBoolean
     }
 }

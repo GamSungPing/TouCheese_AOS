@@ -1,11 +1,13 @@
 package com.example.presentation.main.view.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.example.domain.model.StudioInfoWithConcept
 import com.example.presentation.databinding.ItemResultViewBinding
+import com.example.presentation.util.ext.preloadImage
 
 class ResultViewAdapter(
     private val onClickStudio: (String, String) -> Unit
@@ -20,6 +22,9 @@ class ResultViewAdapter(
 
     override fun onBindViewHolder(holder: ResultViewHolder, position: Int) {
         val studio = getItem(position)
+        val context: Context = holder.itemView.context
+
+        setImagePreload(context, position)
         holder.bind(studio)
     }
 
@@ -42,6 +47,15 @@ class ResultViewAdapter(
             ): Boolean {
                 return oldItem == newItem
             }
+        }
+    }
+
+    private fun setImagePreload(context: Context, position: Int) {
+        if (position < currentList.size - 1) {
+            context.preloadImage(currentList[position + 1].profileURL)
+        }
+        if (position > 0) {
+            context.preloadImage(currentList[position - 1].profileURL)
         }
     }
 }

@@ -14,6 +14,7 @@ import com.example.data.BuildConfig
 import com.example.data.dto.request.util.LocalDateAdapter
 import com.example.data.service.ConceptService
 import com.example.data.service.ProductService
+import com.example.data.service.ReservationService
 import com.example.data.service.ReviewDetailService
 import com.squareup.moshi.adapters.Rfc3339DateJsonAdapter
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -24,6 +25,12 @@ import java.util.concurrent.TimeUnit
 @Module
 @InstallIn(SingletonComponent::class)
 internal object NetworkModule {
+
+    @Singleton
+    @Provides
+    fun provideReservationService(retrofit: Retrofit): ReservationService {
+        return retrofit.create(ReservationService::class.java)
+    }
 
     @Singleton
     @Provides

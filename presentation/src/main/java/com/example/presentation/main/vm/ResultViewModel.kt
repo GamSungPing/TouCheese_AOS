@@ -25,6 +25,9 @@ class ResultViewModel @Inject constructor(
     private val _result = MutableLiveData<List<StudioInfoWithConcept>>()
     val result: LiveData<List<StudioInfoWithConcept>> get() = _result
 
+    private val _empty = MutableLiveData<Boolean>()
+    val empty: LiveData<Boolean> get() = _empty
+
     fun getInitializedStudio(conceptId: Int) {
         viewModelScope.launch {
             clear()
@@ -111,10 +114,14 @@ class ResultViewModel @Inject constructor(
         )
     }
 
-    fun updateRating() {
+    fun updateRating(isChecked: Boolean) {
         _filterState.value = _filterState.value?.copy(
-            hasRatingFilter = true
+            hasRatingFilter = isChecked
         )
+    }
+
+    fun updateEmpty(isEmpty: Boolean) {
+        _empty.value = isEmpty
     }
 
     fun clear(){
