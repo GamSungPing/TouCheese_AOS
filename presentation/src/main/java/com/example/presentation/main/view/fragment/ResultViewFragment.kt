@@ -111,14 +111,14 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
     }
 
     private fun observeFilterState(binding: FragmentResultViewBinding) {
-        viewModel.filterState.observe(viewLifecycleOwner, Observer { filterState ->
+        viewModel.filterState.observe(viewLifecycleOwner) { filterState ->
 
             if (filterState.hasRatingFilter) {
              binding.btFilterRating.setIconResource(R.drawable.icon_arrow_drop_down_24px)
             } else {
                 binding.btFilterRating.icon = null
             }
-        })
+        }
     }
 
     private fun observeEmpty(binding: FragmentResultViewBinding) {
