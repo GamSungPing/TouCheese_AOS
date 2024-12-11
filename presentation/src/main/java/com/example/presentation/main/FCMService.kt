@@ -1,8 +1,8 @@
-package com.example.presentation.main.view.fragment
+package com.example.presentation.main
 
 import android.content.ContentValues
 import android.util.Log
-import com.example.presentation.main.view.MainActivity.NotificationHelper.sendNotification
+import com.example.presentation.main.view.NotificationHelper.sendNotification
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
