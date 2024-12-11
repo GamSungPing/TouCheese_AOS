@@ -7,4 +7,26 @@
     <color name="tc_background">#FFFCF5</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    
+    <color name="primary10">#664100</color>
+    <color name="primary09">#8C5900</color>
+    <color name="primary08">#B27100</color>
+    <color name="primary07">#E59100</color>
+    <color name="primary06">#FFC000</color>
+    <color name="primary05">#FFD129</color>
+    <color name="primary04">#FFDF52</color>
+    <color name="primary03">#FFEB7A</color>
+    <color name="primary02">#FFF4A3</color>
+    <color name="primary01">#FFFDE6</color>
+
+    <color name="grey10">#141414</color>
+    <color name="grey09">#1F1F1F</color>
+    <color name="grey08">#262626</color>
+    <color name="grey07">#434343</color>
+    <color name="grey06">#595959</color>
+    <color name="grey05">#8C8C8C</color>
+    <color name="grey04">#BFBFBF</color>
+    <color name="grey03">#D9D9D9</color>
+    <color name="grey02">#F0F0F0</color>
+    <color name="grey01">#FAFAFA</color>
 </resources>
