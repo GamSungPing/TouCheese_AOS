@@ -53,4 +53,5 @@
     <string name="text_reservation_email">예약자 이메일</string>
     <string name="text_reservation_navigate_studio_home">스튜디오 홈으로 이동</string>
     <string name="text_reservation_cancel">예약취소</string>
+    <string name="text_reservation_list">예약 내역</string>
 </resources>

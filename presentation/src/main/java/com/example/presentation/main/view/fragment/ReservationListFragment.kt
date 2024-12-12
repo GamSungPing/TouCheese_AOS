@@ -75,8 +75,8 @@ class ReservationListFragment : Fragment(R.layout.fragment_reservation_list) {
 
    private fun initTabView(binding: FragmentReservationListBinding, memberId: Int) {
       val tabLayout = binding.layoutReservationTab
-      tabLayout.addTab(tabLayout.newTab().setText("예약내역"))
-      tabLayout.addTab(tabLayout.newTab().setText("지난내역"))
+      tabLayout.addTab(tabLayout.newTab().setText("예약 일정"))
+      tabLayout.addTab(tabLayout.newTab().setText("이전 내역"))
    }
 
    private fun getOngoingReservations(memberId: Int) {
