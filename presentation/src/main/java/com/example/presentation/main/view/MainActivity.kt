@@ -13,6 +13,7 @@ import android.os.Bundle
 import android.os.LocaleList
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
@@ -20,6 +21,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.presentation.R
 import com.example.presentation.databinding.ActivityMainBinding
+import com.example.presentation.main.vm.FcmViewModel
 import com.google.firebase.FirebaseApp
 import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,6 +29,7 @@ import java.util.Locale
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+    private val viewModel: FcmViewModel by viewModels()
     private val binding : ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
@@ -43,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        viewModel.sendToToken()
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
 
@@ -50,8 +54,6 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setupWithNavController(navController)
 
         settingLocale(this)
-        FirebaseApp.initializeApp(this)
-        getTokenFromFirebase()
     }
 
     private fun askNotificationPermission() {
@@ -65,19 +67,6 @@ class MainActivity : AppCompatActivity() {
             } else {
                 requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
             }
-        }
-    }
-
-    private fun getTokenFromFirebase() {
-        FirebaseMessaging.getInstance().token.addOnCompleteListener{ task ->
-            if (!task.isSuccessful) {
-                Log.w(ContentValues.TAG, "Fetching FCM registration token failed", task.exception)
-            } else {
-
-            }
-
-            val token = task.result
-            Log.d(ContentValues.TAG, "FCM Registration Token: $token")  // 토큰 출력
         }
     }
 
