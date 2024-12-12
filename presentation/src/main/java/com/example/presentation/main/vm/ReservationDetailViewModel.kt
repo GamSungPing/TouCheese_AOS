@@ -44,6 +44,12 @@ class ReservationDetailViewModel @Inject constructor(
         }
     }
 
+    fun deleteReservationByReservationId(reservationId: Int, memberId: Int) {
+        viewModelScope.launch {
+            reservationRepository.deleteReservationByReservationId(reservationId, memberId)
+        }
+    }
+
     fun stringToLocalTime(timeString: String): LocalTime {
         val formatter = DateTimeFormatter.ofPattern("HH:mm:ss")
         return LocalTime.parse(timeString, formatter)

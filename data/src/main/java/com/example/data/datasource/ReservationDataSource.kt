@@ -20,4 +20,7 @@ internal data class ReservationDataSource @Inject constructor(
         return reservationService.getCompletedReservationByMemberId(memberId).toDomainModel()
     }
 
+    suspend fun deleteReservationByReservationId(reservationId: Int, memberId: Int) {
+        return reservationService.deleteReservationByReservationId(reservationId, memberId)
+    }
 }

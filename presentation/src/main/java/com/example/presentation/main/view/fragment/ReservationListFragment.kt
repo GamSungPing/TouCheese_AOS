@@ -42,16 +42,16 @@ class ReservationListFragment : Fragment(R.layout.fragment_reservation_list) {
 
    }
 
-   private fun getSelectedReservationId(id: Int) {
+   private fun getSelectedReservationId(position: Int) {
          viewModel.reservations.value?.let {
-            val reservationId = it[id].id
+            val reservationId = it[position].id
             navigateReservationDetailView(reservationId)
       }
    }
 
    private fun navigateReservationDetailView(reservationId: Int) {
       val navController = NavHostFragment.findNavController(this)
-      val action = ReservationListFragmentDirections.actionReservationFragmentToReservationDetailFragment(reservationId)
+      val action = ReservationListFragmentDirections.actionReservationFragmentToReservationDetailFragment(reservationId, memberId)
       navController.navigate(action)
    }
 

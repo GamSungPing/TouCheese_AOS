@@ -7,4 +7,5 @@ interface ReservationRepository {
     suspend fun getReservationsByMemberId(memberId: Int) : List<Reservation>
     suspend fun getReservationDetailByReservationId(reservationId: Int) : ReservationDetail
     suspend fun getCompletedReservationByMemberId(memberId: Int) : List<Reservation>
+    suspend fun deleteReservationByReservationId(reservationId: Int, memberId: Int)
 }
