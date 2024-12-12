@@ -1,24 +1,10 @@
 package com.example.presentation.main
 
-import android.content.ContentValues
-import android.util.Log
 import com.example.presentation.main.view.NotificationHelper.sendNotification
-import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
-class FCMService : FirebaseMessagingService() {
-
-    private fun getFCMToken() {
-        FirebaseMessaging.getInstance().token.addOnCompleteListener{ task ->
-            if (!task.isSuccessful) {
-                Log.w(ContentValues.TAG, "Fetching FCM registration token failed", task.exception)
-            }
-
-            val token = task.result
-        }
-    }
-
+class FCMService : FirebaseMessagingService(){
     override fun onNewToken(token: String) {
         super.onNewToken(token)
     }
