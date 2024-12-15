@@ -51,7 +51,18 @@
     <string name="text_reservation_user_name">예약자명</string>
     <string name="text_reservation_user_phone">예약자 연락처</string>
     <string name="text_reservation_email">예약자 이메일</string>
-    <string name="text_reservation_navigate_studio_home">스튜디오 홈으로 이동</string>
+    <string name="text_reservation_navigate_studio_home">스튜디오 홈</string>
     <string name="text_reservation_cancel">예약취소</string>
     <string name="text_reservation_list">예약 내역</string>
+    <string name="text_reservation_info">예약정보</string>
+    <string name="text_reservation_state_waiting">예약 대기</string>
+    <string name="text_reservation_state_complete">예약 확정</string>
+    <string name="text_reservation_state_cancel">예약 취소</string>
+    <string name="text_reservation_state_usage_done">촬영 완료</string>
+    <string name="text_reservation_cancel_request">예약 취소하기</string>
+    <string name="text_reservation_state_info_title">※ 예약 상태는 아래와 같습니다</string>
+    <string name="text_reservation_state_info_waiting">스튜디오에 예약을 신청한 상태입니다. 스튜디오에서 확인이 되면 예약 완료나 예약 취소 상태로 변경됩니다.</string>
+    <string name="text_reservation_state_info_complete">스튜디오에서 예약을 완료한 상태입니다. 예약 날짜에 촬영을 진행하면 됩니다. 사용자가 예약을 취소할 수 있는 상태입니다.</string>
+    <string name="text_reservation_state_info_cancel">스튜디오에서 예약을 취소한 상태입니다. 다른 날짜로 예약을 다시 진행해야 합니다.</string>
+    <string name="text_reservation_state_info_usage_done">사용자가 예약한 시간에 촬영이 완료된 상태입니다. 스튜디오에 리뷰를 남길 수 있습니다.</string>
 </resources>
