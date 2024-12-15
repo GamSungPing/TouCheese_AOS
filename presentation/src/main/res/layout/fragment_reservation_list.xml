@@ -26,8 +26,8 @@
         app:tabTextColor="@color/grey05"
         app:tabIndicatorGravity="center"
         app:tabIndicatorColor="@null"
-        android:background="@drawable/custom_tab_background"
-        app:tabIndicator="@drawable/custom_tab_indicator"
+        android:background="@drawable/tc_tab_background"
+        app:tabIndicator="@drawable/tc_tab_indicator"
         app:tabSelectedTextColor="@color/black"
         app:tabRippleColor="@color/grey02"
         app:layout_constraintStart_toStartOf="@+id/tv_reservation_view_title"
@@ -36,7 +36,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_reservation_list"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         app:layout_constraintStart_toStartOf="@+id/layout_reservation_tab"

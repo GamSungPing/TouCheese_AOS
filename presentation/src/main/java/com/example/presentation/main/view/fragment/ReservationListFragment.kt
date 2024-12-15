@@ -61,7 +61,7 @@ class ReservationListFragment : Fragment(R.layout.fragment_reservation_list) {
          override fun onTabSelected(tab: TabLayout.Tab?) {
             when (tab?.position) {
                0 -> getOngoingReservations(memberId)
-               1 -> getOngoingReservations(memberId)
+               1 -> getCompleteReservations(memberId)
             }
          }
 
