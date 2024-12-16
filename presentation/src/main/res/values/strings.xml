@@ -65,4 +65,9 @@
     <string name="text_reservation_state_info_complete">스튜디오에서 예약을 완료한 상태입니다. 예약 날짜에 촬영을 진행하면 됩니다. 사용자가 예약을 취소할 수 있는 상태입니다.</string>
     <string name="text_reservation_state_info_cancel">스튜디오에서 예약을 취소한 상태입니다. 다른 날짜로 예약을 다시 진행해야 합니다.</string>
     <string name="text_reservation_state_info_usage_done">사용자가 예약한 시간에 촬영이 완료된 상태입니다. 스튜디오에 리뷰를 남길 수 있습니다.</string>
+    <string name="text_reservation_order_product">"주문 상품</string>
+    <string name="text_reservation_pay_info">결제 정보</string>
+    <string name="text_reservation_total_price">총 결제 금액</string>
+    <string name="text_reservation_day">예약 날짜</string>
+    <string name="text_reservation_time">예약 시간</string>
 </resources>

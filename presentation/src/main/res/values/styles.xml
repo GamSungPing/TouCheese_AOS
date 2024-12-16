@@ -35,7 +35,7 @@
     <style name="tc_bt_reservation_cancel_request">
         <item name="height">48dp</item>
         <item name="android:layout_margin">10dp</item>
-        <item name="background">@drawable/tc_main_background_outlined</item>
+        <item name="android:background">@drawable/tc_main_background_outlined</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">18sp</item>
         <item name="android:gravity">center</item>

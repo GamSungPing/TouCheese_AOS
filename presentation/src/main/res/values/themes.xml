@@ -4,7 +4,6 @@
         <item name="colorPrimary">@color/primary06</item>
         <item name="colorSecondary">@color/primary01</item>
         <item name="android:windowBackground">@color/white</item>
-        <item name="android:background">@color/grey01</item>
         <item name="toolbarStyle">@style/tc_main_toolbar</item>
     </style>
 </resources>
