@@ -8,8 +8,8 @@ import androidx.fragment.app.DialogFragment
 import com.example.presentation.R
 import com.example.presentation.databinding.FragmentCompleteDialogBinding
 
-class CompleteDialogFragment(
-    val text: String,
+class CompleteDialog(
+    private val text: String,
 ) : DialogFragment() {
 
     private var _binding: FragmentCompleteDialogBinding? = null

@@ -9,19 +9,12 @@ import com.example.presentation.R
 import com.example.presentation.databinding.FragmentConfirmDialogBinding
 
 class ConfirmDialog(
-    text: String,
-    id: Int
+    private val text: String,
+    private val onYesClick: () -> Unit
 ) : DialogFragment() {
 
     private var _binding: FragmentConfirmDialogBinding? = null
     private val binding get() = _binding!!
-    private var text: String? = null
-    private var id: Int? = null
-
-    init {
-        this.text = text
-        this.id = id
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,6 +33,7 @@ class ConfirmDialog(
         }
 
         binding.yesButton.setOnClickListener {
+            onYesClick()
             dismiss()
         }
 
