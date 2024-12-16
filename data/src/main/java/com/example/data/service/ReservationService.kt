@@ -15,7 +15,7 @@ internal interface ReservationService {
     @GET("reservation/{reservationId}")
     suspend fun getReservationDetailByReservationId(@Path("reservationId") reservationId: Int) : ReservationDetailResponse
 
-    @GET("reservation/member/{memberId}/completed")
+    @GET("reservation/member/{memberId}/completed-cancelled")
     suspend fun getCompletedReservationByMemberId(@Path("memberId") memberId: Int) : ReservationResponse
 
     @DELETE("reservation/{reservationId}/cancel")

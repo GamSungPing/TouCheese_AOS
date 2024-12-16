@@ -24,7 +24,11 @@ internal data class ReservationDetailResponse(
             productOption = data.productOption,
             totalPrice = data.totalPrice,
             studioAddress = data.studioAddress,
-            reservationStatus = data.reservationStatus
+            reservationStatus = data.reservationStatus,
+            productImage = data.productImage,
+            productPrice = data.productPrice,
+            addPeopleCnt = data.addPeopleCnt,
+            addPeoplePrice = data.addPeoplePrice,
         )
     }
 }
