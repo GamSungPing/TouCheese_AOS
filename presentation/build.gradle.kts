@@ -91,4 +91,7 @@ dependencies {
 
     implementation(libs.photoview)
     implementation(libs.photoview.dialog)
+
+    implementation(libs.google.firebase.messaging.ktx)
+    implementation(libs.play.services.base)
 }

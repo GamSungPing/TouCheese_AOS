@@ -47,6 +47,10 @@
         <argument
             android:name="reservationId"
             app:argType="integer" />
+
+        <argument
+            android:name="memberId"
+            app:argType="integer" />
     </fragment>
 
 </navigation>

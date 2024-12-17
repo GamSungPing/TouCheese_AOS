@@ -42,16 +42,16 @@ class ReservationListFragment : Fragment(R.layout.fragment_reservation_list) {
 
    }
 
-   private fun getSelectedReservationId(id: Int) {
+   private fun getSelectedReservationId(position: Int) {
          viewModel.reservations.value?.let {
-            val reservationId = it[id].id
+            val reservationId = it[position].id
             navigateReservationDetailView(reservationId)
       }
    }
 
    private fun navigateReservationDetailView(reservationId: Int) {
       val navController = NavHostFragment.findNavController(this)
-      val action = ReservationListFragmentDirections.actionReservationFragmentToReservationDetailFragment(reservationId)
+      val action = ReservationListFragmentDirections.actionReservationFragmentToReservationDetailFragment(reservationId, memberId)
       navController.navigate(action)
    }
 
@@ -61,7 +61,7 @@ class ReservationListFragment : Fragment(R.layout.fragment_reservation_list) {
          override fun onTabSelected(tab: TabLayout.Tab?) {
             when (tab?.position) {
                0 -> getOngoingReservations(memberId)
-               1 -> getOngoingReservations(memberId)
+               1 -> getCompleteReservations(memberId)
             }
          }
 
@@ -75,8 +75,8 @@ class ReservationListFragment : Fragment(R.layout.fragment_reservation_list) {
 
    private fun initTabView(binding: FragmentReservationListBinding, memberId: Int) {
       val tabLayout = binding.layoutReservationTab
-      tabLayout.addTab(tabLayout.newTab().setText("예약내역"))
-      tabLayout.addTab(tabLayout.newTab().setText("지난내역"))
+      tabLayout.addTab(tabLayout.newTab().setText("예약 일정"))
+      tabLayout.addTab(tabLayout.newTab().setText("이전 내역"))
    }
 
    private fun getOngoingReservations(memberId: Int) {

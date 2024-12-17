@@ -17,5 +17,9 @@ data class ReservationDetailData(
     val productOption: String,
     val totalPrice: Int,
     val studioAddress: String,
-    val reservationStatus: String
+    val reservationStatus: String,
+    val productImage: String,
+    val productPrice: Int,
+    val addPeopleCnt: Int,
+    val addPeoplePrice: Int
 )

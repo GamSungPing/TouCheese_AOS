@@ -27,7 +27,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:padding="20dp"
-                android:background="@color/tc_light_yellow"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -58,7 +57,6 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:paddingTop="10dp"
-                android:background="@color/tc_light_yellow"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 app:layout_constraintStart_toStartOf="@+id/iv_product_image"
                 app:layout_constraintTop_toBottomOf="@+id/iv_product_image" />
@@ -68,7 +66,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:background="@color/tc_light_yellow"
                 android:padding="10dp"
                 app:layout_constraintStart_toStartOf="@+id/tv_product_name"
                 app:layout_constraintTop_toBottomOf="@+id/tv_product_name" />
@@ -289,7 +286,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="30dp"
                     android:layout_marginTop="20dp"
-                    android:backgroundTint="@color/primary_color"
+                    android:backgroundTint="@color/primary06"
                     android:text="@string/text_product_reservation_button"
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="@+id/tv_product_reservation"
@@ -313,7 +310,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:backgroundTint="@color/secondary_color"
+            android:backgroundTint="@color/primary06"
             android:textColor="@color/black"
             app:icon="@drawable/icon_shopping_cart_24px"
             app:iconGravity="textStart"
@@ -329,7 +326,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:backgroundTint="@color/primary_color"
+            android:backgroundTint="@color/primary06"
             android:text="@string/text_product_order"
             android:textColor="@color/black"
             android:textStyle="bold"

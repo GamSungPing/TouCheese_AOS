@@ -13,6 +13,7 @@ import javax.inject.Singleton
 import com.example.data.BuildConfig
 import com.example.data.dto.request.util.LocalDateAdapter
 import com.example.data.service.ConceptService
+import com.example.data.service.DeviceService
 import com.example.data.service.ProductService
 import com.example.data.service.ReservationService
 import com.example.data.service.ReviewDetailService
@@ -25,6 +26,12 @@ import java.util.concurrent.TimeUnit
 @Module
 @InstallIn(SingletonComponent::class)
 internal object NetworkModule {
+
+    @Singleton
+    @Provides
+    fun deviceRegisterService(retrofit: Retrofit): DeviceService {
+        return retrofit.create(DeviceService::class.java)
+    }
 
     @Singleton
     @Provides
