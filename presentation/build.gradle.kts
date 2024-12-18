@@ -93,4 +93,7 @@ dependencies {
     implementation(libs.photoview.dialog)
     implementation (libs.androidx.swiperefreshlayout)
     implementation(libs.bottomsheetdialog.compose)
+
+    implementation(libs.google.firebase.messaging.ktx)
+    implementation(libs.play.services.base)
 }

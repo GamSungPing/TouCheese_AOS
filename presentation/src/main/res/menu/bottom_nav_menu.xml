@@ -6,7 +6,7 @@
         android:icon="@drawable/ic_home"
         android:title="@string/text_home" />
     <item
-        android:id="@+id/scheduleFragment"
+        android:id="@+id/reservationFragment"
         android:icon="@drawable/ic_reservation_schdule"
         android:title="@string/text_reservation_schedule" />
     <item
