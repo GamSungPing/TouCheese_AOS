@@ -1,7 +1,6 @@
 package com.example.presentation.component
 
 import android.content.Context
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
@@ -38,7 +37,6 @@ fun ReservationProductCard(
     productName: String,
     productPrice: String
 ) {
-    Log.d("dsadsad", imagePath)
     Spacer(
         modifier = Modifier
             .background(color = gray02)
