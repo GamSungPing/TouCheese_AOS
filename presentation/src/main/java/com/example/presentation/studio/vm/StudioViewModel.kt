@@ -3,13 +3,11 @@ package com.example.presentation.studio.vm
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.repository.studio.StudioRepository
-import com.example.presentation.studio.model.StudioState
-import com.example.presentation.studio.model.TabStatus
-import com.example.presentation.studio.sideeffect.StudioSideEffect
+import com.example.presentation.studio.vm.model.StudioState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,10 +17,14 @@ class StudioViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(StudioState.create())
-    val state: StateFlow<StudioState> get() = _state
+    val state: StateFlow<StudioState> get() = _state.asStateFlow()
 
-    private val _event = MutableSharedFlow<StudioSideEffect>()
-    val event: MutableSharedFlow<StudioSideEffect> get() = _event
+    fun setStudioInfo(studioId: String, studioLogo: String){
+        _state.value = _state.value.copy(
+            studioId = studioId,
+            studioLogo = studioLogo
+        )
+    }
 
     fun load(studioId: String, studioLogo: String) {
         viewModelScope.launch {
@@ -31,28 +33,6 @@ class StudioViewModel @Inject constructor(
                 product = detail,
                 studioLogo = studioLogo
             )
-        }
-    }
-
-    fun onClickBackButton() {
-        viewModelScope.launch {
-            _event.emit(StudioSideEffect.CloseScreen)
-        }
-    }
-
-    fun onClickProduct(productId: Int, description: String, imgPath: String) {
-        viewModelScope.launch {
-            _event.emit(
-                StudioSideEffect.NavigateToProductDetail(
-                    imgPath, description, productId
-                )
-            )
-        }
-    }
-
-    fun onClickReview(reviewId: Int){
-        viewModelScope.launch {
-            _event.emit(StudioSideEffect.NavigateToReviewDetail(reviewId))
         }
     }
 }

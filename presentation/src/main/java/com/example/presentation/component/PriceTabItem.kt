@@ -24,7 +24,9 @@ fun PriceTabItem(
                 image = product.imageUrl,
                 reviewCount = product.reviewCount,
                 price = product.price.toKoreanUnit(),
-                reviewClickListener = {},
+                reviewClickListener = {
+
+                },
                 rootClickListener = {
                     onClickProduct(product.id, product.description, product.imageUrl)
                 }

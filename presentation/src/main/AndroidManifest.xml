@@ -3,26 +3,24 @@
 
     <application>
         <activity
-            android:name=".product.ProductDetailActivity"
-            android:exported="false"/>
-        <activity
             android:name=".review.ReviewDetailActivity"
             android:exported="false"/>
         <activity
             android:name=".main.view.MainActivity"
-            android:exported="true">
-        </activity>
-        <activity
-            android:name=".studio.StudioActivity"
-            android:exported="false"/>
-        <activity
-            android:name=".reserve.ReservationConfirmActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".studio.StudioActivity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".reserve.ReservationConfirmActivity"
+            android:exported="false">
         </activity>
     </application>
 

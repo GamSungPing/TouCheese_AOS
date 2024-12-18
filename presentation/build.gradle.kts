@@ -92,4 +92,5 @@ dependencies {
     implementation(libs.photoview)
     implementation(libs.photoview.dialog)
     implementation (libs.androidx.swiperefreshlayout)
+    implementation(libs.bottomsheetdialog.compose)
 }

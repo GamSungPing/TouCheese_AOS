@@ -25,6 +25,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.domain.model.AvailableTime
 import com.example.presentation.R
+import com.example.presentation.theme.gray02
+import com.example.presentation.theme.gray03
+import com.example.presentation.theme.gray04
 import com.example.presentation.theme.gray09
 import com.example.presentation.theme.primary06
 
@@ -67,7 +70,11 @@ fun TimeSection(
                             color = if (isSelected) primary06 else Color.Transparent,
                             shape = RoundedCornerShape(8.dp)
                         )
-                        .border(1.dp, Color.LightGray, RoundedCornerShape(8.dp))
+                        .border(
+                            width = 1.dp,
+                            color = if (isSelected) Color.Transparent else gray04,
+                            shape = RoundedCornerShape(8.dp)
+                        )
                         .clickable { onTimeSelected(item) }
                         .padding(vertical = 12.dp)
                 ) {

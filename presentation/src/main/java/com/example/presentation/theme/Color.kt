@@ -28,6 +28,8 @@ val gray08 = Color(0xFF262626)
 val gray09 = Color(0xFF1F1F1F)
 val gray10 = Color(0xFF141414)
 
+val errorColor = Color(0xFFEF4444)
+
 
 
 

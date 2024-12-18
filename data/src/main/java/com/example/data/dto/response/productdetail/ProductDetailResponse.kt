@@ -12,7 +12,7 @@ internal data class ProductDetailResponse(
     val statusCode: Int
 ) {
     fun toDomainModel(): ProductDetail {
-        val option = if (data.productOptions.isNotEmpty()) {
+        val option = if (data.productOptions.any { it.isNotBlank() }) {
             data.productOptions.map {
                 val spliterator = it.split(":", limit = 2)
                 ProductOption(
