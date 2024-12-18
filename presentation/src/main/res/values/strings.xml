@@ -44,7 +44,6 @@
     <string name="text_product_order">선택 상품 주문</string>
     <string name="text_product_able_time">예약 가능한 시간</string>
     <string name="text_product_change_reservation">날짜 변경</string>
-    <string name="text_empty">결과가 없습니다</string>
     <string name="text_reservation_studio_name">스튜디오명</string>
     <string name="text_reservation_product_name">상품명</string>
     <string name="text_reservation_add_option">추가옵션</string>
@@ -70,4 +69,6 @@
     <string name="text_reservation_total_price">총 결제 금액</string>
     <string name="text_reservation_day">예약 날짜</string>
     <string name="text_reservation_time">예약 시간</string>
+    <string name="text_empty_list">내역이 없습니다</string>
+    <string name="text_empty_result">검색 결과가 없습니다</string>
 </resources>

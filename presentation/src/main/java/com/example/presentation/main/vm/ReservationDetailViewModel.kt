@@ -23,9 +23,6 @@ class ReservationDetailViewModel @Inject constructor(
     private val _reservationDetail = MutableLiveData<ReservationDetail>()
     val reservationDetail: LiveData<ReservationDetail> get() = _reservationDetail
 
-    private val _completedReservation = MutableLiveData<List<Reservation>>()
-    val completedReservation: LiveData<List<Reservation>> get() = _completedReservation
-
     fun getReservationsByMemberId(memberId: Int) {
         viewModelScope.launch {
             _reservations.value = reservationRepository.getReservationsByMemberId(memberId)
@@ -48,10 +45,5 @@ class ReservationDetailViewModel @Inject constructor(
         viewModelScope.launch {
             reservationRepository.deleteReservationByReservationId(reservationId, memberId)
         }
-    }
-
-    fun stringToLocalTime(timeString: String): LocalTime {
-        val formatter = DateTimeFormatter.ofPattern("HH:mm:ss")
-        return LocalTime.parse(timeString, formatter)
     }
 }
