@@ -2,7 +2,6 @@ package com.example.presentation.studio.screen
 
 import android.content.Context
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
@@ -18,12 +17,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.domain.model.ProductOption
 import com.example.presentation.R
 import com.example.presentation.calendar.DateSelectButton
 import com.example.presentation.component.ReservationCard
 import com.example.presentation.component.ReservationPeopleInfoCard
 import com.example.presentation.component.ReservationProductCard
-import com.example.presentation.component.ReserveConfirmText
 import com.example.presentation.component.TopBar
 import com.example.presentation.studio.navigation.parcelable.ReservationParcelable
 import com.example.presentation.studio.vm.ReservationViewModel
@@ -51,6 +50,8 @@ fun ReserveScreen(
         imagePath = bundle.productImgPath,
         productName = bundle.productName,
         productPrice = bundle.payment,
+        options = bundle.selectedOption,
+        addPeopleCount = bundle.addPeopleCount,
         navigateToBackStack = navigateToBackStack,
         navigateToReserveComplete = {
             viewModel.requestReservation()
@@ -73,6 +74,8 @@ fun ReserveScreen(
     imagePath: String,
     productName: String,
     productPrice: String,
+    options: List<ProductOption>,
+    addPeopleCount: Int?,
     navigateToBackStack: () -> Unit,
     navigateToReserveComplete: () -> Unit,
     onEmailChanged: (String) -> Unit,
@@ -106,7 +109,9 @@ fun ReserveScreen(
                 context = context,
                 imagePath = imagePath,
                 productName = productName,
-                productPrice = productPrice
+                productPrice = productPrice,
+                options = options,
+                addPeopleCount = addPeopleCount
             )
         }
         item {
@@ -150,6 +155,8 @@ fun ReserveScreenPreview() {
         imagePath = "",
         productName = "상품명",
         productPrice = "250,000원",
+        options = listOf(),
+        addPeopleCount = 1,
         onEmailChanged = { },
         onNameChanged = { },
         onPhoneNumberChanged = { },
