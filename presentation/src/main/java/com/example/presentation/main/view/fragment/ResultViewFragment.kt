@@ -2,6 +2,7 @@ package com.example.presentation.main.view.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.CheckBox
 import androidx.core.view.isVisible
@@ -54,7 +55,6 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
         resultViewAdapter = ResultViewAdapter{ studioId, profileURL ->
             val intent = Intent(requireContext(), StudioActivity::class.java).apply {
                 putExtra("studioId", studioId)
-                putExtra("profileURL", profileURL)
             }
             startActivity(intent)
         }

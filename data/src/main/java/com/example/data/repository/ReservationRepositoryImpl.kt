@@ -24,4 +24,8 @@ internal class ReservationRepositoryImpl @Inject constructor(
     override suspend fun deleteReservationByReservationId(reservationId: Int, memberId: Int) {
         return reservationDataSource.deleteReservationByReservationId(reservationId, memberId)
     }
+
+    override suspend fun makeReservation(receipt: NewReservation) {
+        reservationDataSource.makeReservation(receipt.toRequestModel())
+    }
 }

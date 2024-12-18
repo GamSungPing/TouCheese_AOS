@@ -44,7 +44,7 @@ internal interface RepositoryModule {
 
     @Binds
     fun bindDeviceRegisterRepository(deviceRegisterRepositoryImpl: DeviceRegisterRepositoryImpl): DeviceRegisterRepository
-    
+
     @Binds
     fun bindsFirebaseRepository(firebaseRepositoryImpl: FirebaseRepositoryImpl): FirebaseRepository
 }
