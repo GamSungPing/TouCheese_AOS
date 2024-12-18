@@ -33,17 +33,17 @@ fun TimeSection(
     title: String,
     slots: List<AvailableTime>,
     selectedTime: String?,
-    onTimeSelected: (AvailableTime) -> Unit
+    onTimeSelected: (AvailableTime) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
-            .padding(10.dp)
     ) {
         Text(
             text = title,
             fontFamily = FontFamily(Font(R.font.pretendard_medium)),
-            fontSize = 15.sp,
+            fontSize = 17.sp,
             color = gray09,
             modifier = Modifier
                 .padding(bottom = 8.dp)
@@ -83,7 +83,7 @@ fun TimeSection(
 }
 
 @Composable
-@Preview
+@Preview(showBackground = true)
 fun TimeSectionPreview() {
     TimeSection(
         title = "오전",

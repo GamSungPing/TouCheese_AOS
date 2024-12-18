@@ -21,11 +21,13 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.domain.model.AvailableTime
+import com.example.presentation.R
 import com.example.presentation.calendar.vm.CalendarViewModel
 import com.example.presentation.calendar.vm.model.CalendarState
 import com.example.presentation.theme.gray02
@@ -57,7 +59,7 @@ fun CalendarBottomSheet(
         onSelectedTime = { time ->
             viewModel.setSelectedTime(time)
         },
-        onClickSubmit,
+        onClickSubmit
     )
 }
 
@@ -145,6 +147,7 @@ fun CalendarBottomSheet(
                 )
 
                 DateSelectButton(
+                    title = stringResource(R.string.select_date),
                     clickable = state.selectedTime != null,
                     onClick = {
                         state.selectedTime?.let { selectedTime ->

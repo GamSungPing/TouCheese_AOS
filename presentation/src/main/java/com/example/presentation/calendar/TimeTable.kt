@@ -37,9 +37,13 @@ fun TimeTable(
                 title = stringResource(R.string.morning),
                 slots = morningSlots,
                 selectedTime = selectedTime,
-                onTimeSelected = onTimeSelected
+                onTimeSelected = onTimeSelected,
+                modifier = Modifier.padding(
+                    top = 10.dp,
+                    start = 16.dp,
+                    end = 16.dp
+                )
             )
-            Spacer(modifier = Modifier.height(16.dp))
         }
 
         if (afternoonSlots.isNotEmpty()) {
@@ -47,7 +51,10 @@ fun TimeTable(
                 title = stringResource(R.string.afternoon),
                 slots = afternoonSlots,
                 selectedTime = selectedTime,
-                onTimeSelected = onTimeSelected
+                onTimeSelected = onTimeSelected,
+                modifier = Modifier.padding(
+                    horizontal = 16.dp,
+                )
             )
             Spacer(modifier = Modifier.height(16.dp))
         }
@@ -55,7 +62,7 @@ fun TimeTable(
 }
 
 @Composable
-@Preview
+@Preview(showBackground = true)
 fun TimeTablePreview() {
     TimeTable(
         morningSlots = listOf(

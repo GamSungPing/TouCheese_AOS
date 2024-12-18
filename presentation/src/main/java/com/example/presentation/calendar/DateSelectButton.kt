@@ -20,24 +20,25 @@ import com.example.presentation.theme.primary06
 
 @Composable
 fun DateSelectButton(
+    title: String,
     clickable: Boolean,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Button(
         onClick = onClick,
         enabled = clickable,
         colors = ButtonDefaults.buttonColors(containerColor = primary06),
         shape = RoundedCornerShape(10.dp),
-        modifier = Modifier
+        modifier = modifier
             .height(48.dp)
             .fillMaxWidth()
     ) {
         Text(
-            text = stringResource(R.string.select_date),
+            text = title,
             fontSize = 16.sp,
             color = gray10,
-            textAlign = TextAlign.Center,
-            modifier = Modifier.fillMaxWidth()
+            textAlign = TextAlign.Center
         )
     }
 }
@@ -46,6 +47,7 @@ fun DateSelectButton(
 @Preview
 fun DateSelectButtonPreview() {
     DateSelectButton(
+        "날짜 선택",
         clickable = true,
         onClick = {}
     )
