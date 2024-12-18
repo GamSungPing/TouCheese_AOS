@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.domain.model.AvailableTime
 import com.example.domain.model.ProductOption
 import com.example.domain.model.Schedule
-import com.example.domain.repository.ReservationRepository
 import com.example.domain.repository.product.ProductRepository
 import com.example.presentation.studio.vm.model.ProductState
 import dagger.hilt.android.lifecycle.HiltViewModel

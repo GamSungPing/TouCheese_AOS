@@ -65,12 +65,6 @@ internal object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideReservationService(retrofit: Retrofit): ReservationService {
-        return retrofit.create(ReservationService::class.java)
-    }
-
-    @Singleton
-    @Provides
     fun provideRetrofit(client: OkHttpClient, moshi: Moshi): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)

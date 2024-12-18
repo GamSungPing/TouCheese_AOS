@@ -37,6 +37,7 @@ photoview = "1.0.2"
 firebase-bom = "33.6.0"
 firebaseMessagingKtx = "24.1.0"
 playServicesBase = "18.5.0"
+swiperefreshlayout = "1.1.0"
 
 [libraries]
 accompanist-pager = { module = "com.google.accompanist:accompanist-pager", version.ref = "accompanistPager" }

@@ -125,34 +125,6 @@ fun ReserveScreen(
                 },
             )
         }
-        item {
-            ReserveConfirmText(
-                text = stringResource(R.string.payment_info),
-                size = 20,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 15.dp, top = 15.dp)
-            )
-        }
-//        item {
-//            Row(
-//                modifier = Modifier
-//                    .wrapContentSize()
-//                    .padding(10.dp)
-//            ) {
-//                ReserveConfirmText(
-//                    text = stringResource(R.string.total_price),
-//                    size = 18,
-//                    modifier = Modifier.padding(start = 15.dp)
-//                )
-//                Spacer(modifier = Modifier.weight(1.0f))
-//                ReserveConfirmText(
-//                    text = productPrice,
-//                    size = 18,
-//                    modifier = Modifier.padding(end = 10.dp)
-//                )
-//            }
-//        }
 
         item {
             DateSelectButton(

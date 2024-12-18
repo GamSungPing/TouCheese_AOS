@@ -1,5 +1,7 @@
 package com.example.presentation.util.ext
 
+import android.util.Patterns
+
 fun removeSecondsFromTime(time: String): String {
     return time.substringBeforeLast(":")
 }

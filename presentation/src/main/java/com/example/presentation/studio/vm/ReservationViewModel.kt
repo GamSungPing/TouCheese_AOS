@@ -3,7 +3,7 @@ package com.example.presentation.studio.vm
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.model.NewReservation
-import com.example.domain.repository.ReservationRepository
+import com.example.domain.repository.reservation.ReservationRepository
 import com.example.presentation.studio.navigation.parcelable.ReservationParcelable
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

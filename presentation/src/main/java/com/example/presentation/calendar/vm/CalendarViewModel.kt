@@ -3,7 +3,7 @@ package com.example.presentation.calendar.vm
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.model.AvailableTime
-import com.example.domain.repository.ReservationRepository
+import com.example.domain.repository.reservation.ReservationRepository
 import com.example.presentation.calendar.vm.model.CalendarState
 import com.example.presentation.util.dateFormatter
 import dagger.hilt.android.lifecycle.HiltViewModel
