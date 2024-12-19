@@ -53,6 +53,7 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
         resultViewAdapter = ResultViewAdapter{ studioId, profileURL ->
             val intent = Intent(requireContext(), StudioActivity::class.java).apply {
                 putExtra("studioId", studioId)
+                putExtra("profileURL", profileURL)
             }
             startActivity(intent)
         }
