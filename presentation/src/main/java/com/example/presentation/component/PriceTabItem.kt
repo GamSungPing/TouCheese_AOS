@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.domain.model.detail.ProductItem
 import com.example.presentation.util.ext.toKoreanUnit
@@ -34,4 +35,13 @@ fun PriceTabItem(
             Spacer(modifier = Modifier.height(10.dp))
         }
     }
+}
+
+@Composable
+@Preview(showBackground = true)
+fun PriceTabItemPreview() {
+    PriceTabItem(
+        productItem = listOf(),
+        onClickProduct = { _, _, _ -> }
+    )
 }

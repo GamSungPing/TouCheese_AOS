@@ -49,15 +49,13 @@ fun TimeSection(
             fontSize = 17.sp,
             color = gray09,
             modifier = Modifier
-                .padding(bottom = 8.dp)
-
+                .padding(vertical = 10.dp)
         )
 
         LazyVerticalGrid(
-            columns = GridCells.Fixed(3),
+            columns = GridCells.Fixed(4),
             verticalArrangement = Arrangement.spacedBy(8.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
-            modifier = Modifier.heightIn(min = 80.dp)
         ) {
             items(slots) { item ->
                 val formattedTime = item.value.substring(0, 5)
@@ -76,7 +74,7 @@ fun TimeSection(
                             shape = RoundedCornerShape(8.dp)
                         )
                         .clickable { onTimeSelected(item) }
-                        .padding(vertical = 12.dp)
+                        .padding(vertical = 10.dp)
                 ) {
                     Text(
                         text = formattedTime,

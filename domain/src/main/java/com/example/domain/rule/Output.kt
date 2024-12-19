@@ -1,7 +1,7 @@
 package com.example.domain.rule
 
 enum class Output(val msg: String) {
-    REVIEW("리뷰 %s (%s)"),
+    REVIEW("%s (%s)"),
     WORKDAY("월~금 %s / 매주 %s 휴무"),
     SELECT_RESERVATION_DATE("예약하실 날짜를 선택해주세요"),
     OPTION_OUTPUT("%s (%d원)"),

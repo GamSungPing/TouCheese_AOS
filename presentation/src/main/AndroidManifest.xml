@@ -3,12 +3,6 @@
 
     <application>
         <activity
-            android:name=".product.ProductDetailActivity"
-            android:exported="false"/>
-        <activity
-            android:name=".main.view.ReviewDetailActivity"
-            android:exported="false"/>
-        <activity
             android:name=".main.view.MainActivity"
             android:theme="@style/Theme.Toucheese"
             android:exported="true">
@@ -20,9 +14,6 @@
         <activity
             android:name=".studio.StudioActivity"
             android:exported="false"/>
-        <activity
-            android:name=".reserve.ReservationConfirmActivity"
-            android:exported="false" />
     </application>
 
 </manifest>

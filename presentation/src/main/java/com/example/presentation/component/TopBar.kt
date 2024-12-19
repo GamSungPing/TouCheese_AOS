@@ -3,6 +3,7 @@ package com.example.presentation.component
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBackIos
@@ -13,7 +14,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.presentation.R
 
 @Composable
@@ -25,7 +30,8 @@ fun TopBar(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .padding(16.dp),
+            .height(48.dp)
+            .padding(top = 15.dp, start = 15.dp, bottom = 5.dp),
     ) {
         Icon(
             imageVector = Icons.AutoMirrored.Filled.ArrowBackIos,
@@ -34,10 +40,20 @@ fun TopBar(
         )
         Text(
             text = title,
-            style = MaterialTheme.typography.titleLarge,
+            fontSize = 20.sp,
+            fontFamily = FontFamily(Font(R.font.pretendard_bold)),
             modifier = Modifier
+                .padding(end = 15.dp)
                 .align(Alignment.Center)
-                .padding(start = 8.dp)
         )
     }
+}
+
+@Composable
+@Preview(showBackground = true)
+fun TopBarPreview(){
+    TopBar(
+        title = "예약",
+        onClick = {}
+    )
 }

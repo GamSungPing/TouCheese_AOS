@@ -34,7 +34,7 @@ fun CalendarDay(
     ) {
         Box(
             modifier = Modifier
-                .size(32.dp)
+                .size(24.dp)
                 .clickable(enabled = !isDisabled) {
                     onDateSelected(date)
                 }

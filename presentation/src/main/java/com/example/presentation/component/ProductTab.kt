@@ -45,7 +45,6 @@ fun ProductTab(
         containerColor = Color.Transparent,
         modifier = Modifier
             .padding(3.dp)
-            .clip(RoundedCornerShape(16.dp))
             .background(Color.LightGray)
     ) {
         pages.forEachIndexed { idx, title ->
