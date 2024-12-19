@@ -90,7 +90,7 @@
             android:layout_height="match_parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="@string/text_empty"
+            android:text="@string/text_empty_result"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:gravity="center" />
 
