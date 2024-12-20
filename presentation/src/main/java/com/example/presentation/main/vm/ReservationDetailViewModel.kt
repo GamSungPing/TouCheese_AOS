@@ -17,6 +17,7 @@ import javax.inject.Inject
 class ReservationDetailViewModel @Inject constructor(
     private val reservationRepository: ReservationRepository
 ) : ViewModel() {
+
     private val _reservations = MutableLiveData<List<Reservation>>()
     val reservations: LiveData<List<Reservation>> get() = _reservations
 

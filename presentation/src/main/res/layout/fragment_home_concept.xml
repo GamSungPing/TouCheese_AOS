@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/btn_concept_liveliness"
-        android:layout_width="180dp"
-        android:layout_height="200dp"
+        android:layout_width="150dp"
+        android:layout_height="170dp"
         android:elevation="15dp"
         android:gravity="bottom|center"
         android:scaleType="centerCrop"
@@ -67,8 +67,8 @@
 
     <ImageView
         android:id="@+id/btn_concept_flash"
-        android:layout_width="180dp"
-        android:layout_height="200dp"
+        android:layout_width="150dp"
+        android:layout_height="170dp"
         android:elevation="15dp"
         android:gravity="bottom|center"
         android:scaleType="centerCrop"
@@ -77,8 +77,8 @@
 
     <ImageView
         android:id="@+id/btn_concept_actor"
-        android:layout_width="180dp"
-        android:layout_height="200dp"
+        android:layout_width="150dp"
+        android:layout_height="170dp"
         android:elevation="15dp"
         android:gravity="bottom|center"
         android:scaleType="centerCrop"
@@ -87,8 +87,8 @@
 
     <ImageView
         android:id="@+id/btn_concept_natural"
-        android:layout_width="180dp"
-        android:layout_height="200dp"
+        android:layout_width="150dp"
+        android:layout_height="170dp"
         android:elevation="15dp"
         android:gravity="bottom|center"
         android:scaleType="centerCrop"
@@ -97,8 +97,8 @@
 
     <ImageView
         android:id="@+id/btn_concept_doll"
-        android:layout_width="180dp"
-        android:layout_height="200dp"
+        android:layout_width="150dp"
+        android:layout_height="170dp"
         android:gravity="bottom|center"
         android:scaleType="centerCrop"
         android:elevation="15dp"
@@ -112,15 +112,15 @@
         android:layout_height="wrap_content"
         android:textSize="15sp"
         android:textStyle="bold"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintEnd_toEndOf="@+id/btn_concept_doll"
         app:layout_constraintStart_toStartOf="@+id/btn_concept_doll"
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <ImageView
         android:id="@+id/btn_concept_watercolor"
-        android:layout_width="180dp"
-        android:layout_height="200dp"
+        android:layout_width="150dp"
+        android:layout_height="170dp"
         android:gravity="bottom|center"
         android:scaleType="centerCrop"
         android:elevation="15dp"
@@ -133,7 +133,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/btn_concept_watercolor"
         app:layout_constraintStart_toStartOf="@+id/btn_concept_watercolor" />

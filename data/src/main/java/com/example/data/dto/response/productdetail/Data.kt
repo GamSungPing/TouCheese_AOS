@@ -4,7 +4,7 @@ internal data class Data(
     val name: String,
     val price: Int,
     val isGroup: Boolean,
-    val baseGuestCount: Int?,
-    val addPeoplePrice: Int?,
-    val productOptions: List<String>?
+    val basePeopleCnt: Int,
+    val addPeoplePrice: Int,
+    val productOptions: List<String>
 )

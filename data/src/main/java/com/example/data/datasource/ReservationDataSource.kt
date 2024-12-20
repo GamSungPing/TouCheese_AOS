@@ -1,26 +1,36 @@
 package com.example.data.datasource
 
+import com.example.data.dto.request.reservation.ReservationRequest
+import com.example.data.dto.response.reservation.AvailableReservationResponse
+import com.example.data.dto.response.reservation.ReservationResponse
+import com.example.data.dto.response.reservationdetail.ReservationDetailResponse
 import com.example.data.service.ReservationService
-import com.example.domain.model.ReservationDetail
-import com.example.domain.model.Reservation
 import javax.inject.Inject
 
-internal data class ReservationDataSource @Inject constructor(
+internal class ReservationDataSource @Inject constructor(
     private val reservationService: ReservationService
 ) {
-    suspend fun getReservationsByMemberId(memberId: Int): List<Reservation> {
-        return reservationService.getReservationsByMemberId(memberId).toDomainModel()
+    suspend fun getReservationsByMemberId(memberId: Int): ReservationResponse {
+        return reservationService.getReservationsByMemberId(memberId)
     }
 
-    suspend fun getReservationDetailByReservationId(reservationId: Int) : ReservationDetail {
-        return reservationService.getReservationDetailByReservationId(reservationId).toDomainModel()
+    suspend fun getReservationDetailByReservationId(reservationId: Int): ReservationDetailResponse {
+        return reservationService.getReservationDetailByReservationId(reservationId)
     }
 
-    suspend fun getCompletedReservationByMemberId(memberId: Int) : List<Reservation> {
-        return reservationService.getCompletedReservationByMemberId(memberId).toDomainModel()
+    suspend fun getCompletedReservationByMemberId(memberId: Int): ReservationResponse {
+        return reservationService.getCompletedReservationByMemberId(memberId)
     }
 
     suspend fun deleteReservationByReservationId(reservationId: Int, memberId: Int) {
-        return reservationService.deleteReservationByReservationId(reservationId, memberId)
+        reservationService.deleteReservationByReservationId(reservationId, memberId)
+    }
+
+    suspend fun getReservationTime(studioId: Int, date: String): AvailableReservationResponse {
+        return reservationService.getAvailableReservationTime(studioId, date)
+    }
+
+    suspend fun makeReservation(request: ReservationRequest){
+        reservationService.makeReservation(request)
     }
 }

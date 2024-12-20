@@ -3,7 +3,6 @@ package com.example.data.dto.response.reviewdetail
 import com.example.domain.model.ReviewDetail
 import com.squareup.moshi.JsonClass
 
-
 @JsonClass(generateAdapter = true)
 internal data class ReviewDetailResponse(
     val data: Data,
