@@ -43,13 +43,13 @@ class ProductDetailViewModel @Inject constructor(
     }
 
     fun addOption(option: ProductOption) {
-        val currentSelectedOption = _state.value.selectedOption.toMutableList()
+        val currentSelectedOption = _state.value.selectedOption.toMutableSet()
         currentSelectedOption.add(option)
         _state.value = _state.value.copy(selectedOption = currentSelectedOption)
     }
 
     fun subOption(option: ProductOption) {
-        val currentSelectedOption = _state.value.selectedOption.toMutableList()
+        val currentSelectedOption = _state.value.selectedOption.toMutableSet()
         currentSelectedOption.remove(option)
         _state.value = _state.value.copy(selectedOption = currentSelectedOption)
     }

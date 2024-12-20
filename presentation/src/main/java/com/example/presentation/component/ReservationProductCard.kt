@@ -37,7 +37,7 @@ fun ReservationProductCard(
     imagePath: String,
     productName: String,
     productPrice: String,
-    options: List<ProductOption>,
+    options: Set<ProductOption>,
     addPeopleCount: Int?
 ) {
     Spacer(
@@ -49,7 +49,7 @@ fun ReservationProductCard(
 
     Row(
         modifier = Modifier
-            .padding(15.dp)
+            .padding(13.dp)
             .fillMaxWidth()
             .wrapContentHeight()
             .border(
@@ -98,7 +98,7 @@ fun ReservationProductCard(
                     color = gray08,
                     fontSize = 17.sp,
                     fontFamily = FontFamily(Font(R.font.pretendard_bold)),
-                    modifier = Modifier.padding(end = 10.dp)
+                    modifier = Modifier.padding(end = 20.dp)
                 )
             }
 
@@ -110,7 +110,7 @@ fun ReservationProductCard(
                     OptionLine(option.name, option.price.toKoreanUnit())
                 }
                 addPeopleCount?.let {
-                    OptionLine("추가 인원", "${it}인")
+                    if (it > 0) OptionLine("추가 인원", "${it}인")
                 }
             }
         }
@@ -125,7 +125,7 @@ fun ReservationProductCardPreview() {
         imagePath = "",
         productName = "증명사진",
         productPrice = "250,000원",
-        options = listOf(
+        options = setOf(
             ProductOption("보정 사진 추가", 60000),
         ),
         addPeopleCount = 1

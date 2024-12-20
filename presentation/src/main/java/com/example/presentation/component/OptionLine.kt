@@ -2,6 +2,7 @@ package com.example.presentation.component
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -11,6 +12,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.presentation.R
 import com.example.presentation.theme.gray05
@@ -38,7 +40,8 @@ fun OptionLineText(text: String){
         text = text,
         fontFamily = FontFamily(Font(R.font.pretendard_regular)),
         fontSize = 16.sp,
-        color = gray05
+        color = gray05,
+        modifier = Modifier.padding(end = 10.dp)
     )
 }
 

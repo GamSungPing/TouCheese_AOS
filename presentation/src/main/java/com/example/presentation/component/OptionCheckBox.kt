@@ -30,9 +30,10 @@ import com.example.presentation.util.ext.toKoreanUnit
 @Composable
 fun OptionCheckBox(
     options: ProductOption,
-    optionChecked: (Boolean, Int) -> Unit
+    isChecked: Boolean,
+    onClickOption: (Boolean, Int) -> Unit
 ) {
-    var checked by remember { mutableStateOf(false) }
+    var checked by remember { mutableStateOf(isChecked) }
 
     Row(
         modifier = Modifier
@@ -49,7 +50,7 @@ fun OptionCheckBox(
             tint = Color.Unspecified,
             modifier = Modifier.clickable {
                 checked = !checked
-                optionChecked(checked, options.price)
+                onClickOption(checked, options.price)
             }
         )
 
@@ -80,6 +81,7 @@ fun OptionCheckBoxPreview() {
             name = "테스트",
             price = 1000
         ),
-        optionChecked = { _, _ -> }
+        isChecked = false,
+        onClickOption = { _, _ -> }
     )
 }

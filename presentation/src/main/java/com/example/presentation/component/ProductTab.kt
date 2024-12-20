@@ -1,9 +1,12 @@
 package com.example.presentation.component
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
@@ -19,6 +22,7 @@ import androidx.compose.ui.zIndex
 import com.example.domain.model.detail.ProductItem
 import com.example.domain.model.detail.ReviewItem
 import com.example.presentation.studio.vm.model.TabStatus
+import com.example.presentation.theme.primary06
 import com.example.presentation.theme.primaryColor
 import com.example.presentation.theme.secondPrimaryColor
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -43,9 +47,18 @@ fun ProductTab(
     TabRow(
         selectedTabIndex = pagerState.currentPage,
         containerColor = Color.Transparent,
+        indicator = { tabPositions ->
+            Box(
+                Modifier
+                    .tabIndicatorOffset(tabPositions[pagerState.currentPage])
+                    .height(4.dp)
+                    .clip(RoundedCornerShape(2.dp))
+                    .background(primary06)
+                    .zIndex(1f)
+            )
+        },
         modifier = Modifier
             .padding(3.dp)
-            .background(Color.LightGray)
     ) {
         pages.forEachIndexed { idx, title ->
             val isSelected = pagerState.currentPage == idx
@@ -53,7 +66,7 @@ fun ProductTab(
                 text = {
                     Text(
                         text = title,
-                        color = Color.Black,
+                        color = if(isSelected) primary06 else Color.Black,
                         fontSize = 17.sp
                     )
                 },
@@ -64,8 +77,7 @@ fun ProductTab(
                     }
                 },
                 modifier = Modifier
-                    .background(color = if (isSelected) secondPrimaryColor else primaryColor)
-                    .zIndex(if (isSelected) 2f else 1f)
+                    .background(color = Color.Transparent)
             )
         }
     }

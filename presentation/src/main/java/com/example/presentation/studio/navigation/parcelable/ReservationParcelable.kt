@@ -13,7 +13,7 @@ import kotlinx.parcelize.TypeParceler
 @TypeParceler<ProductOption, ProductOptionParceler>
 data class ReservationParcelable(
     val studio: ProductInfoParcelable,
-    val selectedOption: List<ProductOption>,
+    val selectedOption: Set<ProductOption>,
     val productName: String,
     val productImgPath: String,
     val addPeopleCount: Int?,
@@ -51,7 +51,7 @@ fun NavHostController.getReservationParcelable(): ReservationParcelable {
         RESERVATION_PARCELABLE
     ) ?: ReservationParcelable(
         ProductInfoParcelable(0,"", "", "", 0, ""),
-        emptyList(),
+        emptySet(),
         productName = "",
         productImgPath = "",
         addPeopleCount = null,
