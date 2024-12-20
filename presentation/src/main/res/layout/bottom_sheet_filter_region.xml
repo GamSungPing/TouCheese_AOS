@@ -133,10 +133,10 @@
 
     <Button
         android:id="@+id/bt_done"
-        style="@style/Widget.Material3.Button.OutlinedButton"
-        android:layout_marginTop="20dp"
+        style="@style/tc_bt_main_filed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="@string/text_done"
         app:layout_constraintStart_toStartOf="@+id/checkbox_container"
         app:layout_constraintTop_toBottomOf="@+id/checkbox_container" />

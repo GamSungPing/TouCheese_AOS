@@ -8,8 +8,8 @@
     </style>
 
     <!-- 버튼 -->
-    <style name="tc_bt_main_filed" parent="Widget.MaterialComponents.Button">
-        <item name="android:backgroundTint">?android:attr/colorPrimary</item>
+    <style name="tc_bt_main_filed">
+        <item name="android:backgroundTint">?android:attr/colorAccent</item>
         <item name="android:padding">10dp</item>
         <item name="cornerRadius">8dp</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>
@@ -24,17 +24,6 @@
         <item name="cornerRadius">8dp</item>
         <item name="android:textColor">@color/primary07</item>
         <item name="android:textSize">18sp</item>
-    </style>
-
-    <style name="tc_bt_filter">
-        <item name="android:layout_height">32dp</item>
-        <item name="android:layout_width">83dp</item>
-        <item name="backgroundTint">@color/white</item>
-        <item name="android:textColor">@color/grey08</item>
-        <item name="cornerRadius">20dp</item>
-        <item name="android:textSize">14sp</item>
-        <item name="iconTint">@color/grey08</item>
-        <item name="iconGravity">textEnd</item>
     </style>
 
     <style name="tc_bt_reservation_state_waiting">
@@ -113,7 +102,6 @@
         <item name="strokeWidth">1dp</item>
         <item name="cornerRadius">6dp</item>
     </style>
-
 
     <!-- 리뷰 댓글 -->
     <style name="tc_card_view_outlined_grey02_large">

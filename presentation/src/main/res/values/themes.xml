@@ -3,6 +3,7 @@
     <style name="Theme.Toucheese" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/primary06</item>
         <item name="colorSecondary">@color/primary01</item>
+        <item name="colorAccent">@color/primary06</item>
         <item name="android:windowBackground">@color/white</item>
         <item name="toolbarStyle">@style/tc_main_toolbar</item>
         <item name="android:textColorPrimary">@color/grey10</item>

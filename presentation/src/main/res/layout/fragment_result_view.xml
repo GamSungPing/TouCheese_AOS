@@ -23,6 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingHorizontal="16dp"
+        android:paddingVertical="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar">
 
@@ -36,38 +37,46 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.button.MaterialButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/bt_filter_price"
-            style="@style/tc_bt_filter"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="36dp"
             android:layout_marginStart="8dp"
             android:text="@string/text_filter_price"
-            app:icon="@drawable/ic_tc_chevron_down"
+            android:textColor="@drawable/tc_filter_button_text_selector"
+            android:background="@drawable/tc_filter_button_selector"
+            android:drawableEnd="@drawable/ic_tc_chevron_down"
+            android:drawablePadding="4dp"
+            android:gravity="center"
             app:layout_constraintBottom_toBottomOf="@+id/bt_reset"
             app:layout_constraintStart_toEndOf="@id/bt_reset"
             app:layout_constraintTop_toTopOf="@+id/bt_reset" />
 
-        <com.google.android.material.button.MaterialButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/bt_filter_region"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_height="36dp"
             android:text="@string/text_filter_region"
-            style="@style/tc_bt_filter"
-            app:icon="@drawable/ic_tc_chevron_down"
+            android:textColor="@drawable/tc_filter_button_text_selector"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/tc_filter_button_selector"
+            android:drawableEnd="@drawable/ic_tc_chevron_down"
+            android:drawablePadding="4dp"
+            android:gravity="center"
             app:layout_constraintStart_toEndOf="@+id/bt_filter_price"
             app:layout_constraintTop_toTopOf="@+id/bt_filter_price" />
 
-
-        <com.google.android.material.button.MaterialButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/bt_filter_rating"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="8dp"
             android:text="@string/text_filter_rating"
-            style="@style/tc_bt_filter"
-            app:icon="@drawable/ic_tc_chevron_down"
+            android:textColor="@drawable/tc_filter_button_text_selector"
+            android:background="@drawable/tc_filter_button_selector"
+            android:drawableEnd="@drawable/ic_tc_chevron_down"
+            android:drawablePadding="4dp"
+            android:gravity="center"
             app:layout_constraintStart_toEndOf="@+id/bt_filter_region"
             app:layout_constraintTop_toTopOf="@+id/bt_filter_region" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -83,8 +92,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_bt_filter" />
-
-
+    
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_empty_result"
         android:visibility="gone"
