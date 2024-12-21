@@ -2,6 +2,7 @@ package com.example.presentation.main.view.fragment
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.NavHostFragment
@@ -27,7 +28,7 @@ class ReservationListFragment : Fragment(R.layout.fragment_reservation_list) {
       getOngoingReservations(memberId)
       setTabListener(binding)
 
-      observerReservations()
+      observerReservations(binding)
    }
 
    private fun setRvReservationList(binding: FragmentReservationListBinding) {
@@ -87,9 +88,20 @@ class ReservationListFragment : Fragment(R.layout.fragment_reservation_list) {
       viewModel.getCompletedReservationByMemberId(memberId)
    }
 
-   private fun observerReservations() {
+   private fun observerReservations(binding: FragmentReservationListBinding) {
       viewModel.reservations.observe(viewLifecycleOwner) {
-         reservationAdapter.submitList(it)
+         if(it.isNotEmpty()) {
+            reservationAdapter.submitList(it)
+            visibleEmptyLayout(false, binding)
+         } else {
+            visibleEmptyLayout(true, binding)
+         }
+      }
+   }
+
+   private fun visibleEmptyLayout(isVisible: Boolean , binding: FragmentReservationListBinding) {
+      with(binding) {
+         layoutEmptyReservationList.isVisible = isVisible
       }
    }
 }

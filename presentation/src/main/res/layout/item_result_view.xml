@@ -5,9 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp"
+    android:paddingHorizontal="16dp"
+    android:layout_marginTop="16dp"
     app:layout_constraintStart_toStartOf="parent">
-
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_studio_profile"
@@ -20,8 +20,8 @@
 
         <ImageView
             android:id="@+id/iv_studio_main_image"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:src="@drawable/image_test"
             android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,41 +32,45 @@
         android:id="@+id/tv_studio_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
         android:maxLines="1"
         android:text="Studio Title"
         android:textSize="16dp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/cv_studio_profile"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/cv_studio_profile" />
+
+    <TextView
+        android:id="@+id/tv_rating"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_tc_star_fill"
+        android:drawablePadding="4dp"
+        android:maxLines="1"
+        android:text="3.8"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/cv_studio_profile"
+        app:layout_constraintStart_toStartOf="@+id/tv_studio_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_studio_name" />
+
 
     <ImageButton
         android:id="@+id/bt_favorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="8dp"
         android:background="@android:color/transparent"
-        android:src="@drawable/icon_favorite_24px"
+        android:src="@drawable/ic_tc_bookmark_outlined"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_rating"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <TextView
-        android:id="@+id/tv_rating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="4.5"
-        app:layout_constraintEnd_toEndOf="@+id/bt_favorite"
-        app:layout_constraintStart_toStartOf="@+id/bt_favorite"
-        app:layout_constraintTop_toBottomOf="@+id/bt_favorite" />
+        app:layout_constraintTop_toTopOf="@+id/tv_studio_name" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_portfolio_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/cv_studio_profile">
     </androidx.recyclerview.widget.RecyclerView>
