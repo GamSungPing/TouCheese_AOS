@@ -38,6 +38,7 @@ firebase-bom = "33.6.0"
 firebaseMessagingKtx = "24.1.0"
 playServicesBase = "18.5.0"
 swiperefreshlayout = "1.1.0"
+kakao = "2.20.1"
 
 [libraries]
 accompanist-pager = { module = "com.google.accompanist:accompanist-pager", version.ref = "accompanistPager" }
@@ -94,7 +95,7 @@ firebase-messaging-ktx = { module = "com.google.firebase:firebase-messaging-ktx"
 firebase-analytics-ktx = { module = "com.google.firebase:firebase-analytics", name = "firebase-analytics" }
 google-firebase-messaging-ktx = { group = "com.google.firebase", name = "firebase-messaging-ktx", version.ref = "firebaseMessagingKtx" }
 play-services-base = { group = "com.google.android.gms", name = "play-services-base", version.ref = "playServicesBase" }
-
+kakao-user = { group="com.kakao.sdk", name="v2-user", version.ref="kakao" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

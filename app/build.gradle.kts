@@ -11,6 +11,8 @@ plugins {
 
 val properties = Properties()
 properties.load(project.rootProject.file("local.properties").inputStream())
+val kakaoApiKey = properties.getProperty("kakao_api_key") ?: ""
+val kakaoNativeKey = properties.getProperty("kakao_native_key") ?: ""
 
 android {
     namespace = "com.example.toucheese"
@@ -24,6 +26,10 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "KAKAO_API_KEY", "\"$kakaoApiKey\"")
+        buildConfigField("String", "KAKAO_NATIVE_KEY", "\"$kakaoNativeKey\"")
+        manifestPlaceholders["KAKAO_NATIVE_KEY"] = kakaoNativeKey
     }
 
     buildTypes {
@@ -68,4 +74,5 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics.ktx)
     implementation(libs.firebase.messaging.ktx)
+    implementation(libs.kakao.user)
 }
