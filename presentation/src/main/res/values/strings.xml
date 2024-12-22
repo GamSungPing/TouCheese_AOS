@@ -92,4 +92,7 @@
     <string name="text_reservation_total_price">총 결제 금액</string>
     <string name="text_reservation_day">예약 날짜</string>
     <string name="text_reservation_time">예약 시간</string>
+    <string name="text_bookmark_list">찜 목록</string>
+    <string name="text_empty_bookmark_list">아직 찜한 스튜디오가 없습니다</string>
+
 </resources>
