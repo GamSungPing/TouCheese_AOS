@@ -1,4 +1,4 @@
-package com.example.presentation.studio.screen
+package com.example.presentation.screen.reservation
 
 import android.content.Context
 import androidx.compose.foundation.background
@@ -24,8 +24,8 @@ import com.example.presentation.component.ReservationCard
 import com.example.presentation.component.ReservationPeopleInfoCard
 import com.example.presentation.component.ReservationProductCard
 import com.example.presentation.component.TopBar
-import com.example.presentation.studio.navigation.parcelable.ReservationParcelable
-import com.example.presentation.studio.vm.ReservationViewModel
+import com.example.presentation.navigation.parcelable.ReservationParcelable
+import com.example.presentation.screen.reservation.vm.ReservationViewModel
 
 @Composable
 fun ReserveScreen(

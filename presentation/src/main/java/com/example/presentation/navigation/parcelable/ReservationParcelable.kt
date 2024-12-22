@@ -1,10 +1,10 @@
-package com.example.presentation.studio.navigation.parcelable
+package com.example.presentation.navigation.parcelable
 
 import android.os.Parcel
 import android.os.Parcelable
 import androidx.navigation.NavHostController
 import com.example.domain.model.ProductOption
-import com.example.presentation.studio.navigation.parcelable.ReservationParcelable.Companion.RESERVATION_PARCELABLE
+import com.example.presentation.navigation.parcelable.ReservationParcelable.Companion.RESERVATION_PARCELABLE
 import kotlinx.parcelize.Parceler
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.TypeParceler

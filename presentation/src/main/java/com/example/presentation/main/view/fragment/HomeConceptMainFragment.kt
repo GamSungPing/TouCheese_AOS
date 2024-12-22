@@ -8,7 +8,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.example.domain.rule.Concept
 import com.example.presentation.R
 import com.example.presentation.databinding.FragmentHomeConceptMainBinding
-import com.example.presentation.main.vm.HomeConceptViewModel
+import com.example.presentation.screen.concept.vm.HomeConceptViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kr.techit.lion.presentation.ext.repeatOnViewStarted
 

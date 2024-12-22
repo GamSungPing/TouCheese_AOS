@@ -1,4 +1,4 @@
-package com.example.presentation.studio.screen
+package com.example.presentation.screen.product_detail
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.PaddingValues
@@ -25,9 +25,9 @@ import com.example.presentation.component.ProductDetailHeader
 import com.example.presentation.component.ProductReserveButton
 import com.example.presentation.component.ReservationLayer
 import com.example.presentation.component.TopBar
-import com.example.presentation.studio.navigation.parcelable.ProductInfoParcelable
-import com.example.presentation.studio.navigation.parcelable.ReservationParcelable
-import com.example.presentation.studio.vm.ProductDetailViewModel
+import com.example.presentation.navigation.parcelable.ProductInfoParcelable
+import com.example.presentation.navigation.parcelable.ReservationParcelable
+import com.example.presentation.screen.product_detail.vm.ProductDetailViewModel
 import com.example.presentation.theme.gray01
 import com.example.presentation.theme.gray03
 import com.example.presentation.util.ext.toKoreanUnit

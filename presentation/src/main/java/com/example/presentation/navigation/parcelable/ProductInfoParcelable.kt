@@ -1,8 +1,8 @@
-package com.example.presentation.studio.navigation.parcelable
+package com.example.presentation.navigation.parcelable
 
 import android.os.Parcelable
 import androidx.navigation.NavHostController
-import com.example.presentation.studio.navigation.parcelable.ProductInfoParcelable.Companion.PRODUCT_INFO_PARCELABLE
+import com.example.presentation.navigation.parcelable.ProductInfoParcelable.Companion.PRODUCT_INFO_PARCELABLE
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

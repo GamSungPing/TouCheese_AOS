@@ -1,4 +1,4 @@
-package com.example.presentation.studio.vm.model
+package com.example.presentation.screen.studio.vm.model
 
 import com.example.domain.model.detail.StudioDetail
 

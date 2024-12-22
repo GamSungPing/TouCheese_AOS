@@ -1,4 +1,4 @@
-package com.example.presentation.studio.vm.model
+package com.example.presentation.screen.product_detail.vm.model
 
 import com.example.domain.model.AvailableReservationTime
 import com.example.domain.model.ProductDetail

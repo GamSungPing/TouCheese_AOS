@@ -1,4 +1,4 @@
-package com.example.presentation.studio.screen
+package com.example.presentation.screen.studio
 
 import android.content.Context
 import androidx.compose.foundation.background
@@ -52,9 +52,9 @@ import com.example.presentation.R
 import com.example.presentation.component.ExpandableNotificationCard
 import com.example.presentation.component.ProductTab
 import com.example.presentation.component.StudioImageSection
-import com.example.presentation.studio.navigation.parcelable.ProductInfoParcelable
-import com.example.presentation.studio.vm.StudioViewModel
-import com.example.presentation.studio.vm.model.StudioState
+import com.example.presentation.navigation.parcelable.ProductInfoParcelable
+import com.example.presentation.screen.studio.vm.StudioViewModel
+import com.example.presentation.screen.studio.vm.model.StudioState
 import com.example.presentation.theme.gray02
 import com.example.presentation.theme.gray03
 import com.example.presentation.theme.gray08

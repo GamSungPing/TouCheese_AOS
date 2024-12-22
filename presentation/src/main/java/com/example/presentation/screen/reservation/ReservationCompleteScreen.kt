@@ -1,4 +1,4 @@
-package com.example.presentation.studio.screen
+package com.example.presentation.screen.reservation
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background

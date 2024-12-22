@@ -1,9 +1,9 @@
-package com.example.presentation.studio.vm
+package com.example.presentation.screen.studio.vm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.repository.studio.StudioRepository
-import com.example.presentation.studio.vm.model.StudioState
+import com.example.presentation.screen.studio.vm.model.StudioState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

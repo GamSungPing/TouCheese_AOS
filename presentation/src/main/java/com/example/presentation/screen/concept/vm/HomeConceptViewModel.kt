@@ -1,4 +1,4 @@
-package com.example.presentation.main.vm
+package com.example.presentation.screen.concept.vm
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.repository.studio.StudioConceptRepository
 import com.example.domain.rule.Concept
-import com.example.presentation.main.vm.model.HomeConceptState
+import com.example.presentation.screen.concept.vm.model.HomeConceptState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -18,7 +18,7 @@ class HomeConceptViewModel @Inject constructor(
     private val studioConceptRepository: StudioConceptRepository
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(HomeConceptState.create())
+    private var _uiState = MutableStateFlow(HomeConceptState.create())
     val uiState: StateFlow<HomeConceptState> get() = _uiState
 
     private val _backStackRequest = MutableLiveData<Unit>()

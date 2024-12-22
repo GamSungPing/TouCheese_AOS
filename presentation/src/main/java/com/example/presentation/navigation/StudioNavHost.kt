@@ -1,17 +1,17 @@
-package com.example.presentation.studio.navigation
+package com.example.presentation.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.presentation.studio.navigation.parcelable.getProductInfoParcelable
-import com.example.presentation.studio.navigation.parcelable.getReservationParcelable
-import com.example.presentation.studio.navigation.parcelable.setProductInfoParcelable
-import com.example.presentation.studio.navigation.parcelable.setReservationParcelable
-import com.example.presentation.studio.screen.ProductDetailScreen
-import com.example.presentation.studio.screen.ReservationCompleteScreen
-import com.example.presentation.studio.screen.ReserveScreen
-import com.example.presentation.studio.screen.StudioScreen
+import com.example.presentation.navigation.parcelable.getProductInfoParcelable
+import com.example.presentation.navigation.parcelable.getReservationParcelable
+import com.example.presentation.navigation.parcelable.setProductInfoParcelable
+import com.example.presentation.navigation.parcelable.setReservationParcelable
+import com.example.presentation.screen.product_detail.ProductDetailScreen
+import com.example.presentation.screen.reservation.ReservationCompleteScreen
+import com.example.presentation.screen.reservation.ReserveScreen
+import com.example.presentation.screen.studio.StudioScreen
 
 @Composable
 fun StudioNavHost(

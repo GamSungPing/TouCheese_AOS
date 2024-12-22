@@ -1,4 +1,4 @@
-package com.example.presentation.main.vm.model
+package com.example.presentation.screen.concept.vm.model
 
 import com.example.domain.model.StudioConcepts
 import com.example.domain.rule.Concept
@@ -8,7 +8,7 @@ data class HomeConceptState(
     val concept: Concept
 ){
     companion object{
-        fun create(): HomeConceptState{
+        fun create(): HomeConceptState {
             return HomeConceptState(
                 homeConcept = StudioConcepts(
                     emptyList()

@@ -1,4 +1,4 @@
-package com.example.presentation.studio.vm
+package com.example.presentation.screen.product_detail.vm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,7 +6,7 @@ import com.example.domain.model.AvailableTime
 import com.example.domain.model.ProductOption
 import com.example.domain.model.Schedule
 import com.example.domain.repository.product.ProductRepository
-import com.example.presentation.studio.vm.model.ProductState
+import com.example.presentation.screen.product_detail.vm.model.ProductState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

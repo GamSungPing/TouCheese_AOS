@@ -1,11 +1,11 @@
-package com.example.presentation.studio
+package com.example.presentation.screen.studio
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import com.example.presentation.main.view.MainActivity
-import com.example.presentation.studio.navigation.StudioNavHost
+import com.example.presentation.navigation.StudioNavHost
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

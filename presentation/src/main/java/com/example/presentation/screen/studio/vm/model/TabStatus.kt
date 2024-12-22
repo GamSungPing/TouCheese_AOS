@@ -1,4 +1,4 @@
-package com.example.presentation.studio.vm.model
+package com.example.presentation.screen.studio.vm.model
 
 sealed class TabStatus(val value: Int, val title: String) {
     data object Price : TabStatus(0, "가격")
