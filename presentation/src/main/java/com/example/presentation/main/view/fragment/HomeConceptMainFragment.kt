@@ -18,17 +18,15 @@ class HomeConceptMainFragment : Fragment(R.layout.fragment_home_concept_main) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val binding = FragmentHomeConceptMainBinding.bind(view)
+        FragmentHomeConceptMainBinding.bind(view)
 
         val navController = NavHostFragment.findNavController(
             childFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         )
         repeatOnViewStarted {
-            viewModel.uiState.collect { state ->
-                if (navController.currentDestination?.id == R.id.homeConceptFragment &&
-                    state.concept != Concept.Initial
-                ) {
-                    val action = HomeConceptFragmentDirections.actionToResultViewFragment(state.concept.id)
+            viewModel.event.collect { event ->
+                if (navController.currentDestination?.id == R.id.homeConceptFragment && event != Concept.Initial) {
+                    val action = HomeConceptFragmentDirections.actionToResultViewFragment(event.id)
                     navController.navigate(action)
                 }
             }

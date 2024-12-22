@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.presentation.R
@@ -24,13 +25,18 @@ class HomeConceptFragment : Fragment(R.layout.fragment_home_concept) {
         super.onCreateView(inflater, container, savedInstanceState)
         val view = inflater.inflate(R.layout.fragment_home_concept, container, false)
         val composeView = view.findViewById<ComposeView>(R.id.compose_view)
-        composeView.setContent {
-            ConceptScreen(
-                viewModel = viewModel,
-                onClickConcept = {
-                    viewModel.onChangeScreenState(it)
-                }
+        composeView.apply {
+            setViewCompositionStrategy(
+                ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed
             )
+            setContent {
+                ConceptScreen(
+                    viewModel = viewModel,
+                    onClickConcept = {
+                        viewModel.onChangeConcept(it)
+                    }
+                )
+            }
         }
         return view
     }
