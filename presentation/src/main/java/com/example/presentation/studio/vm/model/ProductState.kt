@@ -10,7 +10,7 @@ import com.example.presentation.util.ext.toKoreanUnit
 data class ProductState(
     val product: ProductDetail,
     val addGuestCount: Int,
-    val selectedOption: List<ProductOption>,
+    val selectedOption: Set<ProductOption>,
     val availableReservationTime: AvailableReservationTime,
     val schedule: Schedule?
 ) {
@@ -31,7 +31,7 @@ data class ProductState(
             return ProductState(
                 product = ProductDetail.create(),
                 addGuestCount = 0,
-                emptyList(),
+                emptySet(),
                 availableReservationTime = AvailableReservationTime.create(),
                 schedule = null
             )

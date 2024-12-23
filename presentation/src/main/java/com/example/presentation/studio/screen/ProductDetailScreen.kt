@@ -56,6 +56,7 @@ fun ProductDetailScreen(
         description = description,
         path = path,
         options = state.product.productOptions,
+        selectedOptions = state.selectedOption,
         basePeopleAmount = state.product.basePeopleCnt,
         productPrice = state.productPriceMessage,
         isGroup = state.product.isGroup,
@@ -96,6 +97,7 @@ fun ProductDetailScreen(
     description: String,
     path: String,
     options: List<ProductOption>?,
+    selectedOptions: Set<ProductOption>,
     basePeopleAmount: Int,
     productPrice: String,
     isGroup: Grouping,
@@ -127,6 +129,7 @@ fun ProductDetailScreen(
         item {
             OptionBox(
                 options = options,
+                selectedOptions = selectedOptions,
                 onChangeCheckBoxState = onChangeCheckBoxState
             )
         }
@@ -175,7 +178,8 @@ fun ProductDetailScreenPreview() {
         options = FakeProductOption,
         basePeopleAmount = 1,
         productPrice = "17,000원",
-        Grouping.NOT_GROUP,
+        isGroup = Grouping.NOT_GROUP,
+        selectedOptions = emptySet(),
         paymentMessage = "선택 상품 주문(17,000원)",
         dateButtonTitle = "예약일자 및 시간 선택",
         onClickBackButton = {},

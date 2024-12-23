@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.domain.rule.Pricing
 import com.example.domain.rule.Region
@@ -21,6 +20,7 @@ import com.example.presentation.main.view.adapter.ResultViewAdapter
 import com.example.presentation.main.vm.HomeConceptViewModel
 import com.example.presentation.main.vm.ResultViewModel
 import com.example.presentation.studio.StudioActivity
+import com.example.presentation.theme.primaryColor
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -62,12 +62,6 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             itemAnimator = null
-            addItemDecoration(
-                DividerItemDecoration(
-                    requireContext(),
-                    DividerItemDecoration.VERTICAL
-                )
-            )
             adapter = resultViewAdapter
         }
 
@@ -111,11 +105,10 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
 
     private fun observeFilterState(binding: FragmentResultViewBinding) {
         viewModel.filterState.observe(viewLifecycleOwner) { filterState ->
-
-            if (filterState.hasRatingFilter) {
-             binding.btFilterRating.setIconResource(R.drawable.icon_arrow_drop_down_24px)
-            } else {
-                binding.btFilterRating.icon = null
+            with(binding) {
+                btFilterRating.isSelected = filterState.hasRatingFilter
+                btFilterRegion.isSelected = filterState.hasSelectedRegion()
+                btFilterPrice.isSelected = filterState.hasPriceFilter
             }
         }
     }

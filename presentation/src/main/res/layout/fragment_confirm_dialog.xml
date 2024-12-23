@@ -23,7 +23,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="12dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirmTextView">
@@ -31,19 +31,22 @@
         <Button
             android:id="@+id/yesButton"
             style="@style/tc_bt_main_filed"
-            android:layout_width="150dp"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
             android:layout_weight="1"
             android:text="확인"
+            android:minWidth="150dp"
             android:textSize="18sp" />
 
         <Button
             android:id="@+id/noButton"
             style="@style/tc_bt_main_outlined"
-            android:layout_width="150dp"
-            android:layout_height="48dp"
+            android:layout_marginStart="10dp"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
             android:layout_weight="1"
             android:text="취소"
+            android:minWidth="150dp"
             android:textSize="18sp" />
 
     </LinearLayout>
