@@ -36,12 +36,6 @@ class LikeFragment : Fragment(R.layout.fragment_like) {
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             itemAnimator = null
-            addItemDecoration(
-                DividerItemDecoration(
-                    requireContext(),
-                    DividerItemDecoration.VERTICAL
-                )
-            )
             adapter = likeViewAdapter
         }
     }
