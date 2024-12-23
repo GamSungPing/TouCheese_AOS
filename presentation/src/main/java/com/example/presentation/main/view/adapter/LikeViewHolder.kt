@@ -10,7 +10,8 @@ import java.util.Locale
 
 class LikeViewHolder(
     private val binding: ItemLikeBinding,
-    private val onClickStudio: (String, String) -> Unit
+    private val onClickStudio: (String, String) -> Unit,
+    private val onClickLike: (Int) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
     private val portfolioAdapter = PortfolioAdapter()
 
@@ -23,20 +24,33 @@ class LikeViewHolder(
         val id = like.id
         val name = like.name
         val rating = like.rating
-        val profilePrice = like.profilePrice
         val portfolioUrls = like.portfolioUrls
         val profileURL = like.profileURL
+        val reviewCnt = like.reviewCount
 
-        binding.tvStudioName.text = name
-        binding.tvRating.text = String.format(Locale.US, "%.1f", rating.toDouble())
+        binding.tvLikeStudioName.text = name
+        binding.tvLikeRating.text = String.format(Locale.US, "%.1f", rating.toDouble())
+        binding.tvLikeReviewCnt.text = "(${reviewCnt})"
 
-        val imageView: ImageView = binding.ivStudioMainImage
+        val imageView: ImageView = binding.ivLikeStudioMainImage
         imageView.setImage(imageView, profileURL)
 
         portfolioAdapter.submitList(portfolioUrls)
 
+
+        setOnClickStudioListener(id, profileURL)
+        setOnClickLikeButtonListener(id.toInt())
+    }
+
+    private fun setOnClickStudioListener(studioId: String, profileURL: String) {
         binding.root.setOnClickListener {
-            onClickStudio(id, profileURL)
+            onClickStudio(studioId, profileURL)
+        }
+    }
+
+    private fun setOnClickLikeButtonListener(studioId: Int) {
+        binding.btLikeFilled.setOnClickListener {
+            onClickLike(studioId)
         }
     }
 }

@@ -10,13 +10,15 @@ import com.example.presentation.databinding.ItemLikeBinding
 import com.example.presentation.util.ext.preloadImage
 
 class LikeViewAdapter(
-    private val onClickStudio: (String, String) -> Unit
+    private val onClickStudio: (String, String) -> Unit,
+    private val onClickLike : (Int) -> Unit
 ) : ListAdapter<Like, LikeViewHolder>(LikeDiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LikeViewHolder {
         return LikeViewHolder(
             ItemLikeBinding.inflate(LayoutInflater.from(parent.context), parent, false),
-            onClickStudio
+            onClickStudio,
+            onClickLike
         )
     }
 

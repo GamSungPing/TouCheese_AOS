@@ -10,13 +10,15 @@ import com.example.presentation.databinding.ItemResultViewBinding
 import com.example.presentation.util.ext.preloadImage
 
 class ResultViewAdapter(
-    private val onClickStudio: (String, String) -> Unit
+    private val onClickStudio: (String, String) -> Unit,
+    private val onClickLike: (Int) -> Unit
 ) : ListAdapter<StudioInfoWithConcept, ResultViewHolder>(StudioDiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ResultViewHolder {
         return ResultViewHolder(
             ItemResultViewBinding.inflate(LayoutInflater.from(parent.context), parent, false),
-            onClickStudio
+            onClickStudio,
+            onClickLike
         )
     }
 

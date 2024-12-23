@@ -6,7 +6,7 @@ import com.example.data.service.LikeService
 import javax.inject.Inject
 
 internal class LikeDataSource @Inject constructor(
-    private val likeService: LikeService
+    private val likeService: LikeService,
 ) {
     suspend fun getLikes(memberId: Int): LikeResponse {
         return likeService.getLikes(memberId)
@@ -14,5 +14,9 @@ internal class LikeDataSource @Inject constructor(
 
     suspend fun addLike(request: LikeRequestDTO) {
         return likeService.addLike(request)
+    }
+
+    suspend fun deleteLike(studioId: Int, memberId: Int) {
+        return likeService.deleteLike(studioId, memberId)
     }
 }

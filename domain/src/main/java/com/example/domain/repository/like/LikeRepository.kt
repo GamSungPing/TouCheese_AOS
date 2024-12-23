@@ -6,4 +6,5 @@ import com.example.domain.model.LikeRequest
 interface LikeRepository {
     suspend fun getLikes(memberId: Int): List<Like>
     suspend fun addLike(request: LikeRequest)
+    suspend fun deleteLike(studioId: Int, memberId: Int)
 }

@@ -18,4 +18,8 @@ internal class LikeRepositoryImpl @Inject constructor(
         val likeRequestDTO = request.toDataModel()
         return likeDataSource.addLike(likeRequestDTO)
     }
+
+    override suspend fun deleteLike(studioId: Int, memberId: Int) {
+        return likeDataSource.deleteLike(studioId, memberId)
+    }
 }

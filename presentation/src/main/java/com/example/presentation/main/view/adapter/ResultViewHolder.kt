@@ -10,7 +10,8 @@ import java.util.Locale
 
 class ResultViewHolder(
     private val binding: ItemResultViewBinding,
-    private val onClickStudio: (String, String) -> Unit
+    private val onClickStudio: (String, String) -> Unit,
+    private val onClickLike: (Int) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
     private val portfolioAdapter = PortfolioAdapter()
 
@@ -23,7 +24,6 @@ class ResultViewHolder(
         val id = studio.id
         val name = studio.name
         val rating = studio.rating
-        val profilePrice = studio.profilePrice
         val portfolioUrls = studio.portfolioUrls
         val profileURL = studio.profileURL
 
@@ -33,10 +33,23 @@ class ResultViewHolder(
         val imageView: ImageView = binding.ivStudioMainImage
         imageView.setImage(imageView, profileURL)
 
+        setOnClickStudioListener(id, profileURL)
+        setOnClickLikeButtonListener(id.toInt())
+
         portfolioAdapter.submitList(portfolioUrls)
 
+    }
+
+
+    private fun setOnClickStudioListener(studioId: String, profileURL: String) {
         binding.root.setOnClickListener {
-            onClickStudio(id, profileURL)
+            onClickStudio(studioId, profileURL)
+        }
+    }
+
+    private fun setOnClickLikeButtonListener(studioId: Int) {
+        binding.btLike.setOnClickListener {
+            onClickLike(studioId)
         }
     }
 }
