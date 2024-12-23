@@ -49,7 +49,6 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setupWithNavController(navController)
 
         askNotificationPermission()
-        viewModel.sendToToken()
 
         settingLocale(this)
     }
