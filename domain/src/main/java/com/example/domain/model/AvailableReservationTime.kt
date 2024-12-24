@@ -11,7 +11,18 @@ data class AvailableReservationTime (
     companion object{
         fun create(): AvailableReservationTime{
             return AvailableReservationTime(
-                listOf(),
+                listOf(
+                    AvailableTime("09:00"),
+                    AvailableTime("10:00"),
+                    AvailableTime("11:00"),
+                    AvailableTime("12:00"),
+                    AvailableTime("13:00"),
+                    AvailableTime("15:00"),
+                    AvailableTime("16:00"),
+                    AvailableTime("17:00"),
+                    AvailableTime("18:00"),
+                    AvailableTime("19:00"),
+                ),
                 AvailableTime(""),
                 AvailableTime("")
             )

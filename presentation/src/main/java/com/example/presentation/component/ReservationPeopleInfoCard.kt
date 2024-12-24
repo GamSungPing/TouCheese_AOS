@@ -16,7 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.presentation.R
-import com.example.presentation.studio.vm.model.ReservationPersonalInfo
+import com.example.presentation.screen.studio.vm.model.ReservationPersonalInfo
 import com.example.presentation.theme.gray02
 import com.example.presentation.theme.gray10
 

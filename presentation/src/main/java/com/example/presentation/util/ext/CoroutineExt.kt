@@ -19,3 +19,4 @@ fun Fragment.repeatOnViewStarted(block: suspend CoroutineScope.() -> Unit) {
        repeatOnLifecycle(Lifecycle.State.STARTED, block)
     }
 }
+

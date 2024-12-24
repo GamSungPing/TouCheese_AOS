@@ -11,25 +11,25 @@ import javax.inject.Inject
 
 internal class AuthAuthenticator @Inject constructor(
     private val tokenDataSource: TokenDataSource,
-    private val authDataSource: AuthDataSource
+    //private val authDataSource: AuthDataSource
 ) : Authenticator {
 
     override fun authenticate(route: Route?, response: Response): Request? {
-        val accessToken = runBlocking { getNewAccessToken() } ?: return null
+        val accessToken = ""//runBlocking { getNewAccessToken() } ?: return null
         return response.request.newBuilder().header("Authorization", "Bearer $accessToken").build()
     }
 
-    private suspend fun getNewAccessToken(): String? {
-        val newToken = authDataSource.refresh().getOrNull()
-        return newToken?.let {
-            tokenDataSource.saveToken(
-                accessToken = it.accessToken,
-                refreshToken = it.refreshToken
-            )
-            it.accessToken
-        } ?: run {
-            authDataSource.logout()
-            null
-        }
-    }
+//    private suspend fun getNewAccessToken(): String? {
+//        val newToken = authDataSource.refresh().getOrNull()
+//        return newToken?.let {
+//            tokenDataSource.saveToken(
+//                accessToken = it.accessToken,
+//                refreshToken = it.refreshToken
+//            )
+//            it.accessToken
+//        } ?: run {
+//            authDataSource.logout()
+//            null
+//        }
+//    }
 }

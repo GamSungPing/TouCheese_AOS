@@ -11,7 +11,10 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 import com.example.data.BuildConfig
+import com.example.data.auth.AuthAuthenticator
+import com.example.data.auth.AuthInterceptor
 import com.example.data.dto.request.util.LocalDateAdapter
+import com.example.data.service.AuthService
 import com.example.data.service.ConceptService
 import com.example.data.service.DeviceService
 import com.example.data.service.ProductService
@@ -65,6 +68,12 @@ internal object NetworkModule {
 
     @Singleton
     @Provides
+    fun provideAuthService(retrofit: Retrofit): AuthService {
+        return retrofit.create(AuthService::class.java)
+    }
+
+    @Singleton
+    @Provides
     fun provideRetrofit(client: OkHttpClient, moshi: Moshi): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
@@ -75,7 +84,10 @@ internal object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideOkHttpClient(): OkHttpClient {
+    fun provideClient(
+        authenticator: AuthAuthenticator,
+        interceptor: AuthInterceptor
+    ): OkHttpClient {
         val loggingInterceptor = HttpLoggingInterceptor().apply {
             level = if (BuildConfig.DEBUG) {
                 HttpLoggingInterceptor.Level.BODY
@@ -84,8 +96,10 @@ internal object NetworkModule {
             }
         }
         return OkHttpClient.Builder()
+            .authenticator(authenticator)
             .connectTimeout(10, TimeUnit.SECONDS)
             .readTimeout(10, TimeUnit.SECONDS)
+            .addInterceptor(interceptor)
             .addInterceptor(loggingInterceptor)
             .build()
     }

@@ -24,7 +24,7 @@ class HomeConceptFragment : Fragment(R.layout.fragment_home_concept) {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         val view = inflater.inflate(R.layout.fragment_home_concept, container, false)
-        val composeView = view.findViewById<ComposeView>(R.id.compose_view)
+        val composeView = view.findViewById<ComposeView>(R.id.composeView)
         composeView.apply {
             setViewCompositionStrategy(
                 ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed

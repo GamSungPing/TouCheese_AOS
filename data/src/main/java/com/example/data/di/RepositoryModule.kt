@@ -1,6 +1,6 @@
 package com.example.data.di
 
-import com.example.data.repository.DefaultReserveInfoRepositoryImpl
+import com.example.data.repository.AuthRepositoryImpl
 import com.example.data.repository.DeviceRegisterRepositoryImpl
 import com.example.data.repository.FirebaseRepositoryImpl
 import com.example.data.repository.ProductRepositoryImpl
@@ -8,7 +8,7 @@ import com.example.data.repository.ReservationRepositoryImpl
 import com.example.data.repository.ReviewDetailRepositoryImpl
 import com.example.data.repository.StudioConceptRepositoryImpl
 import com.example.data.repository.StudioRepositoryImpl
-import com.example.domain.repository.DefaultReserveInfoRepository
+import com.example.domain.repository.AuthRepository
 import com.example.domain.repository.FirebaseRepository
 import com.example.domain.repository.device.DeviceRegisterRepository
 import com.example.domain.repository.product.ProductRepository
@@ -37,9 +37,6 @@ internal interface RepositoryModule {
     fun bindStudioConceptRepository(studioConceptRepositoryImpl: StudioConceptRepositoryImpl) : StudioConceptRepository
 
     @Binds
-    fun bindDefaultReserveInfoRepository(dataStoreRepositoryImpl: DefaultReserveInfoRepositoryImpl) : DefaultReserveInfoRepository
-
-    @Binds
     fun bindReservationRepository(reservationRepositoryImpl: ReservationRepositoryImpl): ReservationRepository
 
     @Binds
@@ -47,4 +44,7 @@ internal interface RepositoryModule {
 
     @Binds
     fun bindsFirebaseRepository(firebaseRepositoryImpl: FirebaseRepositoryImpl): FirebaseRepository
+
+    @Binds
+    fun bindsAuthRepository(authRepositoryImpl: AuthRepositoryImpl): AuthRepository
 }
