@@ -39,6 +39,7 @@ import com.example.presentation.theme.gray04
 import com.example.presentation.theme.gray07
 import com.example.presentation.theme.gray10
 import com.example.presentation.theme.primary06
+import com.example.presentation.util.Constants.MAX_NICKNAME_LENGTH
 
 @Composable
 fun ModifyNickNameModal(
@@ -84,7 +85,7 @@ fun ModifyNickNameModal(
                 OutlinedTextField(
                     value = input,
                     onValueChange = { newText ->
-                        if (newText.length <= 10) {
+                        if (newText.length <= MAX_NICKNAME_LENGTH.value) {
                             input = newText
                         }
                         isClickable = input.isNotBlank()
@@ -101,7 +102,7 @@ fun ModifyNickNameModal(
                         focusedIndicatorColor = gray07,
                         unfocusedIndicatorColor = gray04
                     ),
-                    isError = input.isBlank() || input.length > 10,
+                    isError = input.isBlank() || input.length > MAX_NICKNAME_LENGTH.value,
                     trailingIcon = {
                         if (input.isNotEmpty()) {
                             Icon(
@@ -124,7 +125,7 @@ fun ModifyNickNameModal(
                     )
 
                     Text(
-                        text = "/10 글자",
+                        text = "/12 글자",
                         fontSize = 14.sp,
                         fontFamily = FontFamily(Font(R.font.pretendard_medium))
                     )

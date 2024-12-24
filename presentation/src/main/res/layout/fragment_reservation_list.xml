@@ -6,7 +6,7 @@
     android:background="@color/grey01"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".main.view.fragment.ReservationListFragment">
+    tools:context=".main.view.fragment.reserve.ReservationListFragment">
 
     <TextView
         android:id="@+id/tv_reservation_view_title"

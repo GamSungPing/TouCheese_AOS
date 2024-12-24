@@ -1,4 +1,4 @@
-package com.example.presentation.main.vm.model
+package com.example.presentation.main.view.fragment.reserve.vm.modl
 
 enum class ReservationStatus(val status: String) {
     CONFIRM("예약 확정"),

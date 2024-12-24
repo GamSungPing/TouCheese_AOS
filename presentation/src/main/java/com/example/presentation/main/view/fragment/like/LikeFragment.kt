@@ -1,4 +1,4 @@
-package com.example.presentation.main.view.fragment
+package com.example.presentation.main.view.fragment.like
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,19 +9,18 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.presentation.R
 import com.example.presentation.databinding.FragmentLikeBinding
+import com.example.presentation.main.customview.ConfirmDialog
 import com.example.presentation.main.view.adapter.LikeViewAdapter
-import com.example.presentation.main.vm.LikeViewModel
+import com.example.presentation.main.view.fragment.like.vm.LikeViewModel
+import com.example.presentation.main.vm.model.MemberStatus
 import com.example.presentation.screen.studio.StudioActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kr.techit.lion.presentation.ext.repeatOnViewStarted
 
 @AndroidEntryPoint
 class LikeFragment : Fragment(R.layout.fragment_like) {
     private lateinit var likeViewAdapter: LikeViewAdapter
     private val viewModel: LikeViewModel by viewModels()
-
-    // test
-    private var isLogin = true
-    private var testMemberId = 18
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -41,7 +40,7 @@ class LikeFragment : Fragment(R.layout.fragment_like) {
                 startActivity(intent)
             },
             onClickLike = { studioId ->
-                deleteLike(studioId, testMemberId)
+                deleteLike(studioId)
                 getLikeList()
             }
         )
@@ -56,11 +55,11 @@ class LikeFragment : Fragment(R.layout.fragment_like) {
     }
 
     private fun getLikeList() {
-        viewModel.getLikesByMemberId(testMemberId)
+        viewModel.getLikesByMemberId()
     }
 
-    private fun deleteLike(studioId: Int, memberId: Int) {
-        viewModel.deleteLike(studioId, testMemberId)
+    private fun deleteLike(studioId: Int) {
+        viewModel.deleteLike(studioId)
     }
 
     private fun observeLikeList() {
@@ -71,8 +70,8 @@ class LikeFragment : Fragment(R.layout.fragment_like) {
         }
     }
 
-    private fun showEmptyLayout(isVisible: Boolean, binding: FragmentLikeBinding) {
-        binding.layoutEmptyLike.isVisible = isVisible
+    private fun showEmptyLayout(binding: FragmentLikeBinding) {
+        binding.layoutEmptyLike.isVisible = false
     }
 
     private fun showLoginLayout(isVisible: Boolean, binding: FragmentLikeBinding) {
@@ -80,15 +79,22 @@ class LikeFragment : Fragment(R.layout.fragment_like) {
     }
 
     private fun initView(binding: FragmentLikeBinding) {
-        if (isLogin) {
-            getLikeList()
-            observeLikeList()
-
-            showEmptyLayout(false, binding)
-            showLoginLayout(false, binding)
-        } else {
-            setAlertDialog()
-            showLoginLayout(true, binding)
+        repeatOnViewStarted {
+            viewModel.memberId.collect {
+                when (it) {
+                    MemberStatus.Loading -> return@collect
+                    is MemberStatus.Member -> {
+                        getLikeList()
+                        observeLikeList()
+                        showEmptyLayout(binding)
+                        showLoginLayout(false, binding)
+                    }
+                    MemberStatus.NonMember -> {
+                        setAlertDialog()
+                        showLoginLayout(true, binding)
+                    }
+                }
+            }
         }
     }
 

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey01"
-    tools:context=".main.view.fragment.ReservationDetailFragment">
+    tools:context=".main.view.fragment.reserve.ReservationDetailFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/reservation_detail_toolbar"

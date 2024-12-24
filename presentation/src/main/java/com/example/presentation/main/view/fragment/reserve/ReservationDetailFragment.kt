@@ -1,4 +1,4 @@
-package com.example.presentation.main.view.fragment
+package com.example.presentation.main.view.fragment.reserve
 
 import android.os.Bundle
 import android.view.View
@@ -9,9 +9,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.presentation.R
 import com.example.presentation.databinding.FragmentReservationDetailBinding
-import com.example.presentation.main.vm.ReservationDetailViewModel
+import com.example.presentation.main.customview.CompleteDialog
+import com.example.presentation.main.customview.ConfirmDialog
+import com.example.presentation.main.view.fragment.reserve.vm.ReservationDetailViewModel
 import com.example.presentation.main.vm.model.ProductOption
-import com.example.presentation.main.vm.model.ReservationStatus
+import com.example.presentation.main.view.fragment.reserve.vm.modl.ReservationStatus
 import com.example.presentation.util.ext.toKoreanUnit
 import com.example.presentation.util.ext.removeSecondsFromTime
 import com.example.presentation.util.ext.setImage
@@ -45,7 +47,7 @@ class ReservationDetailFragment : Fragment(R.layout.fragment_reservation_detail)
             val dialog = ConfirmDialog(
                 text = "정말 예약을 취소하시겠습니까?",
             ) {
-                viewModel.deleteReservationByReservationId(args.reservationId, args.memberId)
+                viewModel.deleteReservationByReservationId(args.reservationId)
                 showCompleteDialog()
             }
             dialog.show(childFragmentManager, "ConfirmDialog")

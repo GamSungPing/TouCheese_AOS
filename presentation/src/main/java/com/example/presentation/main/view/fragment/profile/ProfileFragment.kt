@@ -1,4 +1,4 @@
-package com.example.presentation.main.view.fragment
+package com.example.presentation.main.view.fragment.profile
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

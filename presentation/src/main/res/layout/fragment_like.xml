@@ -5,7 +5,7 @@
     android:id="@+id/fragment_like_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".main.view.fragment.ResultViewFragment">
+    tools:context=".main.view.fragment.concept.ResultViewFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"

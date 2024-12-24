@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/homeConceptFragment"
-        android:name="com.example.presentation.main.view.fragment.HomeConceptFragment"
+        android:name="com.example.presentation.main.view.fragment.concept.HomeConceptFragment"
         android:label="fragment_home_concept"
         tools:layout="@layout/fragment_home_concept" >
         <action
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/resultViewFragment"
-        android:name="com.example.presentation.main.view.fragment.ResultViewFragment"
+        android:name="com.example.presentation.main.view.fragment.concept.ResultViewFragment"
         android:label="fragment_result_view"
         tools:layout="@layout/fragment_result_view" >
         <action

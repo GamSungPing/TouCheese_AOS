@@ -8,7 +8,7 @@ import javax.inject.Inject
 internal class LikeDataSource @Inject constructor(
     private val likeService: LikeService,
 ) {
-    suspend fun getLikes(memberId: Int): LikeResponse {
+    suspend fun getLikes(memberId: Long): LikeResponse {
         return likeService.getLikes(memberId)
     }
 
@@ -16,7 +16,7 @@ internal class LikeDataSource @Inject constructor(
         return likeService.addLike(request)
     }
 
-    suspend fun deleteLike(studioId: Int, memberId: Int) {
+    suspend fun deleteLike(studioId: Int, memberId: Long) {
         return likeService.deleteLike(studioId, memberId)
     }
 }

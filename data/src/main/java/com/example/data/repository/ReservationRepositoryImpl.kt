@@ -13,7 +13,7 @@ internal class ReservationRepositoryImpl @Inject constructor(
     private val reservationDataSource: ReservationDataSource
 ) : ReservationRepository {
 
-    override suspend fun getReservationsByMemberId(memberId: Int): List<Reservation>  {
+    override suspend fun getReservationsByMemberId(memberId: Long): List<Reservation>  {
         return reservationDataSource.getReservationsByMemberId(memberId).toDomainModel()
     }
 
@@ -21,11 +21,11 @@ internal class ReservationRepositoryImpl @Inject constructor(
         return reservationDataSource.getReservationDetailByReservationId(reservationId).toDomainModel()
     }
 
-    override suspend fun getCompletedReservationByMemberId(memberId: Int): List<Reservation> {
+    override suspend fun getCompletedReservationByMemberId(memberId: Long): List<Reservation> {
         return reservationDataSource.getCompletedReservationByMemberId(memberId).toDomainModel()
     }
 
-    override suspend fun deleteReservationByReservationId(reservationId: Int, memberId: Int) {
+    override suspend fun deleteReservationByReservationId(reservationId: Int, memberId: Long) {
         return reservationDataSource.deleteReservationByReservationId(reservationId, memberId)
     }
 

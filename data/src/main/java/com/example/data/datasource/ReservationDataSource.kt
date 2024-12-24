@@ -10,7 +10,7 @@ import javax.inject.Inject
 internal class ReservationDataSource @Inject constructor(
     private val reservationService: ReservationService
 ) {
-    suspend fun getReservationsByMemberId(memberId: Int): ReservationResponse {
+    suspend fun getReservationsByMemberId(memberId: Long): ReservationResponse {
         return reservationService.getReservationsByMemberId(memberId)
     }
 
@@ -18,11 +18,11 @@ internal class ReservationDataSource @Inject constructor(
         return reservationService.getReservationDetailByReservationId(reservationId)
     }
 
-    suspend fun getCompletedReservationByMemberId(memberId: Int): ReservationResponse {
+    suspend fun getCompletedReservationByMemberId(memberId: Long): ReservationResponse {
         return reservationService.getCompletedReservationByMemberId(memberId)
     }
 
-    suspend fun deleteReservationByReservationId(reservationId: Int, memberId: Int) {
+    suspend fun deleteReservationByReservationId(reservationId: Int, memberId: Long) {
         reservationService.deleteReservationByReservationId(reservationId, memberId)
     }
 

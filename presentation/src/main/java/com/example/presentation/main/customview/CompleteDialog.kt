@@ -1,4 +1,4 @@
-package com.example.presentation.main.view.fragment
+package com.example.presentation.main.customview
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,14 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.example.presentation.R
-import com.example.presentation.databinding.FragmentConfirmDialogBinding
+import com.example.presentation.databinding.FragmentCompleteDialogBinding
 
-class ConfirmDialog(
+class CompleteDialog(
     private val text: String,
-    private val onYesClick: () -> Unit
 ) : DialogFragment() {
 
-    private var _binding: FragmentConfirmDialogBinding? = null
+    private var _binding: FragmentCompleteDialogBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -22,18 +21,13 @@ class ConfirmDialog(
         savedInstanceState: Bundle
         ?
     ): View {
-        _binding = FragmentConfirmDialogBinding.inflate(inflater, container, false)
+        _binding = FragmentCompleteDialogBinding.inflate(inflater, container, false)
         val view = binding.root
 
         dialog?.window?.setBackgroundDrawableResource(R.drawable.tc_background_rounded_alert)
-        binding.confirmTextView.text = text
-
-        binding.noButton.setOnClickListener {
-            dismiss()
-        }
+        binding.tvComplete.text = text
 
         binding.yesButton.setOnClickListener {
-            onYesClick()
             dismiss()
         }
 

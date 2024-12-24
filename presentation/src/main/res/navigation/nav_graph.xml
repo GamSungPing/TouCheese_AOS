@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     app:startDestination="@id/homeConceptMainFragment">
 
     <fragment
         android:id="@+id/homeConceptMainFragment"
-        android:name="com.example.presentation.main.view.fragment.HomeConceptMainFragment"
+        android:name="com.example.presentation.main.view.fragment.concept.HomeConceptMainFragment"
         android:label="fragment_home_concept_main"
         tools:layout="@layout/fragment_home_concept_main" />
 
     <fragment
         android:id="@+id/likeFragment"
-        android:name="com.example.presentation.main.view.fragment.LikeFragment"
+        android:name="com.example.presentation.main.view.fragment.like.LikeFragment"
         android:label="LikeFragment"
         tools:layout="@layout/fragment_like" />
 
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.presentation.main.view.fragment.ProfileFragment"
+        android:name="com.example.presentation.main.view.fragment.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/reservationFragment"
-        android:name="com.example.presentation.main.view.fragment.ReservationListFragment"
+        android:name="com.example.presentation.main.view.fragment.reserve.ReservationListFragment"
         android:label="fragment_reservation_list"
         tools:layout="@layout/fragment_reservation_list">
 
@@ -36,9 +36,9 @@
 
     <fragment
         android:id="@+id/reservationDetailFragment"
-        android:name="com.example.presentation.main.view.fragment.ReservationDetailFragment"
+        android:name="com.example.presentation.main.view.fragment.reserve.ReservationDetailFragment"
         android:label="fragment_reservation_detail"
-        tools:layout="@layout/fragment_reservation_detail" >
+        tools:layout="@layout/fragment_reservation_detail">
 
         <action
             android:id="@+id/action_reservationDetailFragment_to_reservationFragment"
@@ -48,9 +48,5 @@
             android:name="reservationId"
             app:argType="integer" />
 
-        <argument
-            android:name="memberId"
-            app:argType="integer" />
     </fragment>
-
 </navigation>

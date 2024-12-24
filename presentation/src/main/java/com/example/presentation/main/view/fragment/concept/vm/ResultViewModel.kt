@@ -1,21 +1,24 @@
-package com.example.presentation.main.vm
+package com.example.presentation.main.view.fragment.concept.vm
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.model.StudioInfoWithConcept
+import com.example.domain.repository.AuthRepository
 import com.example.domain.repository.studio.StudioRepository
 import com.example.domain.rule.Pricing
 import com.example.domain.rule.Region
 import com.example.domain.usecase.LikeStudioUseCase
 import com.example.presentation.main.vm.model.FilterState
+import com.example.presentation.util.ext.stateInUi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ResultViewModel @Inject constructor(
+    private val authRepository: AuthRepository,
     private val studioRepository: StudioRepository,
     private val likeStudioUseCase: LikeStudioUseCase
 ) : ViewModel() {
@@ -30,6 +33,11 @@ class ResultViewModel @Inject constructor(
     val empty: LiveData<Boolean> get() = _empty
 
     val studioWithConceptAndLiked = MutableLiveData<List<StudioInfoWithConcept>>()
+
+    val memberId = authRepository.memberId.stateInUi(
+        scope = viewModelScope,
+        initialValue = 0L
+    )
 
     fun getInitializedStudio(conceptId: Int) {
         viewModelScope.launch {
@@ -171,7 +179,7 @@ class ResultViewModel @Inject constructor(
         }
     }
 
-    fun getLikedStudios(conceptId: Int, memberId: Int) {
+    fun getLikedStudios(conceptId: Int, memberId: Long?) {
         viewModelScope.launch {
             studioWithConceptAndLiked.value = likeStudioUseCase.getCommonStudio(conceptId, memberId)
         }

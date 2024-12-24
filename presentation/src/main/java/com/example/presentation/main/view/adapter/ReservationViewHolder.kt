@@ -3,7 +3,7 @@ package com.example.presentation.main.view.adapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.model.Reservation
 import com.example.presentation.databinding.ItemReservationBinding
-import com.example.presentation.main.vm.model.ReservationStatus
+import com.example.presentation.main.view.fragment.reserve.vm.modl.ReservationStatus
 import com.example.presentation.util.ext.removeSecondsFromTime
 import com.example.presentation.util.ext.setImage
 import com.example.presentation.util.ext.setStatusButtonStyle

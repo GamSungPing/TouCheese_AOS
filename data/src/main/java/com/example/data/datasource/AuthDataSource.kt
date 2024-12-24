@@ -49,13 +49,13 @@ internal class AuthDataSource @Inject constructor(
     }
 
     suspend fun logout() {
-        localLogout()
         authService.logout()
+        localLogout()
     }
 
     suspend fun withdraw() {
-        localLogout()
         authService.withdraw()
+        localLogout()
     }
 
     private suspend fun localLogout() {

@@ -1,11 +1,13 @@
 package com.example.data.service
 
+import com.example.data.auth.AuthType
 import com.example.data.dto.response.concept.StudioConceptResponse
 import com.example.data.dto.response.studio.StudioInfoResponse
 import com.example.data.dto.response.studio.detail.StudioDetailResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
+import retrofit2.http.Tag
 
 /**
  * 함수 공통 메소드 정보
@@ -18,7 +20,10 @@ internal interface StudioService {
      * @param 스튜디오 고유 ID
      * */
     @GET("studio/{id}")
-    suspend fun getStudioInfo(@Path("id") studioId: Int): StudioInfoResponse
+    suspend fun getStudioInfo(
+        @Path("id") studioId: Int,
+        @Tag authType: AuthType = AuthType.NO_AUTH
+    ): StudioInfoResponse
 
     /**
      * 스튜디오 컨셉별 목록 조회
@@ -26,7 +31,8 @@ internal interface StudioService {
     @GET("studio/concept/{conceptId}")
     suspend fun getStudioInfoOnlyConcept(
         @Path("conceptId") conceptId: Int,
-        @Query("page") page: Int? = null
+        @Query("page") page: Int? = null,
+        @Tag authType: AuthType = AuthType.NO_AUTH
     ): StudioConceptResponse
 
     /**
@@ -36,7 +42,8 @@ internal interface StudioService {
     suspend fun getStudioWithConceptAndRegion(
         @Path("conceptId") conceptId: Int,
         @Query("regionIds") regionId: List<Int>?= null,
-        @Query("page") page: Int? = null
+        @Query("page") page: Int? = null,
+        @Tag authType: AuthType = AuthType.NO_AUTH
     ): StudioConceptResponse
 
     /**
@@ -47,7 +54,8 @@ internal interface StudioService {
     suspend fun getStudioWithConceptOrderByLowerPrice(
         @Path("conceptId") conceptId: Int,
         @Query("priceCategory") priceCategory: String,
-        @Query("page") page: Int? = null
+        @Query("page") page: Int? = null,
+        @Tag authType: AuthType = AuthType.NO_AUTH
     ): StudioConceptResponse
 
     /**
@@ -56,7 +64,8 @@ internal interface StudioService {
     @GET("studio/concept/{conceptId}/high-rating")
     suspend fun getStudioWithConceptOrderByHighRating(
         @Path("conceptId") conceptId: Int,
-        @Query("page") page: Int? = null
+        @Query("page") page: Int? = null,
+        @Tag authType: AuthType = AuthType.NO_AUTH
     ): StudioConceptResponse
 
     /**
@@ -67,7 +76,8 @@ internal interface StudioService {
     suspend fun getStudioWithConceptAndRegionOrderByHighRating(
         @Path("conceptId") conceptId: Int,
         @Query("regionIds") regionId: List<Int>,
-        @Query("page") page: Int? = null
+        @Query("page") page: Int? = null,
+        @Tag authType: AuthType = AuthType.NO_AUTH
     ): StudioConceptResponse
 
     /**
@@ -79,7 +89,8 @@ internal interface StudioService {
         @Path("conceptId") conceptId: Int,
         @Query("regionIds") regionId: List<Int>,
         @Query("priceCategory") priceCategory: String,
-        @Query("page") page: Int? = null
+        @Query("page") page: Int? = null,
+        @Tag authType: AuthType = AuthType.NO_AUTH
     ): StudioConceptResponse
 
     /**
@@ -89,7 +100,8 @@ internal interface StudioService {
     suspend fun getStudioWithConceptOrderByHighRatingAndLowerPrice  (
         @Path("conceptId") conceptId: Int,
         @Query("priceCategory") priceCategory: String,
-        @Query("page") page: Int? = null
+        @Query("page") page: Int? = null,
+        @Tag authType: AuthType = AuthType.NO_AUTH
     ): StudioConceptResponse
 
     /**
@@ -100,11 +112,13 @@ internal interface StudioService {
         @Path("conceptId") conceptId: Int,
         @Query("regionIds") regionId: List<Int>,
         @Query("priceCategory") priceCategory: String,
-        @Query("page") page: Int? = null
+        @Query("page") page: Int? = null,
+        @Tag authType: AuthType = AuthType.NO_AUTH
     ): StudioConceptResponse
 
     @GET("studio/detail/{id}")
     suspend fun getStudioDetail(
-        @Path("id") studioId: Int
+        @Path("id") studioId: Int,
+        @Tag authType: AuthType = AuthType.NO_AUTH
     ): StudioDetailResponse
 }

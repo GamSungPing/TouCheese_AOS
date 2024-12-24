@@ -4,7 +4,7 @@ import com.example.domain.model.LikeRequest
 
 data class LikeRequestDTO(
     val createdAt: String,
-    val memberId: Int,
+    val memberId: Long,
     val studioId: Int
 )
 

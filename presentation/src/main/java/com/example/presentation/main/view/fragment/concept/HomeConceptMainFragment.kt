@@ -1,4 +1,4 @@
-package com.example.presentation.main.view.fragment
+package com.example.presentation.main.view.fragment.concept
 
 import android.os.Bundle
 import android.view.View

@@ -7,19 +7,23 @@ import javax.inject.Inject
 
 class LikeStudioUseCase @Inject constructor(
     private val studioRepository: StudioRepository,
-    private val likeRepository: LikeRepository
+    private val likeRepository: LikeRepository,
 ) {
 
-    suspend fun getCommonStudio(conceptId: Int, memberId: Int): List<StudioInfoWithConcept> {
-        val studios = studioRepository.getStudioOnlyConcept(conceptId)
-        val likedStudios = likeRepository.getLikes(memberId)
+    suspend fun getCommonStudio(conceptId: Int, memberId: Long?): List<StudioInfoWithConcept> {
 
-        return studios.map { studio ->
-            if (likedStudios.any { likedStudio -> likedStudio.id == studio.id }) {
-                studio.copy(isSelected = true)
-            } else {
-                studio.copy(isSelected = false)
+        val studios = studioRepository.getStudioOnlyConcept(conceptId)
+
+        memberId?.let{
+            val likedStudios = likeRepository.getLikes(memberId)
+            return studios.map { studio ->
+                if (likedStudios.any { likedStudio -> likedStudio.id == studio.id }) {
+                    studio.copy(isSelected = true)
+                } else {
+                    studio.copy(isSelected = false)
+                }
             }
         }
+        return studios
     }
 }

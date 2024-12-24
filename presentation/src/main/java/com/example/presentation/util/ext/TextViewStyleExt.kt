@@ -3,7 +3,7 @@ package com.example.presentation.util.ext
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.example.presentation.R
-import com.example.presentation.main.vm.model.ReservationStatus
+import com.example.presentation.main.view.fragment.reserve.vm.modl.ReservationStatus
 
 fun TextView.applyStateStyle(backgroundResId: Int, textColorResId: Int) {
     this.setBackgroundResource(backgroundResId)

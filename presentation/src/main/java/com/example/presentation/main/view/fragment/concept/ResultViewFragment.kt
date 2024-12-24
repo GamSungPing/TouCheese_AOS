@@ -1,8 +1,7 @@
-package com.example.presentation.main.view.fragment
+package com.example.presentation.main.view.fragment.concept
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.CheckBox
 import androidx.core.view.isVisible
@@ -19,11 +18,12 @@ import com.example.presentation.databinding.BottomSheetFilterRegionBinding
 import com.example.presentation.databinding.FragmentResultViewBinding
 import com.example.presentation.main.view.adapter.ResultViewAdapter
 import com.example.presentation.screen.concept.vm.HomeConceptViewModel
-import com.example.presentation.main.vm.LikeViewModel
-import com.example.presentation.main.vm.ResultViewModel
+import com.example.presentation.main.view.fragment.like.vm.LikeViewModel
+import com.example.presentation.main.view.fragment.concept.vm.ResultViewModel
 import com.example.presentation.screen.studio.StudioActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
+import kr.techit.lion.presentation.ext.repeatOnViewStarted
 
 @AndroidEntryPoint
 class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
@@ -33,8 +33,6 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
     private val args: ResultViewFragmentArgs by navArgs()
     private lateinit var checkBoxes: List<CheckBox>
     private lateinit var resultViewAdapter: ResultViewAdapter
-
-    private val isLogin = true
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -48,11 +46,11 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
 
         viewModel.getInitializedStudio(args.conceptId)
         setupRvStudioList(binding)
-        checkLogin()
         observeStudiosForNonMember()
         observeStudiosForMember()
         observeFilterState(binding)
         observeEmpty(binding)
+        collectMemberId()
     }
 
     private fun setupRvStudioList(binding: FragmentResultViewBinding) {
@@ -65,10 +63,13 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
                 startActivity(intent)
             },
             onClickLike = {
-                likeViewModel.addLike(
-                    memberId = 18,
-                    studioId = it
-                )
+                if (viewModel.memberId.value != 0L) {
+                    likeViewModel.addLike(studioId = it, viewModel.memberId.value)
+                }else{
+                    TODO(
+                        "로그인 안내 및 로그인 화면으로 이동하는 다이얼로그 구현!"
+                    )
+                }
             }
         )
 
@@ -139,14 +140,20 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
         }
     }
 
-    private fun getLikedStudios(conceptId: Int, memberId: Int) {
-        viewModel.getLikedStudios(conceptId, memberId)
+    private fun collectMemberId(){
+        repeatOnViewStarted {
+            viewModel.memberId.collect {
+                if (it != 0L) {
+                    getLikedStudios(args.conceptId, it)
+                }else{
+                    getLikedStudios(args.conceptId, null)
+                }
+            }
+        }
     }
 
-    private fun checkLogin() {
-        if(isLogin) {
-            getLikedStudios(args.conceptId, memberId = 18)
-        }
+    private fun getLikedStudios(conceptId: Int, memberId: Long?) {
+        viewModel.getLikedStudios(conceptId, memberId)
     }
 
     private fun showPriceFilterBottomSheet() {
