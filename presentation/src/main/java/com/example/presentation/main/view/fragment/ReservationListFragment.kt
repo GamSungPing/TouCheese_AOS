@@ -19,15 +19,14 @@ class ReservationListFragment : Fragment(R.layout.fragment_reservation_list) {
    private lateinit var reservationAdapter: ReservationViewAdapter
    private val viewModel: ReservationDetailViewModel by viewModels()
    private val memberId = 2
+   private val hasLogin = false
 
    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
       super.onViewCreated(view, savedInstanceState)
       val binding = FragmentReservationListBinding.bind(view)
       setRvReservationList(binding)
-      initTabView(binding, memberId)
-      getOngoingReservations(memberId)
-      setTabListener(binding)
-
+      initTabView(binding)
+      setTabListener(hasLogin, binding)
       observerReservations(binding)
    }
 
@@ -56,13 +55,19 @@ class ReservationListFragment : Fragment(R.layout.fragment_reservation_list) {
       navController.navigate(action)
    }
 
-   private fun setTabListener(binding: FragmentReservationListBinding) {
+   private fun setTabListener(hasLogin: Boolean, binding: FragmentReservationListBinding) {
       val tabLayout = binding.layoutReservationTab
       tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
          override fun onTabSelected(tab: TabLayout.Tab?) {
-            when (tab?.position) {
-               0 -> getOngoingReservations(memberId)
-               1 -> getCompleteReservations(memberId)
+            if(hasLogin) {
+               showLoginLayout(false, binding)
+
+               when (tab?.position) {
+                  0 -> getOngoingReservations(memberId)
+                  1 -> getCompleteReservations(memberId)
+               }
+            } else {
+               showLoginLayout(true, binding)
             }
          }
 
@@ -74,7 +79,7 @@ class ReservationListFragment : Fragment(R.layout.fragment_reservation_list) {
       })
    }
 
-   private fun initTabView(binding: FragmentReservationListBinding, memberId: Int) {
+   private fun initTabView(binding: FragmentReservationListBinding) {
       val tabLayout = binding.layoutReservationTab
       tabLayout.addTab(tabLayout.newTab().setText("예약 일정"))
       tabLayout.addTab(tabLayout.newTab().setText("이전 내역"))
@@ -92,16 +97,22 @@ class ReservationListFragment : Fragment(R.layout.fragment_reservation_list) {
       viewModel.reservations.observe(viewLifecycleOwner) {
          if(it.isNotEmpty()) {
             reservationAdapter.submitList(it)
-            visibleEmptyLayout(false, binding)
+            showEmptyLayout(false, binding)
          } else {
-            visibleEmptyLayout(true, binding)
+            showEmptyLayout(true, binding)
          }
       }
    }
 
-   private fun visibleEmptyLayout(isVisible: Boolean , binding: FragmentReservationListBinding) {
+   private fun showEmptyLayout(isVisible: Boolean, binding: FragmentReservationListBinding) {
       with(binding) {
          layoutEmptyReservationList.isVisible = isVisible
+      }
+   }
+
+   private fun showLoginLayout(isVisible: Boolean, binding: FragmentReservationListBinding) {
+      with(binding) {
+         layoutNonMember.isVisible = isVisible
       }
    }
 }

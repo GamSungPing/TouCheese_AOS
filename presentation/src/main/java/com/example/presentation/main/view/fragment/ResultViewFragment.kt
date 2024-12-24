@@ -2,6 +2,7 @@ package com.example.presentation.main.view.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.CheckBox
 import androidx.core.view.isVisible
@@ -18,19 +19,24 @@ import com.example.presentation.databinding.BottomSheetFilterRegionBinding
 import com.example.presentation.databinding.FragmentResultViewBinding
 import com.example.presentation.main.view.adapter.ResultViewAdapter
 import com.example.presentation.main.vm.HomeConceptViewModel
+import com.example.presentation.main.vm.LikeViewModel
 import com.example.presentation.main.vm.ResultViewModel
 import com.example.presentation.studio.StudioActivity
-import com.example.presentation.theme.primaryColor
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
     private val viewModel: ResultViewModel by viewModels()
+    private val likeViewModel: LikeViewModel by viewModels()
     private val sharedViewModel: HomeConceptViewModel by activityViewModels()
     private val args: ResultViewFragmentArgs by navArgs()
     private lateinit var checkBoxes: List<CheckBox>
     private lateinit var resultViewAdapter: ResultViewAdapter
+
+    private val isLogin = true
+//    private val sharedPreferences = requireContext().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
+//    private val memberId = sharedPreferences.getInt("memberId", 0)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -44,19 +50,29 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
 
         viewModel.getInitializedStudio(args.conceptId)
         setupRvStudioList(binding)
-        observeResultViewModel(binding)
+        checkLogin()
+        observeStudiosForNonMember()
+        observeStudiosForMember()
         observeFilterState(binding)
         observeEmpty(binding)
     }
 
     private fun setupRvStudioList(binding: FragmentResultViewBinding) {
-        resultViewAdapter = ResultViewAdapter{ studioId, profileURL ->
-            val intent = Intent(requireContext(), StudioActivity::class.java).apply {
-                putExtra("studioId", studioId)
-                putExtra("profileURL", profileURL)
+        resultViewAdapter = ResultViewAdapter(
+            onClickStudio = { studioId, profileURL ->
+                val intent = Intent(requireContext(), StudioActivity::class.java).apply {
+                    putExtra("studioId", studioId)
+                    putExtra("profileURL", profileURL)
+                }
+                startActivity(intent)
+            },
+            onClickLike = {
+                likeViewModel.addLike(
+                    memberId = 18,
+                    studioId = it
+                )
             }
-            startActivity(intent)
-        }
+        )
 
         binding.rvStudioList.apply {
             layoutManager =
@@ -92,7 +108,7 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
         }
     }
 
-    private fun observeResultViewModel(binding: FragmentResultViewBinding) {
+    private fun observeStudiosForNonMember() {
         viewModel.result.observe(viewLifecycleOwner) { studioList ->
             if (studioList.isNotEmpty()) {
                 resultViewAdapter.submitList(studioList)
@@ -100,6 +116,12 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
                 resultViewAdapter.submitList(null)
                 viewModel.updateEmpty(true)
             }
+        }
+    }
+
+    private fun observeStudiosForMember()  {
+        viewModel.studioWithConceptAndLiked.observe(viewLifecycleOwner) {
+            resultViewAdapter.submitList(it)
         }
     }
 
@@ -116,6 +138,16 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
     private fun observeEmpty(binding: FragmentResultViewBinding) {
         viewModel.empty.observe(viewLifecycleOwner) {
             showEmptyView(binding, it)
+        }
+    }
+
+    private fun getLikedStudios(conceptId: Int, memberId: Int) {
+        viewModel.getLikedStudios(conceptId, memberId)
+    }
+
+    private fun checkLogin() {
+        if(isLogin) {
+            getLikedStudios(args.conceptId, memberId = 18)
         }
     }
 

@@ -12,6 +12,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 import com.example.data.BuildConfig
 import com.example.data.dto.request.util.LocalDateAdapter
+import com.example.data.service.LikeService
 import com.example.data.service.ConceptService
 import com.example.data.service.DeviceService
 import com.example.data.service.ProductService
@@ -26,6 +27,12 @@ import java.util.concurrent.TimeUnit
 @Module
 @InstallIn(SingletonComponent::class)
 internal object NetworkModule {
+
+    @Singleton
+    @Provides
+    fun likeService(retrofit: Retrofit): LikeService {
+        return retrofit.create(LikeService::class.java)
+    }
 
     @Singleton
     @Provides

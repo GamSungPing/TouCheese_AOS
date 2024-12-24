@@ -1,5 +1,6 @@
 package com.example.data.di
 
+import com.example.data.repository.LikeRepositoryImpl
 import com.example.data.repository.DefaultReserveInfoRepositoryImpl
 import com.example.data.repository.DeviceRegisterRepositoryImpl
 import com.example.data.repository.FirebaseRepositoryImpl
@@ -11,6 +12,7 @@ import com.example.data.repository.StudioRepositoryImpl
 import com.example.domain.repository.DefaultReserveInfoRepository
 import com.example.domain.repository.FirebaseRepository
 import com.example.domain.repository.device.DeviceRegisterRepository
+import com.example.domain.repository.like.LikeRepository
 import com.example.domain.repository.product.ProductRepository
 import com.example.domain.repository.reservation.ReservationRepository
 import com.example.domain.repository.review.ReviewDetailRepository
@@ -24,6 +26,10 @@ import dagger.hilt.components.SingletonComponent
 @Module
 @InstallIn(SingletonComponent::class)
 internal interface RepositoryModule {
+
+    @Binds
+    fun bindLikeRepository(likeRepositoryImpl: LikeRepositoryImpl) : LikeRepository
+
     @Binds
     fun bindStudioRepository(studioRepositoryImpl: StudioRepositoryImpl): StudioRepository
 

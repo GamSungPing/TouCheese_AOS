@@ -3,13 +3,13 @@ package com.example.presentation.main.view.adapter
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.domain.model.StudioInfoWithConcept
-import com.example.presentation.databinding.ItemResultViewBinding
+import com.example.domain.model.Like
+import com.example.presentation.databinding.ItemLikeBinding
 import com.example.presentation.util.ext.setImage
 import java.util.Locale
 
-class ResultViewHolder(
-    private val binding: ItemResultViewBinding,
+class LikeViewHolder(
+    private val binding: ItemLikeBinding,
     private val onClickStudio: (String, String) -> Unit,
     private val onClickLike: (Int) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
@@ -20,26 +20,27 @@ class ResultViewHolder(
         binding.rvPortfolioList.adapter = portfolioAdapter
     }
 
-    fun bind(studio: StudioInfoWithConcept) {
-        val id = studio.id
-        val name = studio.name
-        val rating = studio.rating
-        val portfolioUrls = studio.portfolioUrls
-        val profileURL = studio.profileURL
+    fun bind(like: Like) {
+        val id = like.id
+        val name = like.name
+        val rating = like.rating
+        val portfolioUrls = like.portfolioUrls
+        val profileURL = like.profileURL
+        val reviewCnt = like.reviewCount
 
-        binding.tvStudioName.text = name
-        binding.tvRating.text = String.format(Locale.US, "%.1f", rating.toDouble())
+        binding.tvLikeStudioName.text = name
+        binding.tvLikeRating.text = String.format(Locale.US, "%.1f", rating.toDouble())
+        binding.tvLikeReviewCnt.text = "(${reviewCnt})"
 
-        val imageView: ImageView = binding.ivStudioMainImage
+        val imageView: ImageView = binding.ivLikeStudioMainImage
         imageView.setImage(imageView, profileURL)
-
-        setOnClickStudioListener(id, profileURL)
-        setOnClickLikeButtonListener(id.toInt())
 
         portfolioAdapter.submitList(portfolioUrls)
 
-    }
 
+        setOnClickStudioListener(id, profileURL)
+        setOnClickLikeButtonListener(id.toInt())
+    }
 
     private fun setOnClickStudioListener(studioId: String, profileURL: String) {
         binding.root.setOnClickListener {
@@ -48,7 +49,7 @@ class ResultViewHolder(
     }
 
     private fun setOnClickLikeButtonListener(studioId: Int) {
-        binding.btLike.setOnClickListener {
+        binding.btLikeFilled.setOnClickListener {
             onClickLike(studioId)
         }
     }
