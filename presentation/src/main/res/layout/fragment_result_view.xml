@@ -12,80 +12,87 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="56dp"
-        app:navigationIcon="@drawable/ic_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_tc_chevron_left"
         app:title="TOOCHEESE" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/bt_filter_price"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="15dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="6dp"
-        android:text="@string/text_filter_price"
-        app:icon="@drawable/icon_arrow_drop_down_24px"
-        app:iconGravity="end"
-        app:iconPadding="2dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
-
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/bt_filter_region"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginStart="12dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="6dp"
-        android:text="@string/text_filter_region"
-        app:icon="@drawable/icon_arrow_drop_down_24px"
-        app:iconGravity="end"
-        app:iconPadding="2dp"
-        app:layout_constraintStart_toEndOf="@+id/bt_filter_price"
-        app:layout_constraintTop_toTopOf="@+id/bt_filter_price" />
-
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/bt_filter_rating"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginStart="12dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="6dp"
-        android:text="@string/text_filter_rating"
-        app:icon="@drawable/icon_arrow_drop_down_24px"
-        app:iconGravity="end"
-        app:iconPadding="2dp"
-        app:layout_constraintStart_toEndOf="@+id/bt_filter_region"
-        app:layout_constraintTop_toTopOf="@+id/bt_filter_region" />
-
-    <ImageButton
-        android:id="@+id/bt_reset"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_bt_filter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="20dp"
-        android:background="@android:color/transparent"
-        android:src="@drawable/icon_restart_alt_24px"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/bt_filter_rating"
-        tools:ignore="MissingConstraints" />
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <ImageButton
+            android:id="@+id/bt_reset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_tc_reset"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bt_filter_price"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_marginStart="8dp"
+            android:text="@string/text_filter_price"
+            android:textColor="@drawable/tc_filter_button_text_selector"
+            android:background="@drawable/tc_filter_button_selector"
+            android:drawableEnd="@drawable/ic_tc_chevron_down"
+            android:drawablePadding="4dp"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@+id/bt_reset"
+            app:layout_constraintStart_toEndOf="@id/bt_reset"
+            app:layout_constraintTop_toTopOf="@+id/bt_reset" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bt_filter_region"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="@string/text_filter_region"
+            android:textColor="@drawable/tc_filter_button_text_selector"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/tc_filter_button_selector"
+            android:drawableEnd="@drawable/ic_tc_chevron_down"
+            android:drawablePadding="4dp"
+            android:gravity="center"
+            app:layout_constraintStart_toEndOf="@+id/bt_filter_price"
+            app:layout_constraintTop_toTopOf="@+id/bt_filter_price" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bt_filter_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_marginStart="8dp"
+            android:text="@string/text_filter_rating"
+            android:textColor="@drawable/tc_filter_button_text_selector"
+            android:background="@drawable/tc_filter_button_selector"
+            android:drawableEnd="@drawable/ic_tc_chevron_down"
+            android:drawablePadding="4dp"
+            android:gravity="center"
+            app:layout_constraintStart_toEndOf="@+id/bt_filter_region"
+            app:layout_constraintTop_toTopOf="@+id/bt_filter_region" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_studio_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="16dp"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_filter_price" />
-
-
+        app:layout_constraintTop_toBottomOf="@+id/layout_bt_filter" />
+    
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_empty_result"
         android:visibility="gone"
@@ -97,7 +104,7 @@
             android:layout_height="match_parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="@string/text_empty"
+            android:text="@string/text_empty_result"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:gravity="center" />
 

@@ -11,10 +11,10 @@
         tools:layout="@layout/fragment_home_concept_main" />
 
     <fragment
-        android:id="@+id/askFragmentFragment"
-        android:name="com.example.presentation.main.view.fragment.AskFragmentFragment"
-        android:label="fragment_ask_fragment"
-        tools:layout="@layout/fragment_ask_fragment" />
+        android:id="@+id/likeFragment"
+        android:name="com.example.presentation.main.view.fragment.LikeFragment"
+        android:label="LikeFragment"
+        tools:layout="@layout/fragment_like" />
 
     <fragment
         android:id="@+id/profileFragment"

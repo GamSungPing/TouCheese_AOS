@@ -10,9 +10,9 @@
         android:icon="@drawable/ic_reservation_schdule"
         android:title="@string/text_reservation_schedule" />
     <item
-        android:id="@+id/askFragment"
-        android:icon="@drawable/ic_ask"
-        android:title="@string/text_ask"/>
+        android:id="@+id/likeFragment"
+        android:icon="@drawable/ic_tc_bookmark_fill"
+        android:title="@string/text_like"/>
     <item
         android:id="@+id/profileFragment"
         android:icon="@drawable/ic_profile"

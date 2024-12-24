@@ -5,30 +5,29 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.example.domain.model.StudioInfoWithConcept
-import com.example.presentation.databinding.ItemResultViewBinding
+import com.example.domain.model.Like
+import com.example.presentation.databinding.ItemLikeBinding
 import com.example.presentation.util.ext.preloadImage
 
-class ResultViewAdapter(
+class LikeViewAdapter(
     private val onClickStudio: (String, String) -> Unit,
-    private val onClickLike: (Int) -> Unit
-) : ListAdapter<StudioInfoWithConcept, ResultViewHolder>(StudioDiffCallback) {
+    private val onClickLike : (Int) -> Unit
+) : ListAdapter<Like, LikeViewHolder>(LikeDiffCallback) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ResultViewHolder {
-        return ResultViewHolder(
-            ItemResultViewBinding.inflate(LayoutInflater.from(parent.context), parent, false),
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LikeViewHolder {
+        return LikeViewHolder(
+            ItemLikeBinding.inflate(LayoutInflater.from(parent.context), parent, false),
             onClickStudio,
             onClickLike
         )
     }
 
-    override fun onBindViewHolder(holder: ResultViewHolder, position: Int) {
-        val studio = getItem(position)
+    override fun onBindViewHolder(holder: LikeViewHolder, position: Int) {
+        val like = getItem(position)
         val context: Context = holder.itemView.context
 
         setImagePreload(context, position)
-        holder.itemView.isSelected = studio.isSelected
-        holder.bind(studio)
+        holder.bind(like)
     }
 
     override fun getItemCount(): Int {
@@ -36,17 +35,17 @@ class ResultViewAdapter(
     }
 
     companion object {
-        private val StudioDiffCallback = object : DiffUtil.ItemCallback<StudioInfoWithConcept>() {
+        private val LikeDiffCallback = object : DiffUtil.ItemCallback<Like>() {
             override fun areItemsTheSame(
-                oldItem: StudioInfoWithConcept,
-                newItem: StudioInfoWithConcept
+                oldItem: Like,
+                newItem: Like
             ): Boolean {
                 return oldItem.id == newItem.id
             }
 
             override fun areContentsTheSame(
-                oldItem: StudioInfoWithConcept,
-                newItem: StudioInfoWithConcept
+                oldItem: Like,
+                newItem: Like
             ): Boolean {
                 return oldItem == newItem
             }

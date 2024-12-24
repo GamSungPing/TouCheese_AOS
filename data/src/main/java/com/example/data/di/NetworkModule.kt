@@ -15,6 +15,7 @@ import com.example.data.auth.AuthAuthenticator
 import com.example.data.auth.AuthInterceptor
 import com.example.data.dto.request.util.LocalDateAdapter
 import com.example.data.service.AuthService
+import com.example.data.service.LikeService
 import com.example.data.service.ConceptService
 import com.example.data.service.DeviceService
 import com.example.data.service.ProductService
@@ -29,6 +30,12 @@ import java.util.concurrent.TimeUnit
 @Module
 @InstallIn(SingletonComponent::class)
 internal object NetworkModule {
+
+    @Singleton
+    @Provides
+    fun likeService(retrofit: Retrofit): LikeService {
+        return retrofit.create(LikeService::class.java)
+    }
 
     @Singleton
     @Provides
