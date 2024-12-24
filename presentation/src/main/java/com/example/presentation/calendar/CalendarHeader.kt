@@ -45,7 +45,7 @@ fun CalendarHeader(
         ) {
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.ArrowBackIos,
-                contentDescription = "back",
+                contentDescription = null,
                 tint = primary06,
                 modifier = Modifier
                     .align(Alignment.CenterVertically)

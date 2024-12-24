@@ -31,7 +31,7 @@ import com.example.presentation.util.ext.toKoreanUnit
 fun OptionCheckBox(
     options: ProductOption,
     isChecked: Boolean,
-    onClickOption: (Boolean, Int) -> Unit
+    onClickOption: (Boolean) -> Unit
 ) {
     var checked by remember { mutableStateOf(isChecked) }
 
@@ -50,13 +50,12 @@ fun OptionCheckBox(
             tint = Color.Unspecified,
             modifier = Modifier.clickable {
                 checked = !checked
-                onClickOption(checked, options.price)
+                onClickOption(checked)
             }
         )
 
         Text(
             text = options.name,
-            style = MaterialTheme.typography.bodyLarge,
             color = gray10,
             fontFamily = FontFamily(Font(R.font.pretendard_regular)),
             modifier = Modifier
@@ -82,6 +81,6 @@ fun OptionCheckBoxPreview() {
             price = 1000
         ),
         isChecked = false,
-        onClickOption = { _, _ -> }
+        onClickOption = { }
     )
 }

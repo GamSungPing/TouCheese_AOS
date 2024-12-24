@@ -22,19 +22,15 @@ fun OptionBox(
     selectedOptions: Set<ProductOption>,
     onChangeCheckBoxState: (Boolean, ProductOption) -> Unit
 ) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentSize()
-    ) {
+    Column{
         Spacer(modifier = Modifier.height(20.dp))
-        options?.forEach { value ->
-            val isChecked = selectedOptions.contains(value)
+        options?.forEach { option ->
+            val isChecked = selectedOptions.contains(option)
             OptionCheckBox(
-                options = value,
+                options = option,
                 isChecked = isChecked,
-                onClickOption = { checked, price ->
-                    onChangeCheckBoxState(checked, value)
+                onClickOption = { checked ->
+                    onChangeCheckBoxState(checked, option)
                 }
             )
         }

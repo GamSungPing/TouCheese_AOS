@@ -18,10 +18,11 @@ import com.example.presentation.databinding.BottomSheetFilterPriceBinding
 import com.example.presentation.databinding.BottomSheetFilterRegionBinding
 import com.example.presentation.databinding.FragmentResultViewBinding
 import com.example.presentation.main.view.adapter.ResultViewAdapter
+import com.example.presentation.screen.concept.vm.HomeConceptViewModel
 import com.example.presentation.main.vm.HomeConceptViewModel
 import com.example.presentation.main.vm.LikeViewModel
 import com.example.presentation.main.vm.ResultViewModel
-import com.example.presentation.studio.StudioActivity
+import com.example.presentation.screen.studio.StudioActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,8 +36,6 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
     private lateinit var resultViewAdapter: ResultViewAdapter
 
     private val isLogin = true
-//    private val sharedPreferences = requireContext().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
-//    private val memberId = sharedPreferences.getInt("memberId", 0)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

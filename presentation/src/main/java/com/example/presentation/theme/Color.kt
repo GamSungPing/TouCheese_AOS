@@ -30,6 +30,8 @@ val gray10 = Color(0xFF141414)
 
 val errorColor = Color(0xFFEF4444)
 
+val KakaoYellow = Color(0xFFFEE500)
+
 
 
 

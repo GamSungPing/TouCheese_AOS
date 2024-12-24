@@ -26,15 +26,14 @@ fun CalendarDay(
     date: LocalDate,
     isSelected: Boolean,
     isDisabled: Boolean,
-    onDateSelected: (LocalDate) -> Unit,
-    modifier: Modifier = Modifier,
+    onDateSelected: (LocalDate) -> Unit
 ) {
     Box(
         contentAlignment = Alignment.Center
     ) {
         Box(
             modifier = Modifier
-                .size(24.dp)
+                .size(27.dp)
                 .clickable(enabled = !isDisabled) {
                     onDateSelected(date)
                 }

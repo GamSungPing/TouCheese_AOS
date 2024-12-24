@@ -96,4 +96,5 @@ dependencies {
 
     implementation(libs.google.firebase.messaging.ktx)
     implementation(libs.play.services.base)
+    implementation(libs.kakao.user)
 }

@@ -92,6 +92,16 @@
     <string name="text_reservation_total_price">총 결제 금액</string>
     <string name="text_reservation_day">예약 날짜</string>
     <string name="text_reservation_time">예약 시간</string>
+    <string name="login_with_kakaotalk">카카오로 로그인</string>
+    <string name="text_logo_message_top">나에게 딱 맞는 스튜디오를</string>
+    <string name="text_logo_message_middle">한 눈에 살펴보세요.</string>
+    <string name="text_logo_message_bottom">컨셉별 스튜디오를 확인 후 예약까지 간편하게!</string>
+    <string name="text_modify_nickname">닉네임 수정</string>
+    <string name="text_nickname">닉네임</string>
+    <string name="text_plz_input_nickname">닉네임</string>
+    <string name="text_check_duplicate">중복확인</string>
+    <string name="text_modify">수정하기</string>
+    <string name="text_login_fail">로그인에 실패했습니다.</string>
     <string name="text_empty_list">내역이 없습니다</string>
     <string name="text_empty_result">검색 결과가 없습니다</string>
     <string name="text_like">찜</string>
@@ -99,6 +109,4 @@
     <string name="text_empty_bookmark_list">아직 찜한 스튜디오가 없습니다</string>
     <string name="text_have_to_login">로그인이 필요한 서비스입니다.</string>
     <string name="text_go_to_login">로그인하러 가기</string>
-
-
 </resources>

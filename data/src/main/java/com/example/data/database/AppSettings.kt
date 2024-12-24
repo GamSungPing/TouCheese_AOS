@@ -8,11 +8,13 @@ import kotlinx.serialization.json.Json
 import java.io.InputStream
 import java.io.OutputStream
 import androidx.datastore.core.Serializer
-import com.example.data.database.entity.DefaultUserInfo
 
 @Serializable
 internal data class AppSettings(
-    val info: DefaultUserInfo = DefaultUserInfo()
+    val accessToken: String = "",
+    val refreshToken: String = "",
+    val memberId: Long = 0L,
+    val memberName: String = ""
 )
 
 internal object AppSettingsSerializer: Serializer<AppSettings> {

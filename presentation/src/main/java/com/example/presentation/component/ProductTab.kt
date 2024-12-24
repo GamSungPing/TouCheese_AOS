@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import com.example.domain.model.detail.ProductItem
 import com.example.domain.model.detail.ReviewItem
-import com.example.presentation.studio.vm.model.TabStatus
+import com.example.presentation.screen.studio.vm.model.TabStatus
 import com.example.presentation.theme.primary06
 import com.example.presentation.theme.primaryColor
 import com.example.presentation.theme.secondPrimaryColor

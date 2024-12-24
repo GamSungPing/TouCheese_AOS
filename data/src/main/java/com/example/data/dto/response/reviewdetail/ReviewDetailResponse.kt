@@ -17,7 +17,7 @@ internal data class ReviewDetailResponse(
             imageStrings = data.imageStrings,
             content = data.content ?: "",
             rating = data.rating,
-            reply = data.reply ?: null
+            reply = data.reply
         )
     }
 }
