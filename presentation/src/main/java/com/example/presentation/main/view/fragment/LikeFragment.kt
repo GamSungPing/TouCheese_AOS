@@ -11,7 +11,7 @@ import com.example.presentation.R
 import com.example.presentation.databinding.FragmentLikeBinding
 import com.example.presentation.main.view.adapter.LikeViewAdapter
 import com.example.presentation.main.vm.LikeViewModel
-import com.example.presentation.studio.StudioActivity
+import com.example.presentation.screen.studio.StudioActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

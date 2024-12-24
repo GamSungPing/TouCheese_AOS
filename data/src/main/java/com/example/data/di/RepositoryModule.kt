@@ -2,7 +2,6 @@ package com.example.data.di
 
 import com.example.data.repository.AuthRepositoryImpl
 import com.example.data.repository.LikeRepositoryImpl
-import com.example.data.repository.DefaultReserveInfoRepositoryImpl
 import com.example.data.repository.DeviceRegisterRepositoryImpl
 import com.example.data.repository.FirebaseRepositoryImpl
 import com.example.data.repository.ProductRepositoryImpl

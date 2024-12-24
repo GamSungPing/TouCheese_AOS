@@ -197,7 +197,6 @@ fun ProfileItemSection(
                     when (option) {
                         OptionHeader.NicknameEdit,
                         SettingsOption.ContactEmail -> 9.dp
-
                         else -> 1.dp
                     }
                 )
