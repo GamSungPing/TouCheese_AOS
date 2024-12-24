@@ -27,6 +27,7 @@ class ResultViewAdapter(
         val context: Context = holder.itemView.context
 
         setImagePreload(context, position)
+        holder.itemView.isSelected = studio.isSelected
         holder.bind(studio)
     }
 

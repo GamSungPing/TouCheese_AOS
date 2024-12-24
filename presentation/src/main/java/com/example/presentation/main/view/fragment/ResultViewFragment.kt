@@ -2,6 +2,7 @@ package com.example.presentation.main.view.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.CheckBox
 import androidx.core.view.isVisible
@@ -33,6 +34,7 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
     private lateinit var checkBoxes: List<CheckBox>
     private lateinit var resultViewAdapter: ResultViewAdapter
 
+    private val isLogin = true
 //    private val sharedPreferences = requireContext().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
 //    private val memberId = sharedPreferences.getInt("memberId", 0)
 
@@ -48,7 +50,9 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
 
         viewModel.getInitializedStudio(args.conceptId)
         setupRvStudioList(binding)
-        observeResultViewModel(binding)
+        checkLogin()
+        observeStudiosForNonMember()
+        observeStudiosForMember()
         observeFilterState(binding)
         observeEmpty(binding)
     }
@@ -104,7 +108,7 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
         }
     }
 
-    private fun observeResultViewModel(binding: FragmentResultViewBinding) {
+    private fun observeStudiosForNonMember() {
         viewModel.result.observe(viewLifecycleOwner) { studioList ->
             if (studioList.isNotEmpty()) {
                 resultViewAdapter.submitList(studioList)
@@ -112,6 +116,12 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
                 resultViewAdapter.submitList(null)
                 viewModel.updateEmpty(true)
             }
+        }
+    }
+
+    private fun observeStudiosForMember()  {
+        viewModel.studioWithConceptAndLiked.observe(viewLifecycleOwner) {
+            resultViewAdapter.submitList(it)
         }
     }
 
@@ -128,6 +138,16 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
     private fun observeEmpty(binding: FragmentResultViewBinding) {
         viewModel.empty.observe(viewLifecycleOwner) {
             showEmptyView(binding, it)
+        }
+    }
+
+    private fun getLikedStudios(conceptId: Int, memberId: Int) {
+        viewModel.getLikedStudios(conceptId, memberId)
+    }
+
+    private fun checkLogin() {
+        if(isLogin) {
+            getLikedStudios(args.conceptId, memberId = 18)
         }
     }
 

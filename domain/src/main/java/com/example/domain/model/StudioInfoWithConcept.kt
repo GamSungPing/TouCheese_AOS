@@ -6,5 +6,6 @@ data class StudioInfoWithConcept (
     val profilePrice: String,
     val rating: String,
     val portfolioUrls: List<String>,
-    val profileURL: String
+    val profileURL: String,
+    val isSelected: Boolean = false,
 )

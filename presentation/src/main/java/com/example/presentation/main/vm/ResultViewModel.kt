@@ -8,6 +8,7 @@ import com.example.domain.model.StudioInfoWithConcept
 import com.example.domain.repository.studio.StudioRepository
 import com.example.domain.rule.Pricing
 import com.example.domain.rule.Region
+import com.example.domain.usecase.LikeStudioUseCase
 import com.example.presentation.main.vm.model.FilterState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -15,7 +16,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ResultViewModel @Inject constructor(
-    private val studioRepository: StudioRepository
+    private val studioRepository: StudioRepository,
+    private val likeStudioUseCase: LikeStudioUseCase
 ) : ViewModel() {
 
     private var _filterState = MutableLiveData(FilterState.create())
@@ -26,6 +28,8 @@ class ResultViewModel @Inject constructor(
 
     private val _empty = MutableLiveData<Boolean>()
     val empty: LiveData<Boolean> get() = _empty
+
+    val studioWithConceptAndLiked = MutableLiveData<List<StudioInfoWithConcept>>()
 
     fun getInitializedStudio(conceptId: Int) {
         viewModelScope.launch {
@@ -164,6 +168,12 @@ class ResultViewModel @Inject constructor(
             else {
                 getInitializedStudio(conceptId)
             }
+        }
+    }
+
+    fun getLikedStudios(conceptId: Int, memberId: Int) {
+        viewModelScope.launch {
+            studioWithConceptAndLiked.value = likeStudioUseCase.getCommonStudio(conceptId, memberId)
         }
     }
 }
