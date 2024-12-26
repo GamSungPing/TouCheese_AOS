@@ -157,7 +157,8 @@ fun CalendarBottomSheet(
                             )
                             onDismiss()
                         }
-                    }
+                    },
+                    modifier = Modifier.fillMaxWidth()
                 )
             }
         }

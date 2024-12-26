@@ -64,7 +64,9 @@ fun ProfileDialog(
                     onClick = {
                         onClickPositive()
                     },
-                    modifier = Modifier.padding(top = 30.dp)
+                    modifier = Modifier
+                        .padding(top = 30.dp)
+                        .fillMaxWidth()
                 )
             }
         }

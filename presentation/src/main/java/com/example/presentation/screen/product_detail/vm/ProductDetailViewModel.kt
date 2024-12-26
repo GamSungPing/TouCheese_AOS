@@ -5,23 +5,35 @@ import androidx.lifecycle.viewModelScope
 import com.example.domain.model.AvailableTime
 import com.example.domain.model.ProductOption
 import com.example.domain.model.Schedule
+import com.example.domain.repository.AuthRepository
 import com.example.domain.repository.product.ProductRepository
 import com.example.presentation.screen.product_detail.vm.model.ProductState
+import com.example.presentation.util.ext.stateInUi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import javax.inject.Inject
 
 @HiltViewModel
 class ProductDetailViewModel @Inject constructor(
-    private val productRepository: ProductRepository
+    private val productRepository: ProductRepository,
+    private val authRepository: AuthRepository
 ) : ViewModel() {
 
     private var _state = MutableStateFlow(ProductState.create())
     val state: StateFlow<ProductState> get() = _state.asStateFlow()
+
+    val loggedIn
+        get() = authRepository
+            .loggedIn
+            .stateInUi(
+                scope = viewModelScope,
+                initialValue = false
+            )
 
     fun increaseAddGuestCount() {
         val state = _state.value.addGuestCount + 1

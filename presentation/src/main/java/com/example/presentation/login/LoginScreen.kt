@@ -18,7 +18,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.Font
@@ -28,6 +27,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.presentation.R
+import com.example.presentation.calendar.DateSelectButton
 import com.example.presentation.component.KakaoLoginButton
 import com.example.presentation.login.vm.LoginEvent
 import com.example.presentation.login.vm.LoginViewModel
@@ -100,6 +100,17 @@ fun LoginScreen(
                     fontSize = 16.sp,
                     modifier = Modifier
                         .padding(vertical = 10.dp)
+                )
+
+                DateSelectButton(
+                    title = "시작하기",
+                    clickable = true,
+                    onClick = {
+                        context.startActivity(Intent(context, MainActivity::class.java))
+                    }
+                    , modifier = Modifier
+                        .padding(top = 16.dp)
+                        .fillMaxWidth()
                 )
 
                 KakaoLoginButton(

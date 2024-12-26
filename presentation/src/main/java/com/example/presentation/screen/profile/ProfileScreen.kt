@@ -262,7 +262,7 @@ fun ProfileItemSection(
 @Preview(showBackground = true)
 fun ProfileScreenPreview() {
     ProfileScreen(
-        isLoggedIn = true,
+        isLoggedIn = false,
         userNickName = "불꽃남자김인직",
         onCompleteModifyNickname = {},
         requestLogout = {},

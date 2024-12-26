@@ -40,7 +40,7 @@ fun ConceptCard(
             containerColor = primary01
         ),
         modifier = Modifier
-            .height(180.dp)
+            .height(200.dp)
             .wrapContentWidth()
             .clickable { onClick() }
     ) {
@@ -52,7 +52,7 @@ fun ConceptCard(
                 model = imgUrl,
                 contentDescription = title,
                 modifier = Modifier
-                    .height(150.dp)
+                    .height(180.dp)
                     .fillMaxWidth()
                     .padding(vertical = 10.dp)
                     .padding(horizontal = 15.dp)

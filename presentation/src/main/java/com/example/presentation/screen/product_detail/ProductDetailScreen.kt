@@ -1,5 +1,6 @@
 package com.example.presentation.screen.product_detail
 
+import android.content.Intent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -9,6 +10,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
@@ -24,10 +28,13 @@ import com.example.presentation.component.OptionBox
 import com.example.presentation.component.ProductDetailHeader
 import com.example.presentation.component.ProductReserveButton
 import com.example.presentation.component.ReservationLayer
+import com.example.presentation.component.SuggestLoginDialog
 import com.example.presentation.component.TopBar
+import com.example.presentation.login.LoginActivity
 import com.example.presentation.navigation.parcelable.ProductInfoParcelable
 import com.example.presentation.navigation.parcelable.ReservationParcelable
 import com.example.presentation.screen.product_detail.vm.ProductDetailViewModel
+import com.example.presentation.screen.profile.vm.model.Options
 import com.example.presentation.theme.gray01
 import com.example.presentation.theme.gray03
 import com.example.presentation.util.ext.toKoreanUnit
@@ -42,6 +49,8 @@ fun ProductDetailScreen(
 ) {
 
     val state by viewModel.state.collectAsStateWithLifecycle()
+    val loggedIn by viewModel.loggedIn.collectAsStateWithLifecycle()
+
     val productId = bundle.productId
     val description = bundle.description
     val path = bundle.profileUrl
@@ -51,6 +60,7 @@ fun ProductDetailScreen(
     }
 
     ProductDetailScreen(
+        isLoggedIn = loggedIn,
         productId = productId,
         productName = state.product.productName,
         description = description,
@@ -92,6 +102,7 @@ fun ProductDetailScreen(
 
 @Composable
 fun ProductDetailScreen(
+    isLoggedIn: Boolean,
     productId: Int,
     productName: String,
     description: String,
@@ -112,6 +123,7 @@ fun ProductDetailScreen(
     onClickSubPeople: () -> Unit,
 ) {
     val context = LocalContext.current
+    var showDialog by remember { mutableStateOf(false) }
 
     LazyColumn(
         contentPadding = PaddingValues(bottom = 70.dp),
@@ -158,12 +170,30 @@ fun ProductDetailScreen(
             )
         }
         item {
-            ProductReserveButton(
-                paymentMessage = paymentMessage,
-                submitAble = submitAble,
-                onClickSubmit = onClickSubmit
-            )
+            if (isLoggedIn) {
+                ProductReserveButton(
+                    paymentMessage = paymentMessage,
+                    submitAble = submitAble,
+                    onClickSubmit = onClickSubmit
+                )
+            } else {
+                ProductReserveButton(
+                    paymentMessage = paymentMessage,
+                    submitAble = false,
+                    onClickSubmit = { showDialog = true }
+                )
+            }
         }
+    }
+
+    if (showDialog) {
+        SuggestLoginDialog(
+            onClickPositive = {
+                context.startActivity(Intent(context, LoginActivity::class.java))
+                showDialog = false
+            },
+            onDismiss = { showDialog = false }
+        )
     }
 }
 
@@ -171,6 +201,7 @@ fun ProductDetailScreen(
 @Composable
 fun ProductDetailScreenPreview() {
     ProductDetailScreen(
+        isLoggedIn = true,
         productId = 1,
         productName = "테스트",
         description = "테스트",

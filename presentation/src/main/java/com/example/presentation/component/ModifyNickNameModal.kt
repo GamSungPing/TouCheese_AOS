@@ -137,7 +137,9 @@ fun ModifyNickNameModal(
                     onClick = {
                         onComplete(input)
                     },
-                    modifier = Modifier.padding(top = 16.dp)
+                    modifier = Modifier
+                        .padding(top = 16.dp)
+                        .fillMaxWidth()
                 )
             }
         }
