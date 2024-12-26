@@ -3,6 +3,7 @@ package com.example.presentation.calendar
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,12 +20,13 @@ fun DateSelectButton(
     title: String,
     clickable: Boolean,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    buttonColors: ButtonColors = ButtonDefaults.buttonColors(containerColor = primary06),
 ) {
     Button(
         onClick = onClick,
         enabled = clickable,
-        colors = ButtonDefaults.buttonColors(containerColor = primary06),
+        colors = buttonColors,
         shape = RoundedCornerShape(10.dp),
         modifier = modifier
             .height(48.dp)

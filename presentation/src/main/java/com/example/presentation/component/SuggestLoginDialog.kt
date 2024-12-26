@@ -1,5 +1,6 @@
 package com.example.presentation.component
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,6 +24,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.example.presentation.R
 import com.example.presentation.calendar.DateSelectButton
+import com.example.presentation.theme.gray03
 
 @Composable
 fun SuggestLoginDialog(
@@ -67,8 +70,8 @@ fun SuggestLoginDialog(
                         onClick = {
                             onDismiss()
                         },
-                        modifier = Modifier
-                            .weight(0.3f)
+                        modifier = Modifier.weight(0.3f),
+                        buttonColors = ButtonDefaults.buttonColors(containerColor = gray03)
                     )
 
                     DateSelectButton(
