@@ -1,5 +1,6 @@
 package com.example.presentation.login.vm
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.repository.AuthRepository
@@ -31,6 +32,7 @@ class LoginViewModel @Inject constructor(
         viewModelScope.launch {
             authRepository.loggedIn
                 .map { isLoggedIn ->
+                    Log.d("dasdas", "$isLoggedIn")
                     LoginState(
                         loginEvent = if (isLoggedIn) LoginEvent.LoggedIn else LoginEvent.LoginRequired
                     )

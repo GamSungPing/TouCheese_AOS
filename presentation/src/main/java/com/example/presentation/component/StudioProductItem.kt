@@ -50,6 +50,7 @@ fun StudioProductItem(
         modifier = Modifier
             .heightIn(max = 147.dp)
             .fillMaxWidth()
+            .clickable { rootClickListener(id) }
             .border(
                 width = 1.dp,
                 color = gray03,
@@ -73,7 +74,6 @@ fun StudioProductItem(
             modifier = Modifier
                 .fillMaxHeight()
                 .padding(top=8.dp, start = 8.dp)
-                .clickable { rootClickListener(id) }
         ) {
             Text(
                 text = productName,

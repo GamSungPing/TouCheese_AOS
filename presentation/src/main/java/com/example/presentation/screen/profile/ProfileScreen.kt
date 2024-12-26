@@ -35,13 +35,17 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.presentation.R
 import com.example.presentation.calendar.DateSelectButton
 import com.example.presentation.component.ModifyNickNameModal
+import com.example.presentation.component.ProfileDialog
 import com.example.presentation.login.LoginActivity
 import com.example.presentation.screen.profile.vm.ProfileViewModel
+import com.example.presentation.screen.profile.vm.model.OptionBody
+import com.example.presentation.screen.profile.vm.model.OptionBottom
 import com.example.presentation.screen.profile.vm.model.OptionHeader
 import com.example.presentation.screen.profile.vm.model.Options
-import com.example.presentation.screen.profile.vm.model.SettingsOption
 import com.example.presentation.theme.gray03
+import com.example.presentation.theme.gray06
 import com.example.presentation.theme.gray10
+
 
 @Composable
 fun ProfileScreen(
@@ -63,9 +67,11 @@ fun ProfileScreen(
         },
         requestLogout = {
             viewModel.logout()
+            context.startActivity(Intent(context, LoginActivity::class.java))
         },
         requestWithdraw = {
             viewModel.withdraw()
+            context.startActivity(Intent(context, LoginActivity::class.java))
         }
     )
 }
@@ -98,17 +104,43 @@ fun ProfileScreen(
         OptionHeader.RequireLogin -> {
             requestLogin()
         }
-        SettingsOption.ContactEmail -> {}
-        SettingsOption.TermsAndPolicy -> {}
-        SettingsOption.OpenSourceLicense -> {}
-        SettingsOption.ClearCache -> {}
-        SettingsOption.AppVersion -> {}
-        SettingsOption.Logout -> {
-            requestLogout()
+        OptionBody.ContactEmail -> {}
+        OptionBody.TermsAndPolicy -> {
+            WebViewScreen(
+                "https://silken-cream-988.notion.site/16587345f49a800a8bcfd6522543cffb"
+            )
+        }
+        OptionBody.OpenSourceLicense -> @Composable {
+            WebViewScreen(
+                "https://www.notion.so/chanho0908/1680f436649f80fb9257e186a811de53?pvs=4"
+            )
+        }
+        OptionBottom.Logout -> {
+            ProfileDialog(
+                title = "로그아웃 하시겠습니까?",
+                onClickPositive = {
+                    selectedOption = null
+                    requestLogout()
+                },
+                onDismiss = {
+                    selectedOption = null
+                },
+                btnTitle = "로그아웃"
+            )
         }
 
-        SettingsOption.WithdrawMembership -> {
-            requestWithdraw()
+        OptionBottom.WithdrawMembership -> {
+            ProfileDialog(
+                title = "회원탈퇴 하시겠습니까?",
+                onClickPositive = {
+                    selectedOption = null
+                    requestWithdraw()
+                },
+                onDismiss = {
+                    selectedOption = null
+                },
+                btnTitle = "탈퇴하기"
+            )
         }
     }
 
@@ -152,10 +184,19 @@ fun ProfileScreen(
             }
         }
 
-        enumValues<SettingsOption>().forEach { option ->
+        enumValues<OptionBody>().forEach { option ->
             item {
                 ProfileItemSection(option = option) { newOption ->
                     selectedOption = newOption
+                }
+            }
+        }
+        if (isLoggedIn) {
+            enumValues<OptionBottom>().forEach { option ->
+                item {
+                    ProfileItemSection(option = option) { newOption ->
+                        selectedOption = newOption
+                    }
                 }
             }
         }
@@ -183,20 +224,31 @@ fun ProfileItemSection(
                 modifier = Modifier
             )
 
-            Icon(
-                imageVector = ImageVector.vectorResource(R.drawable.ic_move_foward),
-                contentDescription = "arrowForward",
-                modifier = Modifier
-                    .wrapContentSize()
-                    .align(Alignment.CenterVertically)
-            )
+            if (option == OptionBody.ContactEmail){
+                Text(
+                    text = "toucheese.official@gmail.com",
+                    fontFamily = FontFamily(Font(R.font.pretendard_medium)),
+                    fontSize = 14.sp,
+                    color = gray06
+                )
+            }
+            else {
+                Icon(
+                    imageVector = ImageVector.vectorResource(R.drawable.ic_move_foward),
+                    contentDescription = "arrowForward",
+                    modifier = Modifier
+                        .wrapContentSize()
+                        .align(Alignment.CenterVertically)
+                )
+            }
         }
         Spacer(
             Modifier
                 .height(
                     when (option) {
                         OptionHeader.NicknameEdit,
-                        SettingsOption.ContactEmail -> 9.dp
+                        OptionBody.ContactEmail -> 9.dp
+
                         else -> 1.dp
                     }
                 )

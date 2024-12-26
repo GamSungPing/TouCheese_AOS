@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.util.fastCbrt
 import com.example.domain.model.detail.ProductItem
 import com.example.presentation.util.ext.toKoreanUnit
 
@@ -41,7 +42,18 @@ fun PriceTabItem(
 @Preview(showBackground = true)
 fun PriceTabItemPreview() {
     PriceTabItem(
-        productItem = listOf(),
+        productItem = listOf(
+            ProductItem(
+                id = 0,
+                name = "바디 프로필",
+                description = "",
+                imageUrl = "",
+                reviewCount = 0,
+                price = 0,
+                isGroup = false
+            )
+
+        ),
         onClickProduct = { _, _, _ -> }
     )
 }

@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
@@ -29,7 +31,6 @@ fun ConceptCard(
     imgUrl: String,
     title: String,
     onClick: () -> Unit,
-    width: Dp
 ) {
     ElevatedCard(
         elevation = CardDefaults.cardElevation(
@@ -39,8 +40,8 @@ fun ConceptCard(
             containerColor = primary01
         ),
         modifier = Modifier
-            .height(230.dp)
-            .width(width)
+            .height(180.dp)
+            .wrapContentWidth()
             .clickable { onClick() }
     ) {
         Column(
@@ -51,7 +52,7 @@ fun ConceptCard(
                 model = imgUrl,
                 contentDescription = title,
                 modifier = Modifier
-                    .height(200.dp)
+                    .height(150.dp)
                     .fillMaxWidth()
                     .padding(vertical = 10.dp)
                     .padding(horizontal = 15.dp)
@@ -61,7 +62,7 @@ fun ConceptCard(
             Text(
                 text = title,
                 fontFamily = FontFamily(Font(R.font.pretendard_bold)),
-                fontSize = 15.sp,
+                fontSize = 13.sp,
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
             )

@@ -1,10 +1,10 @@
 package com.example.data.datasource
 
 import android.content.Context
+import android.util.Log
 import androidx.datastore.core.DataStore
 import com.example.data.database.AppSettings
 import com.example.data.database.dataStore
-import com.example.data.dto.response.login.LoginResponse
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
@@ -21,7 +21,9 @@ internal class TokenDataSource @Inject constructor(
         get() = dataStore.data
 
     val loggedIn: Flow<Boolean>
-        get() = data.map { it.accessToken.isNotBlank() }
+        get() = data.map { Log.d("dasdas", it.accessToken)
+            it.accessToken.isNotBlank()
+        }
 
     suspend fun getAccessToken(): String = data.first().accessToken
 

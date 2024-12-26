@@ -45,7 +45,6 @@ class LikeFragment : Fragment(R.layout.fragment_like) {
             }
         )
 
-
         binding.rvLike.apply {
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)

@@ -1,7 +1,6 @@
 package com.example.domain.model
 
 data class NewReservation(
-    val memberId: Int = 1,
     val studioId: Int,
     val reservationDate: String,
     val reservationTime: String,

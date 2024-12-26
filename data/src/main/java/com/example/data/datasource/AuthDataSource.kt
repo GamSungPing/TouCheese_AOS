@@ -1,6 +1,7 @@
 package com.example.data.datasource
 
 import android.content.Context
+import android.util.Log
 import androidx.datastore.core.DataStore
 import com.example.data.database.AppSettings
 import com.example.data.database.dataStore
@@ -16,7 +17,7 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 internal class AuthDataSource @Inject constructor(
-    private val context: Context,
+    @ApplicationContext private val context: Context,
     private val authService: AuthService
 ) {
     private val dataStore: DataStore<AppSettings>
@@ -35,7 +36,6 @@ internal class AuthDataSource @Inject constructor(
     suspend fun refresh(): Result<RefreshResponse?> = runCatching {
         val accessToken = data.map { it.accessToken }.first()
         val refreshToken = data.map { it.refreshToken }.first()
-
         if (refreshToken.isNotBlank()) {
             authService.refresh(
                 RefreshRequest(
@@ -59,6 +59,7 @@ internal class AuthDataSource @Inject constructor(
     }
 
     private suspend fun localLogout() {
+        Log.d("dasdasdsa", "localLogout")
         dataStore.updateData {
             it.copy(
                 accessToken = "",

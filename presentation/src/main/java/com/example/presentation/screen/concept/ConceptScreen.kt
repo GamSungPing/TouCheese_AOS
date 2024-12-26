@@ -2,22 +2,30 @@ package com.example.presentation.screen.concept
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.material.Text
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.domain.model.ConceptItem
 import com.example.domain.model.StudioConcepts
 import com.example.domain.rule.Concept
+import com.example.presentation.R
 import com.example.presentation.component.ConceptCard
 import com.example.presentation.screen.concept.vm.HomeConceptViewModel
 import com.example.presentation.screen.concept.vm.model.HomeConceptState
@@ -42,9 +50,6 @@ fun ConceptScreen(
     uiState: HomeConceptState,
     onSelectConcept: (Concept) -> Unit = {},
 ) {
-    val screenHeightDp = LocalConfiguration.current.screenHeightDp.dp
-    val cardWidth = (LocalConfiguration.current.screenWidthDp.dp - 48.dp) / 2
-
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -59,12 +64,26 @@ fun ConceptScreen(
                 .fillMaxSize()
                 .background(color = primary02)
         ) {
+            item {
+                Spacer(
+                    modifier = Modifier
+                        .padding(top = 16.dp)
+                        .background(color = primary02)
+                )
+            }
+            item(span = { GridItemSpan(2) }) {
+                Icon(
+                    imageVector = ImageVector.vectorResource(R.drawable.ic_logo_main),
+                    contentDescription = null,
+                    tint = Color.Unspecified,
+                )
+            }
+
             uiState.homeConcept.data.forEach {
                 item {
                     ConceptCard(
                         imgUrl = it.mainUrl,
                         title = it.name,
-                        width = cardWidth,
                         onClick = {
                             onSelectConcept(
                                 it.id

@@ -50,6 +50,6 @@ internal interface ReservationService {
     @POST("reservation")
     suspend fun makeReservation(
         @Body request: ReservationRequest,
-        @Tag authType: AuthType = AuthType.NO_AUTH
+        @Tag authType: AuthType = AuthType.ACCESS_TOKEN
     )
 }

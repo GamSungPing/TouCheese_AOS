@@ -3,7 +3,7 @@ package com.example.data.dto.request.reservation
 import com.example.domain.model.NewReservation
 
 data class ReservationRequest(
-    val memberId: Int,
+    val memberId: Long,
     val studioId: Int,
     val reservationDate: String,
     val reservationTime: String,
@@ -15,7 +15,7 @@ data class ReservationRequest(
     val addPeopleCnt: Int
 )
 
-internal fun NewReservation.toRequestModel(): ReservationRequest{
+internal fun NewReservation.toRequestModel(memberId: Long): ReservationRequest{
     val options = productOption.joinToString("@") { "${it.name}:${it.price}" }
     val payment = totalPrice.filter { it.isDigit() }.toInt()
 

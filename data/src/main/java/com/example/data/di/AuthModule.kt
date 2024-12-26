@@ -12,6 +12,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.Authenticator
+import javax.inject.Provider
 import javax.inject.Singleton
 
 @Module
@@ -28,12 +29,11 @@ internal object AuthModule {
     @Provides
     fun provideAuthenticator(
         tokenDataSource: TokenDataSource,
-        //authDataSource: AuthDataSource
+        authDataSource: Provider<AuthDataSource>
     ): Authenticator {
-        return AuthAuthenticator(tokenDataSource,
-            //authDataSource
-        )
+        return AuthAuthenticator(tokenDataSource, authDataSource)
     }
+
 
     @Singleton
     @Provides

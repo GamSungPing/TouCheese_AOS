@@ -14,7 +14,7 @@ class FcmViewModel @Inject constructor(
 
     fun sendToToken() {
         viewModelScope.launch {
-            //registerDeviceTokenUseCase()
+            registerDeviceTokenUseCase()
         }
     }
 }

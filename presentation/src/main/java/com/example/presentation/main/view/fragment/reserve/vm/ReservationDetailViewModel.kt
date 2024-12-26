@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -35,9 +36,12 @@ class ReservationDetailViewModel @Inject constructor(
 
     init {
         authRepository.memberId
-            .onEach {
-                _memberId.value = if (it > 0L) MemberStatus.Member(it)
+            .map {
+                if (it > 0L) MemberStatus.Member(it)
                 else MemberStatus.NonMember
+            }
+            .onEach {
+                _memberId.value = it
             }.launchIn(viewModelScope)
     }
 

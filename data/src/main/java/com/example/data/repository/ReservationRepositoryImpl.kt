@@ -6,11 +6,15 @@ import com.example.domain.model.AvailableReservationTime
 import com.example.domain.model.NewReservation
 import com.example.domain.model.ReservationDetail
 import com.example.domain.model.Reservation
+import com.example.domain.repository.AuthRepository
 import com.example.domain.repository.reservation.ReservationRepository
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 internal class ReservationRepositoryImpl @Inject constructor(
-    private val reservationDataSource: ReservationDataSource
+    private val reservationDataSource: ReservationDataSource,
+    private val authRepository: AuthRepository
 ) : ReservationRepository {
 
     override suspend fun getReservationsByMemberId(memberId: Long): List<Reservation>  {
@@ -34,6 +38,7 @@ internal class ReservationRepositoryImpl @Inject constructor(
     }
 
     override suspend fun makeReservation(receipt: NewReservation) {
-        reservationDataSource.makeReservation(receipt.toRequestModel())
+        val memberId = authRepository.memberId.map { it }.first()
+        reservationDataSource.makeReservation(receipt.toRequestModel(memberId))
     }
 }
