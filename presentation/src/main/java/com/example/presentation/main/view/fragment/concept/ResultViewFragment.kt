@@ -2,6 +2,7 @@ package com.example.presentation.main.view.fragment.concept
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.CheckBox
 import androidx.core.view.isVisible
@@ -16,6 +17,9 @@ import com.example.presentation.R
 import com.example.presentation.databinding.BottomSheetFilterPriceBinding
 import com.example.presentation.databinding.BottomSheetFilterRegionBinding
 import com.example.presentation.databinding.FragmentResultViewBinding
+import com.example.presentation.login.LoginActivity
+import com.example.presentation.main.customview.ConfirmDialog
+import com.example.presentation.main.view.MainActivity
 import com.example.presentation.main.view.adapter.ResultViewAdapter
 import com.example.presentation.screen.concept.vm.HomeConceptViewModel
 import com.example.presentation.main.view.fragment.like.vm.LikeViewModel
@@ -65,10 +69,8 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
             onClickLike = {
                 if (viewModel.memberId.value != 0L) {
                     likeViewModel.addLike(studioId = it, viewModel.memberId.value)
-                }else{
-                    TODO(
-                        "로그인 안내 및 로그인 화면으로 이동하는 다이얼로그 구현!"
-                    )
+                } else{
+                    setAlertDialog()
                 }
             }
         )
@@ -271,5 +273,17 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
     private fun showEmptyView(binding: FragmentResultViewBinding, isBoolean: Boolean) {
         binding.rvStudioList.isVisible = isBoolean
         binding.layoutEmptyResult.isVisible = !isBoolean
+    }
+
+    private fun setAlertDialog() {
+        val dialog = ConfirmDialog(
+            text = "로그인이 필요한 서비스입니다\n로그인하시겠습니까?",
+        ) {
+            val intent = Intent(context, LoginActivity::class.java).apply {
+                putExtra("startDestination", SplashRoute.Login.route)
+            }
+            startActivity(intent)
+        }
+        dialog.show(childFragmentManager, "ConfirmDialog")
     }
 }

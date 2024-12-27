@@ -1,5 +1,6 @@
 package com.example.presentation.main.view.fragment.reserve
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
@@ -9,6 +10,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.presentation.R
 import com.example.presentation.databinding.FragmentReservationListBinding
+import com.example.presentation.login.LoginActivity
 import com.example.presentation.main.view.adapter.ReservationViewAdapter
 import com.example.presentation.main.view.fragment.reserve.vm.ReservationDetailViewModel
 import com.example.presentation.main.vm.model.MemberStatus
@@ -107,7 +109,10 @@ class ReservationListFragment : Fragment(R.layout.fragment_reservation_list) {
         repeatOnViewStarted {
             viewModel.memberId.collect {
                 when (it) {
-                    is MemberStatus.NonMember,
+                    is MemberStatus.NonMember -> {
+                        showLoginLayout(true, binding)
+                    }
+
                     is MemberStatus.Loading -> Unit
 
                     is MemberStatus.Member -> {
@@ -133,6 +138,12 @@ class ReservationListFragment : Fragment(R.layout.fragment_reservation_list) {
     private fun showLoginLayout(isVisible: Boolean, binding: FragmentReservationListBinding) {
         with(binding) {
             layoutNonMember.isVisible = isVisible
+            btLogin.setOnClickListener {
+                val intent = Intent(context, LoginActivity::class.java).apply {
+                    putExtra("startDestination", SplashRoute.Login.route)
+                }
+                startActivity(intent)
+            }
         }
     }
 }
