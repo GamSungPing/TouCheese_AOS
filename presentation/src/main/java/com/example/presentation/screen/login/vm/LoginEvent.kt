@@ -1,4 +1,4 @@
-package com.example.presentation.login.vm
+package com.example.presentation.screen.login.vm
 
 sealed interface LoginEvent {
     data object LoginRequired : LoginEvent

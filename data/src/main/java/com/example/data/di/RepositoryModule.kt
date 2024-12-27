@@ -1,5 +1,6 @@
 package com.example.data.di
 
+import com.example.data.repository.ActivationRepositoryImpl
 import com.example.data.repository.AuthRepositoryImpl
 import com.example.data.repository.LikeRepositoryImpl
 import com.example.data.repository.DeviceRegisterRepositoryImpl
@@ -9,6 +10,7 @@ import com.example.data.repository.ReservationRepositoryImpl
 import com.example.data.repository.ReviewDetailRepositoryImpl
 import com.example.data.repository.StudioConceptRepositoryImpl
 import com.example.data.repository.StudioRepositoryImpl
+import com.example.domain.repository.ActivationRepository
 import com.example.domain.repository.AuthRepository
 import com.example.domain.repository.FirebaseRepository
 import com.example.domain.repository.device.DeviceRegisterRepository
@@ -53,4 +55,7 @@ internal interface RepositoryModule {
 
     @Binds
     fun bindsAuthRepository(authRepositoryImpl: AuthRepositoryImpl): AuthRepository
+
+    @Binds
+    fun bindsActivationRepository(activationRepositoryImpl: ActivationRepositoryImpl): ActivationRepository
 }

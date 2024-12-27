@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.datastore.core.DataStore
 import com.example.data.database.AppSettings
 import com.example.data.database.dataStore
+import com.example.domain.model.Activation
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
@@ -36,7 +37,7 @@ internal class TokenDataSource @Inject constructor(
         }
     }
 
-    suspend fun saveUseData(
+    suspend fun saveUserData(
         accessToken: String,
         refreshToken: String,
         memberId: Long,
@@ -47,7 +48,8 @@ internal class TokenDataSource @Inject constructor(
                 accessToken = accessToken,
                 refreshToken = refreshToken,
                 memberId = memberId,
-                memberName = memberName
+                memberName = memberName,
+                activation = Activation.Activate
             )
         }
     }

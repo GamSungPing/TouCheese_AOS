@@ -39,6 +39,7 @@ firebaseMessagingKtx = "24.1.0"
 playServicesBase = "18.5.0"
 swiperefreshlayout = "1.1.0"
 kakao = "2.20.1"
+kotlinx-serialization-json = "1.6.2"
 
 [libraries]
 accompanist-pager = { module = "com.google.accompanist:accompanist-pager", version.ref = "accompanistPager" }
@@ -106,4 +107,5 @@ navigation-safe-args = { id = "androidx.navigation.safeargs.kotlin", version.ref
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize",  version.ref = "org-jetbrains-kotlin-android"  }
 jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
 android-library = { id = "com.android.library", version.ref = "agp" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 

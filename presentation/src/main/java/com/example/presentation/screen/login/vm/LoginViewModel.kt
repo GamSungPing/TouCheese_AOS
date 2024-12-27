@@ -1,7 +1,9 @@
-package com.example.presentation.login.vm
+package com.example.presentation.screen.login.vm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.domain.model.Activation
+import com.example.domain.repository.ActivationRepository
 import com.example.domain.repository.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,7 +17,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val authRepository: AuthRepository
+    private val authRepository: AuthRepository,
+    private val activationRepository: ActivationRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(LoginState())
@@ -26,18 +29,16 @@ class LoginViewModel @Inject constructor(
     }
 
     private fun initializeLoginState() {
-        viewModelScope.launch {
-            authRepository.loggedIn
-                .map { isLoggedIn ->
-                    LoginState(
-                        loginEvent = if (isLoggedIn) LoginEvent.LoggedIn else LoginEvent.LoginRequired
-                    )
-                }
-                .onEach { newState ->
-                    _uiState.value = newState
-                }
-                .launchIn(viewModelScope)
-        }
+        authRepository.loggedIn
+            .map { isLoggedIn ->
+                LoginState(
+                    loginEvent = if (isLoggedIn) LoginEvent.LoggedIn else LoginEvent.LoginRequired
+                )
+            }
+            .onEach { newState ->
+                _uiState.value = newState
+            }
+            .launchIn(viewModelScope)
     }
 
 
@@ -52,6 +53,12 @@ class LoginViewModel @Inject constructor(
                     loginEvent = LoginEvent.Error
                 )
             }
+        }
+    }
+
+    fun saveActivation() {
+        viewModelScope.launch {
+            activationRepository.saveUserActivation(Activation.Activate)
         }
     }
 }

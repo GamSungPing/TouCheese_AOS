@@ -3,6 +3,7 @@ package com.example.data.di
 import android.content.Context
 import com.example.data.auth.AuthAuthenticator
 import com.example.data.auth.AuthInterceptor
+import com.example.data.datasource.ActivationDataSource
 import com.example.data.datasource.AuthDataSource
 import com.example.data.datasource.TokenDataSource
 import com.example.data.service.AuthService
@@ -51,4 +52,10 @@ internal object AuthModule {
     ): TokenDataSource {
         return TokenDataSource(context)
     }
+
+    @Singleton
+    @Provides
+    fun provideFirstLogInDataSource(
+        @ApplicationContext context: Context
+    ): ActivationDataSource = ActivationDataSource(context)
 }

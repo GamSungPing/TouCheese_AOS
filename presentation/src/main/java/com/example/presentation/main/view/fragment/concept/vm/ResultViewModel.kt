@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ResultViewModel @Inject constructor(
-    private val authRepository: AuthRepository,
+    authRepository: AuthRepository,
     private val studioRepository: StudioRepository,
     private val likeStudioUseCase: LikeStudioUseCase
 ) : ViewModel() {

@@ -1,6 +1,7 @@
 package com.example.presentation.screen.profile
 
 import android.content.Intent
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -36,12 +37,13 @@ import com.example.presentation.R
 import com.example.presentation.calendar.DateSelectButton
 import com.example.presentation.component.ModifyNickNameModal
 import com.example.presentation.component.ProfileDialog
-import com.example.presentation.login.LoginActivity
+import com.example.presentation.screen.login.LoginActivity
 import com.example.presentation.screen.profile.vm.ProfileViewModel
 import com.example.presentation.screen.profile.vm.model.OptionBody
 import com.example.presentation.screen.profile.vm.model.OptionBottom
 import com.example.presentation.screen.profile.vm.model.OptionHeader
 import com.example.presentation.screen.profile.vm.model.Options
+import com.example.presentation.screen.splash.nav.SplashRoute
 import com.example.presentation.theme.gray03
 import com.example.presentation.theme.gray06
 import com.example.presentation.theme.gray10
@@ -55,6 +57,9 @@ fun ProfileScreen(
     val memberName = viewModel.memberName.collectAsStateWithLifecycle()
     val uiState = viewModel.uiState.collectAsStateWithLifecycle()
     val context = LocalContext.current
+    val intent = Intent(context, LoginActivity::class.java).apply {
+        putExtra("startDestination", SplashRoute.Login.route)
+    }
 
     ProfileScreen(
         isLoggedIn = loggedIn.value,
@@ -63,15 +68,15 @@ fun ProfileScreen(
             viewModel.modifyNickName(nickName)
         },
         requestLogin = {
-            context.startActivity(Intent(context, LoginActivity::class.java))
+            context.startActivity(intent)
         },
         requestLogout = {
             viewModel.logout()
-            context.startActivity(Intent(context, LoginActivity::class.java))
+            context.startActivity(intent)
         },
         requestWithdraw = {
             viewModel.withdraw()
-            context.startActivity(Intent(context, LoginActivity::class.java))
+            context.startActivity(intent)
         }
     )
 }
@@ -101,9 +106,7 @@ fun ProfileScreen(
             )
         }
 
-        OptionHeader.RequireLogin -> {
-            requestLogin()
-        }
+        OptionHeader.RequireLogin -> {}
         OptionBody.ContactEmail -> {}
         OptionBody.TermsAndPolicy -> {
             WebViewScreen(
@@ -177,7 +180,7 @@ fun ProfileScreen(
                     title = OptionHeader.RequireLogin.title,
                     clickable = true,
                     onClick = {
-
+                        requestLogin()
                     },
                     modifier = Modifier.padding(30.dp)
                 )

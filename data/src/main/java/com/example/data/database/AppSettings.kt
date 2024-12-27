@@ -8,13 +8,15 @@ import kotlinx.serialization.json.Json
 import java.io.InputStream
 import java.io.OutputStream
 import androidx.datastore.core.Serializer
+import com.example.domain.model.Activation
 
 @Serializable
 internal data class AppSettings(
     val accessToken: String = "",
     val refreshToken: String = "",
     val memberId: Long = 0L,
-    val memberName: String = ""
+    val memberName: String = "",
+    val activation: Activation = Activation.DeActivate,
 )
 
 internal object AppSettingsSerializer: Serializer<AppSettings> {

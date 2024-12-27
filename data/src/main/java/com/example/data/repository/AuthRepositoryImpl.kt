@@ -24,11 +24,11 @@ internal class AuthRepositoryImpl @Inject constructor(
     override suspend fun login(socialId: String):Result<Unit> = kotlin.runCatching{
         val request = LoginRequest()
         val response = authDataSource.login(socialId, request)
-        tokenDataSource.saveUseData(
+        tokenDataSource.saveUserData(
             response.data.accessToken,
             response.data.refreshToken,
             response.data.memberId,
-            response.data.memberName
+            response.data.memberName,
         )
     }
 

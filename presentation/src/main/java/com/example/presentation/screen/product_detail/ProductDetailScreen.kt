@@ -30,11 +30,12 @@ import com.example.presentation.component.ProductReserveButton
 import com.example.presentation.component.ReservationLayer
 import com.example.presentation.component.SuggestLoginDialog
 import com.example.presentation.component.TopBar
-import com.example.presentation.login.LoginActivity
+import com.example.presentation.screen.login.LoginActivity
 import com.example.presentation.navigation.parcelable.ProductInfoParcelable
 import com.example.presentation.navigation.parcelable.ReservationParcelable
 import com.example.presentation.screen.product_detail.vm.ProductDetailViewModel
 import com.example.presentation.screen.profile.vm.model.Options
+import com.example.presentation.screen.splash.nav.SplashRoute
 import com.example.presentation.theme.gray01
 import com.example.presentation.theme.gray03
 import com.example.presentation.util.ext.toKoreanUnit
@@ -189,7 +190,10 @@ fun ProductDetailScreen(
     if (showDialog) {
         SuggestLoginDialog(
             onClickPositive = {
-                context.startActivity(Intent(context, LoginActivity::class.java))
+                val intent = Intent(context, LoginActivity::class.java).apply {
+                    putExtra("startDestination", SplashRoute.Login.route)
+                }
+                context.startActivity(intent)
                 showDialog = false
             },
             onDismiss = { showDialog = false }
