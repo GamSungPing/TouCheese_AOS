@@ -10,10 +10,11 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.presentation.R
 import com.example.presentation.databinding.FragmentReservationListBinding
-import com.example.presentation.login.LoginActivity
 import com.example.presentation.main.view.adapter.ReservationViewAdapter
 import com.example.presentation.main.view.fragment.reserve.vm.ReservationDetailViewModel
 import com.example.presentation.main.vm.model.MemberStatus
+import com.example.presentation.screen.login.LoginActivity
+import com.example.presentation.screen.splash.nav.SplashRoute
 import com.google.android.material.tabs.TabLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kr.techit.lion.presentation.ext.repeatOnViewStarted

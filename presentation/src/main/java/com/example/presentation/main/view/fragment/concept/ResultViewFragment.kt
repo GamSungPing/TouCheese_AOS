@@ -17,13 +17,13 @@ import com.example.presentation.R
 import com.example.presentation.databinding.BottomSheetFilterPriceBinding
 import com.example.presentation.databinding.BottomSheetFilterRegionBinding
 import com.example.presentation.databinding.FragmentResultViewBinding
-import com.example.presentation.login.LoginActivity
 import com.example.presentation.main.customview.ConfirmDialog
-import com.example.presentation.main.view.MainActivity
 import com.example.presentation.main.view.adapter.ResultViewAdapter
 import com.example.presentation.screen.concept.vm.HomeConceptViewModel
 import com.example.presentation.main.view.fragment.like.vm.LikeViewModel
 import com.example.presentation.main.view.fragment.concept.vm.ResultViewModel
+import com.example.presentation.screen.login.LoginActivity
+import com.example.presentation.screen.splash.nav.SplashRoute
 import com.example.presentation.screen.studio.StudioActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint

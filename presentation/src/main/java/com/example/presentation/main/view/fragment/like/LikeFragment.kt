@@ -9,11 +9,11 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.presentation.R
 import com.example.presentation.databinding.FragmentLikeBinding
-import com.example.presentation.login.LoginActivity
-import com.example.presentation.main.customview.ConfirmDialog
 import com.example.presentation.main.view.adapter.LikeViewAdapter
 import com.example.presentation.main.view.fragment.like.vm.LikeViewModel
 import com.example.presentation.main.vm.model.MemberStatus
+import com.example.presentation.screen.login.LoginActivity
+import com.example.presentation.screen.splash.nav.SplashRoute
 import com.example.presentation.screen.studio.StudioActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kr.techit.lion.presentation.ext.repeatOnViewStarted
