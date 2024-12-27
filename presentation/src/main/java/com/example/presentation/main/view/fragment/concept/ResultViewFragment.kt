@@ -2,6 +2,7 @@ package com.example.presentation.main.view.fragment.concept
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.CheckBox
 import androidx.core.view.isVisible
@@ -278,7 +279,9 @@ class ResultViewFragment : Fragment(R.layout.fragment_result_view) {
         val dialog = ConfirmDialog(
             text = "로그인이 필요한 서비스입니다\n로그인하시겠습니까?",
         ) {
-            val intent = Intent(requireContext(), LoginActivity::class.java)
+            val intent = Intent(context, LoginActivity::class.java).apply {
+                putExtra("startDestination", SplashRoute.Login.route)
+            }
             startActivity(intent)
         }
         dialog.show(childFragmentManager, "ConfirmDialog")

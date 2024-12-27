@@ -139,7 +139,9 @@ class ReservationListFragment : Fragment(R.layout.fragment_reservation_list) {
         with(binding) {
             layoutNonMember.isVisible = isVisible
             btLogin.setOnClickListener {
-                val intent = Intent(requireContext(), LoginActivity::class.java)
+                val intent = Intent(context, LoginActivity::class.java).apply {
+                    putExtra("startDestination", SplashRoute.Login.route)
+                }
                 startActivity(intent)
             }
         }
