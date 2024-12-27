@@ -99,6 +99,7 @@
             app:layout_constraintTop_toBottomOf="@+id/iv_non_member" />
 
         <Button
+            android:id="@+id/bt_login"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_tc_chevron_right"
