@@ -1,7 +1,6 @@
 package com.example.data.datasource
 
 import android.content.Context
-import android.util.Log
 import androidx.datastore.core.DataStore
 import com.example.data.database.AppSettings
 import com.example.data.database.dataStore
@@ -59,7 +58,6 @@ internal class AuthDataSource @Inject constructor(
     }
 
     private suspend fun localLogout() {
-        Log.d("dasdasdsa", "localLogout")
         dataStore.updateData {
             it.copy(
                 accessToken = "",

@@ -2,6 +2,7 @@ package com.example.presentation.screen.reservation
 
 import android.content.Context
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
@@ -136,7 +137,9 @@ fun ReserveScreen(
                 title = stringResource(R.string.text_submit_reserve),
                 clickable = emailValidate && nameValidate && phoneNumberValidate,
                 onClick = { navigateToReserveComplete() },
-                modifier = Modifier.padding(10.dp)
+                modifier = Modifier
+                    .padding(10.dp)
+                    .fillMaxWidth()
             )
         }
     }

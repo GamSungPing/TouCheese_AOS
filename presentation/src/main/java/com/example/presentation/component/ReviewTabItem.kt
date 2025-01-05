@@ -20,7 +20,6 @@ import com.example.presentation.R
 fun ReviewTabItem(
     review: List<ReviewItem>,
     reviewColumnSize: Int,
-    onClickReview: (Int) -> Unit
 ) {
     Column(modifier = Modifier.fillMaxWidth()) {
         repeat(reviewColumnSize) { rowIndex ->
@@ -36,7 +35,6 @@ fun ReviewTabItem(
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
                             .size(140.dp)
-                            .clickable { onClickReview(reviewItem.id) }
                     )
                 }
             }

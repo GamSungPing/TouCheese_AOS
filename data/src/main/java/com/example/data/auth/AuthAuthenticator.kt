@@ -1,6 +1,5 @@
 package com.example.data.auth
 
-import android.util.Log
 import com.example.data.datasource.AuthDataSource
 import com.example.data.datasource.TokenDataSource
 import kotlinx.coroutines.runBlocking
@@ -17,7 +16,6 @@ internal class AuthAuthenticator @Inject constructor(
 ) : Authenticator {
 
     override fun authenticate(route: Route?, response: Response): Request? {
-        Log.d("dasdasdsa", "authenticate")
         val accessToken = runBlocking { getNewAccessToken() } ?: return null
         val builder = response.request.newBuilder()
         return builder
@@ -28,16 +26,13 @@ internal class AuthAuthenticator @Inject constructor(
     private suspend fun getNewAccessToken(): String? {
         val authDataSource = authDataSource.get()
         val newToken = authDataSource.refresh().getOrNull()
-        Log.d("dasdasdsa", "ds ${newToken == null}")
         return newToken?.let {
-            Log.d("dasdasdsa", newToken.toString())
             tokenDataSource.saveToken(
                 accessToken = it.accessToken,
                 refreshToken = it.refreshToken
             )
             it.accessToken
         } ?: run {
-            Log.d("dasdasdsa", "newToken null")
             authDataSource.logout()
             null
         }

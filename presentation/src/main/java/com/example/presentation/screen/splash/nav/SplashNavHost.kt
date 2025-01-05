@@ -12,6 +12,7 @@ import com.kakao.sdk.user.UserApiClient
 fun SplashNavHost(
     apiClient: UserApiClient,
     startDestination: String?,
+    navigateToMain: () -> Unit,
     onClickClose: () -> Unit
 ) {
     val navController = rememberNavController()
@@ -24,6 +25,9 @@ fun SplashNavHost(
             SplashScreen(
                 navigateToLogin = {
                     navController.navigate(SplashRoute.Login.route)
+                },
+                navigateToMain = {
+                    navigateToMain()
                 }
             )
         }

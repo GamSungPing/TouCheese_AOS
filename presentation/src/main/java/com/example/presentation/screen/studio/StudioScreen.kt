@@ -223,9 +223,6 @@ fun StudioScreen(
                                 profileUrl = path
                             )
                         )
-                    },
-                    onClickReview = { reviewId ->
-
                     }
                 )
             }

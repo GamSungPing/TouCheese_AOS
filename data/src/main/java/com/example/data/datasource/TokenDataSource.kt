@@ -1,7 +1,6 @@
 package com.example.data.datasource
 
 import android.content.Context
-import android.util.Log
 import androidx.datastore.core.DataStore
 import com.example.data.database.AppSettings
 import com.example.data.database.dataStore
@@ -22,7 +21,7 @@ internal class TokenDataSource @Inject constructor(
         get() = dataStore.data
 
     val loggedIn: Flow<Boolean>
-        get() = data.map { Log.d("dasdas", it.accessToken)
+        get() = data.map {
             it.accessToken.isNotBlank()
         }
 

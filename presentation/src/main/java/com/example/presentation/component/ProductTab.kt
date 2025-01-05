@@ -37,7 +37,6 @@ fun ProductTab(
     review: List<ReviewItem>,
     reviewColumnSize: Int,
     onClickProduct: (Int, String, String) -> Unit,
-    onClickReview: (Int) -> Unit
 ) {
     val pagerState = rememberPagerState(initialPage = TabStatus.Price.value)
     val coroutineScope = rememberCoroutineScope()
@@ -101,9 +100,7 @@ fun ProductTab(
                 ReviewTabItem(
                     review = review,
                     reviewColumnSize = reviewColumnSize,
-                ) { reviewId ->
-                    onClickReview(reviewId)
-                }
+                )
             }
         }
     }
